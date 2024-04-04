@@ -17,12 +17,11 @@ function Register() {
   });
   return (
     <Flex
+      padding="20px"
       bg="gray.100"
       direction="column"
       align="center"
       justify="center"
-      h="600px"
-      width={'100%'}
     >
       <Heading>Register</Heading>
       <form onSubmit={formik.handleSubmit}>
