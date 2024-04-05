@@ -54,7 +54,8 @@ function Register() {
 
         <Button
           mt={4}
-          colorScheme="teal"
+          colorScheme="verdeacento"
+          textColor={'white'}
           isLoading={formik.isSubmitting}
           type="submit"
         >

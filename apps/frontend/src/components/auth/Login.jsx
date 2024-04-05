@@ -44,7 +44,8 @@ function Login() {
 
         <Button
           mt={4}
-          colorScheme="teal"
+          colorScheme="azulacento"
+          textColor={'white'}
           isLoading={formik.isSubmitting}
           type="submit"
         >
