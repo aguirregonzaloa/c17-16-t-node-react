@@ -12,6 +12,7 @@ export default function NavBar() {
         color="gris.400"
         _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
         _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+        _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
       >
         Inicio
       </ChakraLink>
@@ -22,6 +23,7 @@ export default function NavBar() {
         color="gris.400"
         _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
         _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+        _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
       >
         Nosotros
       </ChakraLink>
@@ -32,6 +34,7 @@ export default function NavBar() {
         color="gris.400"
         _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
         _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+        _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
       >
         Tarifas
       </ChakraLink>
@@ -41,8 +44,9 @@ export default function NavBar() {
         m="3"
         bg="verdeacento.600"
         color="gris.800"
-        _hover={{ bg:"verdeacento.500" }}
-        _focus={{ bg:"verdeacento.500" }}
+        _hover={{ bg: "verdeacento.500" }}
+        _focus={{ bg: "verdeacento.500" }}
+        _active={{ bg: "verdeacento.500" }}
       >
         Ingresar
       </Button>
