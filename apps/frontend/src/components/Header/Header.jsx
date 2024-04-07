@@ -1,24 +1,43 @@
-import React from "react";
-import { Link as ChakraLink } from "@chakra-ui/react";
-import { Link as ReactRouterLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import NavBar from "../NavBar/NavBar";
+import Logotipo02 from "../../assets/icons/Logotipo02.png";
+import { Box, Flex, Image, Spacer } from "@chakra-ui/react";
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    //Modifica el color del header al hacer scroll
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header>
-      <nav>
-        <ChakraLink as={ReactRouterLink} to="/" m="2">
-          Inicio
-        </ChakraLink>
-        <ChakraLink as={ReactRouterLink} to="/about-we" m="2">
-          Nosotros
-        </ChakraLink>
-        <ChakraLink as={ReactRouterLink} to="/rates" m="2">
-          Tarifas
-        </ChakraLink>
-        <ChakraLink as={ReactRouterLink} to="/login" m="2">
-          Ingresar
-        </ChakraLink>
-      </nav>
+    <header
+      style={{
+        position: "fixed",
+        zIndex: "2",
+        width: "100%",
+        backgroundColor: scrolled ? "#E6E6E6" : "#FEFBF6",
+        transition: "background-color 0.3s ease",
+      }}
+    >
+      <Flex align="center" mx="100px">
+        <Image boxSize={20} src={Logotipo02} alt="Logotipo" />
+        <Spacer />
+        <Box>
+          <NavBar />
+        </Box>
+      </Flex>
     </header>
   );
 }
