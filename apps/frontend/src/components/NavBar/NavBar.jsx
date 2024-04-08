@@ -46,11 +46,11 @@ export default function NavBar({ direction }) {
           as={ReactRouterLink}
           to="/login"
           m="3"
-          bg="verdeacento.600"
+          bg="verdeacento.500"
           color="gris.800"
-          _hover={{ bg: "verdeacento.500" }}
-          _focus={{ bg: "verdeacento.500" }}
-          _active={{ bg: "verdeacento.500" }}
+          _hover={{ bg: "verdeacento.600" }}
+          _focus={{ bg: "verdeacento.600" }}
+          _active={{ bg: "verdeacento.600" }}
         >
           Ingresar
         </Button>
