@@ -45,7 +45,7 @@ export default function Header() {
       <Flex align="center" mx={isSmallerThan640 ? "20px" : "100px"}>
         <Image boxSize={20} src={Logotipo02} alt="Logotipo" />
         <Spacer />
-        {isSmallerThan650 ? (
+        {isSmallerThan640 ? (
           <Box>
             <IconButton
               border="none"
