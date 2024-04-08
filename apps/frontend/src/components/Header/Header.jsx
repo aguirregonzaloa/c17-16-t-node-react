@@ -8,7 +8,7 @@ import {
   useBoolean,
   useMediaQuery,
 } from "@chakra-ui/react";
-import Logotipo02 from "../../assets/icons/Logotipo02.png";
+import Logotipo02 from "../../assets/logos/Logotipo02.svg";
 import { IoMenu, IoClose } from "react-icons/io5";
 import NavBar from "../NavBar/NavBar";
 
