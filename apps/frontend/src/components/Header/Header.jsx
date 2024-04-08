@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../NavBar/NavBar";
+import {
+  Box,
+  Flex,
+  IconButton,
+  Image,
+  Spacer,
+  useBoolean,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Logotipo02 from "../../assets/icons/Logotipo02.png";
-import { Box, Flex, Image, Spacer } from "@chakra-ui/react";
+import { IoMenu, IoClose } from "react-icons/io5";
+import NavBar from "../NavBar/NavBar";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useBoolean();
+  const [isSmallerThan650] = useMediaQuery("(max-width: 650px)");
 
   useEffect(() => {
     //Modifica el color del header al hacer scroll
@@ -31,13 +42,24 @@ export default function Header() {
         transition: "background-color 0.3s ease",
       }}
     >
-      <Flex align="center" mx="100px">
+      <Flex align="center" mx={isSmallerThan650 ? "20px" : "100px"}>
         <Image boxSize={20} src={Logotipo02} alt="Logotipo" />
         <Spacer />
-        <Box>
-          <NavBar />
-        </Box>
+        {isSmallerThan650 ? (
+          <Box>
+            <IconButton
+              border="none"
+              onClick={setIsOpen.toggle}
+              icon={isOpen ? <IoClose size="32px" /> : <IoMenu size="32px" />}
+              variant="outline"
+              aria-label="Menu"
+            />
+          </Box>
+        ) : (
+          <NavBar direction="row" />
+        )}
       </Flex>
+      {isOpen && <NavBar direction="column" />}
     </header>
   );
 }
