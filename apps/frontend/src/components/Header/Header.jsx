@@ -15,7 +15,7 @@ import NavBar from "../NavBar/NavBar";
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useBoolean();
-  const [isSmallerThan650] = useMediaQuery("(max-width: 650px)");
+  const [isSmallerThan640] = useMediaQuery("(max-width: 640px)");
 
   useEffect(() => {
     //Modifica el color del header al hacer scroll
@@ -42,7 +42,7 @@ export default function Header() {
         transition: "background-color 0.3s ease",
       }}
     >
-      <Flex align="center" mx={isSmallerThan650 ? "20px" : "100px"}>
+      <Flex align="center" mx={isSmallerThan640 ? "20px" : "100px"}>
         <Image boxSize={20} src={Logotipo02} alt="Logotipo" />
         <Spacer />
         {isSmallerThan650 ? (
