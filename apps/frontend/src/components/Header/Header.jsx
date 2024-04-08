@@ -38,7 +38,7 @@ export default function Header() {
         position: "fixed",
         zIndex: "2",
         width: "100%",
-        backgroundColor: scrolled ? "#E6E6E6" : "#FEFBF6",
+        backgroundColor: scrolled ? "#FEFBF6" : "",
         transition: "background-color 0.3s ease",
       }}
     >
