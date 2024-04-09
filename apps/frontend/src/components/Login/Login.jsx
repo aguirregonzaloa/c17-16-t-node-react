@@ -40,7 +40,7 @@ function Login() {
         No tienes cuenta?{' '}
         <ChakraLink
           as={ReactRouterLink}
-          to="/login"
+          to="/register"
           color={'azulacento.500'}
           fontWeight={'700'}
         >
