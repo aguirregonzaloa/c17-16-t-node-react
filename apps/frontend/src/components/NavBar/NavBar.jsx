@@ -1,46 +1,60 @@
-import { Link as ReactRouterLink } from 'react-router-dom';
-import { Flex, Link as ChakraLink } from '@chakra-ui/react';
+import React from "react";
+import { Link as ChakraLink, Button, Flex } from "@chakra-ui/react";
+import { Link as ReactRouterLink } from "react-router-dom";
 
-function NavBar() {
+export default function NavBar({ direction }) {
   return (
-    <Flex
-      justify={'space-around'}
-      height={'60px'}
-      bg="gray.100"
-      width={'1200px'}
-      margin={'0 auto 30px auto'}
-    >
-      <div>logo</div>
-      <Flex gap={'20px'}>
+    <nav>
+      <Flex m={2} direction={direction}>
         <ChakraLink
           as={ReactRouterLink}
           to="/"
-          fontWeight={'700'}
-          color={'azulacento.500'}
+          m="3"
+          alignSelf="center"
+          color="gris.400"
+          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
         >
-          Home
+          Inicio
         </ChakraLink>
-
         <ChakraLink
+          as={ReactRouterLink}
+          to="/about-we"
+          m="3"
+          alignSelf="center"
+          color="gris.400"
+          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+        >
+          Nosotros
+        </ChakraLink>
+        <ChakraLink
+          as={ReactRouterLink}
+          to="/rates"
+          m="3"
+          alignSelf="center"
+          color="gris.400"
+          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+        >
+          Tarifas
+        </ChakraLink>
+        <Button
           as={ReactRouterLink}
           to="/login"
-          fontWeight={'700'}
-          color={'azulacento.700'}
+          m="3"
+          bg="verdeacento.500"
+          color="gris.800"
+          _hover={{ bg: "verdeacento.600" }}
+          _focus={{ bg: "verdeacento.600" }}
+          _active={{ bg: "verdeacento.600" }}
         >
-          Login
-        </ChakraLink>
-
-        <ChakraLink
-          as={ReactRouterLink}
-          to="/register"
-          fontWeight={'700'}
-          color={'azulacento.700'}
-        >
-          Register
-        </ChakraLink>
+          Ingresar
+        </Button>
       </Flex>
-    </Flex>
+    </nav>
   );
 }
-
-export default NavBar;
