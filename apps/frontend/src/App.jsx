@@ -1,12 +1,12 @@
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-import Home from './components/Home/Home';
-import AboutWe from './components/AboutWe/AboutWe';
-import Rates from './components/Rates/Rates';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import './App.css';
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import Home from "./components/Home/Home";
+import AboutWe from "./components/AboutWe/AboutWe";
+import Rates from "./components/Rates/Rates";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import "./App.css";
 
 function App() {
   return (
