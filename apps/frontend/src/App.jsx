@@ -3,7 +3,8 @@ import { Card, Text, CardBody, Button, Container } from '@chakra-ui/react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-
+import "./Footer.css"
+import Footer from './Footer';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -18,7 +19,6 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-
       <Card>
         <CardBody>
           <Button
@@ -33,7 +33,11 @@ function App() {
           <Text> Click on the Vite and React logos to learn more</Text>
         </CardBody>
       </Card>
+      <Footer></Footer>
+
     </Container>
+    
+    
   );
 }
 
