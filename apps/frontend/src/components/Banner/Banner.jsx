@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Flex, Image, Text, Grid } from "@chakra-ui/react";
 import VectorBanner1 from "../../assets/icons/VectorBanner1.svg";
 import VectorBanner2 from "../../assets/icons/VectorBanner2.svg";
-import imgBanner1 from "../../assets/images/ImgBanner.png";
+import imgBanner from "../../assets/img/ImgBanner.png";
 import MiniCat from "../../assets/icons/MiniCat.svg";
 import MiniDog from "../../assets/icons/MiniDog.svg";
 
@@ -59,7 +59,7 @@ export default function Banner() {
         left={{ xl: "46vw", "2xl": "47.4vw" }}
       />
       <Box w="50%">
-        <Image src={imgBanner1} alt="image Banner" h="100vh" w="100%" />
+        <Image src={imgBanner} alt="image Banner" h="100vh" w="100%" />
       </Box>
     </Flex>
   );
