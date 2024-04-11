@@ -12,9 +12,10 @@ export default function NavBar({ direction }) {
           m="3"
           alignSelf="center"
           color="gris.700"
-          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          fontFamily= "Poppins-Medium"
+          _hover={{ color: "azulacento.500" }}
+          _focus={{ color: "azulacento.500" }}
+          _active={{ color: "azulacento.500" }}
         >
           Inicio
         </ChakraLink>
@@ -24,9 +25,10 @@ export default function NavBar({ direction }) {
           m="3"
           alignSelf="center"
           color="gris.700"
-          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          fontFamily= "Poppins-Medium"
+          _hover={{ color: "azulacento.500" }}
+          _focus={{ color: "azulacento.500" }}
+          _active={{ color: "azulacento.500" }}
         >
           Nosotros
         </ChakraLink>
@@ -36,9 +38,10 @@ export default function NavBar({ direction }) {
           m="3"
           alignSelf="center"
           color="gris.700"
-          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          fontFamily= "Poppins-Medium"
+          _hover={{ color: "azulacento.500" }}
+          _focus={{ color: "azulacento.500" }}
+          _active={{ color: "azulacento.500" }}
         >
           Tarifas
         </ChakraLink>
@@ -46,11 +49,11 @@ export default function NavBar({ direction }) {
           as={ReactRouterLink}
           to="/login"
           m="3"
-          bg="verdeacento.500"
+          bg="verdeacento.600"
           color="gris.800"
-          _hover={{ bg: "verdeacento.600" }}
-          _focus={{ bg: "verdeacento.600" }}
-          _active={{ bg: "verdeacento.600" }}
+          _hover={{ bg: "verdeacento.700" }}
+          _focus={{ bg: "verdeacento.700" }}
+          _active={{ bg: "verdeacento.700" }}
         >
           Ingresar
         </Button>
