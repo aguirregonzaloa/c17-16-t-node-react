@@ -13,8 +13,11 @@ import { useFormik } from "formik";
 import { validateLogin as validate } from "../../utils/FormValidation/baseValidation";
 
 // import * as React from 'react';
+import { useGetUser } from "../../utils/hooks/userQuery";
 
 function Login() {
+  const { isPending, error, data, isFetching } = useGetUser(1);
+  console.log(data);
   const formik = useFormik({
     initialValues: {
       email: "",
