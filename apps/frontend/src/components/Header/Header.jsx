@@ -9,7 +9,7 @@ import {
   useBoolean,
   useMediaQuery,
 } from "@chakra-ui/react";
-import Logotipo02 from "../../assets/logos/Logotipo02.svg";
+import LogoBanner from "../../assets/logos/LogoBanner.svg";
 import { IoMenu, IoClose } from "react-icons/io5";
 import NavBar from "../NavBar/NavBar";
 
@@ -44,7 +44,7 @@ export default function Header() {
       }}
     >
       <Flex align="center" mx={isSmallerThan640 ? "20px" : "100px"}>
-        <Image boxSize={20} src={Logotipo02} alt="Logotipo" />
+        <Image boxSize={20} src={LogoBanner} alt="Logo" />
         <Spacer />
         {isSmallerThan640 ? (
           <Box>

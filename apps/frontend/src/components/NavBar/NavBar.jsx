@@ -11,7 +11,7 @@ export default function NavBar({ direction }) {
           to="/"
           m="3"
           alignSelf="center"
-          color="gris.400"
+          color="gris.700"
           _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
           _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
           _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
@@ -23,7 +23,7 @@ export default function NavBar({ direction }) {
           to="/about-we"
           m="3"
           alignSelf="center"
-          color="gris.400"
+          color="gris.700"
           _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
           _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
           _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
@@ -35,7 +35,7 @@ export default function NavBar({ direction }) {
           to="/rates"
           m="3"
           alignSelf="center"
-          color="gris.400"
+          color="gris.700"
           _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
           _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
           _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
