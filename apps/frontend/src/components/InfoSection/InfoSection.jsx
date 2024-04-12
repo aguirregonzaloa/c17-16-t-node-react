@@ -94,6 +94,43 @@ export default function InfoSection({
               opacity="20%"
               w={{ lg: "33vw", xl: "25vw", "2xl": "25vw" }}
             />
+            {order === "1" ? (
+              <>
+                <ItemInfoSection
+                  icon={Suitcase}
+                  title="Guardería"
+                  text="Tu mascota pasa la noche en casa de su cuidador"
+                />
+                <ItemInfoSection
+                  icon={OutlinePaw}
+                  title="Paseos"
+                  text="Tu mascota sale a dar un paseo por tu barrio"
+                />
+                <ItemInfoSection
+                  icon={OutlineCheckCircle}
+                  title="Seguro"
+                  text="Contamos con un seguro qeu protege a tu perro durante su estancia y actividades"
+                />
+              </>
+            ) : (
+              <>
+                <ItemInfoSection
+                  icon={Certificate}
+                  title="Entrenamiento y certificación"
+                  text="En técnicas de manejo, primeros auxilios para mascotas y comportamiento animal"
+                />
+                <ItemInfoSection
+                  icon={PerfilCheck}
+                  title="Perfiles completos y detallados"
+                  text="Incluye información personal, experiencia y referencias."
+                />
+                <ItemInfoSection
+                  icon={MagnifyingGlass}
+                  title="Revisión continua de desempeño"
+                  text="Para garantizar que sigan cumpliendo con nuestros estándares de calidad."
+                />
+              </>
+            )}
           </Box>
         </Box>
       </Flex>
