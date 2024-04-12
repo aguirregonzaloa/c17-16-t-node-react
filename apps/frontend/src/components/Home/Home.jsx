@@ -12,14 +12,14 @@ export default function Home() {
         iconAnimal={ImgDog}
         text="Somos el intermediario que se encarga de reunirte con el mejor cuidado para tu mascota."
         title="Nuestros Servicios"
-        order="1"
+        order={1}
         textButton="Más de nosotros"
       />
       <InfoSection
         iconAnimal={ImgCat}
         text="Todos nuestros paseadores tienen un certificado de cuidador."
         title="Certificado de cuidador"
-        order="2"
+        order={2}
         textButton="Más sobre esto"
       />
     </>
