@@ -8,28 +8,42 @@ import MiniDog from "../../assets/icons/MiniDog.svg";
 
 export default function Banner() {
   return (
-    <Flex w="100%" h="100vh">
-      <Box w="50%" bg="white">
-        <Grid w="370px" pos="absolute" top="170px" left="100px" gap="36px">
+    <Flex h="100%" direction={{ base: "column", lg: "row" }}>
+      <Box
+        bg="white"
+        w={{ base: "100vw", lg: "50%" }}
+        h={{ base: "75vh", sm: "65vh", lg: "45vh", xl: "100vh" }}
+      >
+        <Grid
+          w="367.62px"
+          pos={{
+            base: "relative",
+            xl: "absolute",
+          }}
+          top="170px"
+          left={{ base: "80px", md: "100px" }}
+          gap="36px"
+        >
           <Image
             src={MiniCat}
-            alt="icon mini cat"
+            alt="icono mini gato"
             pos="absolute"
-            top="-90px"
+            top={{ base: "-80px", lg: "-10px" }}
             left={10}
           />
           <Image
             src={MiniDog}
-            alt="icon mini dog"
+            alt="icono mini perro"
             pos="absolute"
-            top={{ xl: "15vh", "2xl": "11vh" }}
-            left={{ xl: "15.5vw", "2xl": "11vw" }}
+            top={{ base: "100px", lg: "170px" }}
+            left={52}
           />
           <Text
             fontFamily="Mercuria"
             fontWeight="400"
             fontSize="46px"
             lineHeight="60px"
+            pt={{ base: 0, lg: 20 }}
           >
             CUIDAMOS A TU MEJOR AMIGO PELUDO
           </Text>
@@ -44,22 +58,39 @@ export default function Banner() {
           </Text>
         </Grid>
       </Box>
-      <Image
-        src={VectorBanner1}
-        alt="icon mini cat"
-        pos="absolute"
-        top="5vh"
-        left={{ xl: "45vw", "2xl": "46.5vw" }}
-      />
-      <Image
-        src={VectorBanner2}
-        alt="icon mini dog"
-        pos="absolute"
-        top={{ xl: "53vh", "2xl": "59vh" }}
-        left={{ xl: "46vw", "2xl": "47.4vw" }}
-      />
-      <Box w="50%">
-        <Image src={imgBanner} alt="image Banner" h="100vh" w="100%" />
+      <Box w={{ base: "100%", lg: "50%" }} h="100vh">
+        <Image src={imgBanner} alt="image Banner" h="100%" w="100%" />
+        <Image
+          src={VectorBanner1}
+          alt="icon mini cat"
+          pos="absolute"
+          top={{ base: "67vh", sm: "57vh", lg: "5vh" }}
+          left={{
+            base: "-4vw",
+            lg: "44vw",
+            xl: "46vw",
+            "2xl": "46.5vw",
+          }}
+        />
+        <Image
+          src={VectorBanner2}
+          alt="icon mini dog"
+          pos="absolute"
+          top={{
+            base: "69vh",
+            sm: "59vh",
+            lg: "58vh",
+            xl: "53vh",
+            "2xl": "59vh",
+          }}
+          left={{
+            base: undefined,
+            lg: "46vw",
+            xl: "47vw",
+            "2xl": "47.4vw",
+          }}
+          right={{ base: "0vh", lg: undefined }}
+        />
       </Box>
     </Flex>
   );
