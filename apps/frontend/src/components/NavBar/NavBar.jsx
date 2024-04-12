@@ -2,10 +2,10 @@ import React from "react";
 import { Link as ChakraLink, Button, Flex } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-export default function NavBar({ direction }) {
+export default function NavBar({ direction, background }) {
   return (
     <nav>
-      <Flex m={2} direction={direction}>
+      <Flex m={2} direction={direction} bg={background}>
         <ChakraLink
           as={ReactRouterLink}
           to="/"
