@@ -24,33 +24,44 @@ export default function InfoSection({
         alt="animal icon"
         pos="absolute"
         top={
-          order === "1"
-            ? { lg: "75vh", xl: "80vh", "2xl": "90vh" }
-            : { lg: "185vh", xl: "200vh", "2xl": "175vh" }
+          order === 1
+            ? {
+                base: "135vh",
+                sm: "125vh",
+                lg: "75vh",
+                xl: "80vh",
+                "2xl": "90vh",
+              }
+            : {
+                base: "270vh",
+                sm: "258vh",
+                md: "240vh",
+                lg: "185vh",
+                xl: "200vh",
+                "2xl": "175vh",
+              }
         }
-        left={
-          order === "1"
-            ? "0px"
-            : { lg: "83.5vw", xl: "86.2vw", "2xl": "90.2vw" }
-        }
+        left={order === 1 ? "0px" : undefined}
+        right={order === 2 ? "0px" : undefined}
       />
       <Flex
+        direction={{ base: "column", md: "row" }}
         justifyContent="center"
         align="center"
-        p="64px 100px 64px 100px"
+        p={{ base: "80px 20px 80px 20px", md: "64px 100px 64px 100px" }}
         bg="white"
       >
         <Box
-          w="50%"
+          w={{ base: "100%", md: "50%" }}
           mt={{ xl: "30vh", "2xl": "20vh" }}
-          order={order === "2" ? 2 : ""}
-          p={order === "1" ? "0px" : "35px"}
+          order={order === 2 ? 2 : ""}
+          p={order === 1 ? "0px" : {base: "0px", md:"35px"}}
         >
           <Text
             w={
-              order === "1"
-                ? { lg: "32vw", xl: "24vw", "2xl": "18vw" }
-                : { lg: "30vw", xl: "24vw", "2xl": "18vw" }
+              order === 1
+                ? { base: "52vh", md: "30vw", xl: "24vw", "2xl": "18vw" }
+                : { base: "80vw", md: "30vw", xl: "24vw", "2xl": "18vw" }
             }
             color="azulacent0.900"
             fontWeight="600"
@@ -72,11 +83,12 @@ export default function InfoSection({
           <Image
             src={Paws}
             alt="Patitas"
+            display={{ base: "none", md: "block" }}
             pt="10px"
-            pl={{ lg: "18vw", xl: "15vw", "2xl": "9vw" }}
+            pl={{ md: "18vw", xl: "15vw", "2xl": "9vw" }}
           />
         </Box>
-        <Box w="50%" p="32px">
+        <Box w={{ base: "100%", md: "50%" }} p="32px">
           <Box w={{ lg: "33vw", xl: "25vw", "2xl": "25vw" }}>
             <Text
               fontFamily="Poppins-Medium"
@@ -94,7 +106,7 @@ export default function InfoSection({
               opacity="20%"
               w={{ lg: "33vw", xl: "25vw", "2xl": "25vw" }}
             />
-            {order === "1" ? (
+            {order === 1 ? (
               <>
                 <ItemInfoSection
                   icon={Suitcase}
