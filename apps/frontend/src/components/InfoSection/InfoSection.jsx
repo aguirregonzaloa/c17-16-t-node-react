@@ -54,8 +54,8 @@ export default function InfoSection({
         <Box
           w={{ base: "100%", md: "50%" }}
           mt={{ xl: "30vh", "2xl": "20vh" }}
-          order={order === 2 ? 2 : ""}
-          p={order === 1 ? "0px" : {base: "0px", md:"35px"}}
+          order={{ base: order === 1 ? 2 : undefined, md: order }}
+          p={order === 1 ? "0px" : { base: "0px", md: "35px" }}
         >
           <Text
             w={
@@ -88,7 +88,14 @@ export default function InfoSection({
             pl={{ md: "18vw", xl: "15vw", "2xl": "9vw" }}
           />
         </Box>
-        <Box w={{ base: "100%", md: "50%" }} p="32px">
+        <Box
+          w={{ base: "100%", md: "50%" }}
+          p="32px"
+          order={{
+            base: order === 1 ? 2 : undefined,
+            md: order === 1 ? 2 : undefined,
+          }}
+        >
           <Box w={{ lg: "33vw", xl: "25vw", "2xl": "25vw" }}>
             <Text
               fontFamily="Poppins-Medium"
