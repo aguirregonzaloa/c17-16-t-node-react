@@ -12,7 +12,7 @@ export default function Banner() {
       <Box
         bg="white"
         w={{ base: "100vw", lg: "50%" }}
-        h={{ base: "75vh", sm: "65vh", lg: "45vh", xl: "100vh" }}
+        h={{ base: "75vh", sm: "65vh", lg: "100vh" }}
       >
         <Grid
           w="367.62px"
