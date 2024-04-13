@@ -27,7 +27,7 @@ export default function InfoSection({
           order === 1
             ? {
                 base: "135vh",
-                sm: "125vh",
+                sm: "129vh",
                 lg: "75vh",
                 xl: "80vh",
                 "2xl": "90vh",
@@ -60,7 +60,7 @@ export default function InfoSection({
           <Text
             w={
               order === 1
-                ? { base: "52vh", md: "30vw", xl: "24vw", "2xl": "18vw" }
+                ? { base: "40vh", sm: "45vh", md: "30vw", xl: "24vw", "2xl": "18vw" }
                 : { base: "80vw", md: "30vw", xl: "24vw", "2xl": "18vw" }
             }
             color="azulacent0.900"
