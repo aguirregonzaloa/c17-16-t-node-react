@@ -3,6 +3,7 @@ import Banner from "../Banner/Banner";
 import InfoSection from "../InfoSection/InfoSection";
 import ImgDog from "../../assets/img/Dog1.png";
 import ImgCat from "../../assets/img/Cat1.png";
+import Functioning from "../Functioning/Functioning";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         order={2}
         textButton="Más sobre esto"
       />
+      <Functioning />
     </>
   );
 }
