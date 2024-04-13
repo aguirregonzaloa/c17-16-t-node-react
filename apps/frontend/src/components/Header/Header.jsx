@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -42,7 +41,7 @@ export default function Header() {
         backgroundColor: scrolled ? "#FEFBF6" : "",
       }}
     >
-      <Flex align="center" mx={isSmallerThan640 ? "20px" : "100px"}>
+      <Flex align="center" mx={{ base: "20px", md: "100px" }}>
         <Image boxSize={20} src={LogoBanner} alt="Logo" />
         <Spacer />
         {isSmallerThan640 ? (
