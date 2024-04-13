@@ -58,38 +58,28 @@ export default function Banner() {
           </Text>
         </Grid>
       </Box>
-      <Box w={{ base: "100%", lg: "50%" }} h="100vh">
+      <Box w={{ base: "100%", lg: "50%" }} h="100vh" pos="relative">
         <Image src={imgBanner} alt="image Banner" h="100%" w="100%" />
         <Image
           src={VectorBanner1}
           alt="icon mini cat"
           pos="absolute"
-          top={{ base: "67vh", sm: "57vh", lg: "5vh" }}
-          left={{
-            base: "-4vw",
-            lg: "44vw",
-            xl: "46vw",
-            "2xl": "46.5vw",
-          }}
+          top={{ base: -16, lg: 20 }}
+          left={{base: -4, lg:-16}}
         />
         <Image
           src={VectorBanner2}
           alt="icon mini dog"
           pos="absolute"
           top={{
-            base: "69vh",
-            sm: "59vh",
-            lg: "58vh",
-            xl: "53vh",
-            "2xl": "59vh",
+            base: -12,
+            lg: "60vh"
           }}
           left={{
             base: undefined,
-            lg: "46vw",
-            xl: "47vw",
-            "2xl": "47.4vw",
+            lg: -12
           }}
-          right={{ base: "0vh", lg: undefined }}
+          right={{ base: 0, lg: undefined }}
         />
       </Box>
     </Flex>
