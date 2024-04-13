@@ -20,7 +20,7 @@ export default function InfoSection({
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
-      justifyContent="center"
+      justify="center"
       align="center"
       p={{ base: "80px 20px", md: "64px 100px" }}
       bg="white"
@@ -29,15 +29,16 @@ export default function InfoSection({
     >
       <Image
         src={iconAnimal}
-        alt="animal icon"
+        alt="Imagen de animal"
         pos="absolute"
-        top={order === 1 ? { base: -80, lg: -40 } : { base: -24, lg: -10 }}
+        top={
+          order === 1 ? { base: -80, lg: -48 } : { base: -24, md: -12, lg: -10 }
+        }
         left={order === 1 ? 0 : undefined}
         right={order === 2 ? 0 : undefined}
       />
       <Box
         w={{ base: "100%", md: "50%" }}
-        mt={{ xl: "30vh", "2xl": "20vh" }}
         order={{ base: order === 1 ? 2 : undefined, md: order }}
         p={order === 1 ? "0px" : { base: "0px", md: "35px" }}
         pos="relative"
@@ -80,8 +81,18 @@ export default function InfoSection({
           left={48}
         />
       </Box>
-      <Box w={{ base: "100%", md: "50%" }} order={order === 1 ? 2 : undefined}>
-        <Box w="412px" bg="azulacento.100" p={8} borderRadius={20} gap={4}>
+      <Flex
+        w={{ base: "100%", md: "50%" }}
+        justify="center"
+        order={order === 1 ? 2 : undefined}
+      >
+        <Box
+          w={{ base: "90vw", md: "40vw" }}
+          bg="azulacento.100"
+          p={8}
+          borderRadius={20}
+          gap={4}
+        >
           <Text
             fontFamily="Poppins-Medium"
             fontSize="16px"
@@ -136,7 +147,7 @@ export default function InfoSection({
             </>
           )}
         </Box>
-      </Box>
+      </Flex>
     </Flex>
   );
 }
