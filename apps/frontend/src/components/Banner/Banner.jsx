@@ -21,7 +21,7 @@ export default function Banner() {
             xl: "absolute",
           }}
           top="170px"
-          left={{ base: "80px", md: "100px" }}
+          left={{ base: "50px", sm: "80px", md: "100px" }}
           gap="36px"
         >
           <Image
