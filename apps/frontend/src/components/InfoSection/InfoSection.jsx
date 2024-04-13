@@ -22,15 +22,16 @@ export default function InfoSection({
       direction={{ base: "column", md: "row" }}
       justifyContent="center"
       align="center"
-      p={{ base: "80px 20px 80px 20px", md: "64px 100px 64px 100px" }}
+      p={{ base: "80px 20px", md: "64px 100px" }}
       bg="white"
       pos="relative"
+      gap={10}
     >
       <Image
         src={iconAnimal}
         alt="animal icon"
         pos="absolute"
-        top={order === 1 ? { base: -80, lg: -56 } : { base: -24, lg: -10 }}
+        top={order === 1 ? { base: -80, lg: -40 } : { base: -24, lg: -10 }}
         left={order === 1 ? 0 : undefined}
         right={order === 2 ? 0 : undefined}
       />
@@ -79,15 +80,8 @@ export default function InfoSection({
           left={48}
         />
       </Box>
-      <Box
-        w={{ base: "100%", md: "50%" }}
-        p="32px"
-        order={{
-          base: order === 1 ? 2 : undefined,
-          md: order === 1 ? 2 : undefined,
-        }}
-      >
-        <Box w={{ lg: "33vw", xl: "25vw", "2xl": "25vw" }}>
+      <Box w={{ base: "100%", md: "50%" }} order={order === 1 ? 2 : undefined}>
+        <Box w="412px" bg="azulacento.100" p={8} borderRadius={20} gap={4}>
           <Text
             fontFamily="Poppins-Medium"
             fontSize="16px"
@@ -102,7 +96,7 @@ export default function InfoSection({
             borderColor="azulacento.800"
             my="10px"
             opacity="20%"
-            w={{ lg: "33vw", xl: "25vw", "2xl": "25vw" }}
+            w="100%"
           />
           {order === 1 ? (
             <>
