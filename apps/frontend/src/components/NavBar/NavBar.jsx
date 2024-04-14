@@ -5,11 +5,10 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export default function NavBar({ direction, background }) {
   return (
     <nav>
-      <Flex m={2} direction={direction} bg={background}>
+      <Flex m={2} direction={direction} bg={background} gap={6}>
         <ChakraLink
           as={ReactRouterLink}
           to="/"
-          m="3"
           alignSelf="center"
           color="gris.700"
           fontFamily= "Poppins-Medium"
@@ -22,7 +21,6 @@ export default function NavBar({ direction, background }) {
         <ChakraLink
           as={ReactRouterLink}
           to="/about-we"
-          m="3"
           alignSelf="center"
           color="gris.700"
           fontFamily= "Poppins-Medium"
@@ -35,7 +33,6 @@ export default function NavBar({ direction, background }) {
         <ChakraLink
           as={ReactRouterLink}
           to="/rates"
-          m="3"
           alignSelf="center"
           color="gris.700"
           fontFamily= "Poppins-Medium"
@@ -48,7 +45,6 @@ export default function NavBar({ direction, background }) {
         <Button
           as={ReactRouterLink}
           to="/login"
-          m="3"
           bg="verdeacento.600"
           color="gris.800"
           _hover={{ bg: "verdeacento.700" }}
