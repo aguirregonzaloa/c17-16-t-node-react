@@ -1,27 +1,37 @@
 import {
   Heading,
   Input,
+  Text,
   Button,
   Flex,
   FormControl,
   FormLabel,
   Link as ChakraLink,
-} from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
-import { useFormik } from 'formik';
+} from "@chakra-ui/react";
+import { Link as ReactRouterLink } from "react-router-dom";
+import { useFormik } from "formik";
+import { validateRegister as validate } from "../../utils/FormValidation/baseValidation";
+import { useRegisterUser } from "../../utils/hooks/userQuery";
 
 //   import * as React from 'react';
 
 function Register() {
+  const { mutateAsync, isLoading } = useRegisterUser();
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirmpass: '',
+      name: "",
+      email: "",
+      password: "",
+      confirmpass: "",
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    validate,
+    onSubmit: (values, { setSubmitting }) => {
+      const response = mutateAsync(values);
+
+      response.then((data) => {
+        console.log(data);
+        setSubmitting(false);
+      });
     },
   });
   return (
@@ -31,26 +41,26 @@ function Register() {
       direction="column"
       align="center"
       justify="center"
-      width={'455px'}
-      margin={'0 auto'}
+      width={"455px"}
+      margin={"0 auto"}
     >
-      <Heading as="h2" size="xl" noOfLines={1} mb={'8px'}>
+      <Heading as="h2" size="xl" noOfLines={1} mb={"8px"}>
         Registrate
       </Heading>
-      <Heading as="h4" size="md" noOfLines={1} mb={'24px'}>
-        Ya tienes una cuenta?{' '}
+      <Heading as="h4" size="md" noOfLines={1} mb={"24px"}>
+        Ya tienes una cuenta?{" "}
         <ChakraLink
           as={ReactRouterLink}
           to="/login"
-          color={'azulacento.500'}
-          fontWeight={'700'}
+          color={"azulacento.500"}
+          fontWeight={"700"}
         >
-          inicia sesión
+          Inicia sesión
         </ChakraLink>
       </Heading>
-      <form onSubmit={formik.handleSubmit} style={{ width: '100%' }}>
-        <FormControl mb={'16px'}>
-          <FormLabel mb={'4px'} htmlFor="name">
+      <form onSubmit={formik.handleSubmit} style={{ width: "100%" }}>
+        <FormControl mb={"16px"}>
+          <FormLabel mb={"4px"} htmlFor="name">
             Nombre
           </FormLabel>
           <Input
@@ -60,9 +70,12 @@ function Register() {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
+          {formik.errors.name ? (
+            <Text color={"red"}>{formik.errors.name}</Text>
+          ) : null}
         </FormControl>
-        <FormControl mb={'16px'}>
-          <FormLabel mb={'4px'} htmlFor="email">
+        <FormControl mb={"16px"}>
+          <FormLabel mb={"4px"} htmlFor="email">
             Correo electrónico
           </FormLabel>
           <Input
@@ -71,11 +84,14 @@ function Register() {
             type="email"
             onChange={formik.handleChange}
             value={formik.values.email}
-          />{' '}
+          />{" "}
+          {formik.errors.email ? (
+            <Text color={"red"}>{formik.errors.email}</Text>
+          ) : null}
         </FormControl>
 
-        <FormControl mb={'16px'}>
-          <FormLabel mb={'4px'} htmlFor="password">
+        <FormControl mb={"16px"}>
+          <FormLabel mb={"4px"} htmlFor="password">
             Contraseña
           </FormLabel>
           <Input
@@ -85,9 +101,12 @@ function Register() {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
+          {formik.errors.password ? (
+            <Text color={"red"}>{formik.errors.password}</Text>
+          ) : null}
         </FormControl>
-        <FormControl mb={'24px'}>
-          <FormLabel mb={'4px'} htmlFor="confirmpass">
+        <FormControl mb={"24px"}>
+          <FormLabel mb={"4px"} htmlFor="confirmpass">
             Confirmar Contraseña
           </FormLabel>
           <Input
@@ -97,14 +116,18 @@ function Register() {
             onChange={formik.handleChange}
             value={formik.values.confirmpass}
           />
+          {formik.errors.confirmpass ? (
+            <Text color={"red"}>{formik.errors.confirmpass}</Text>
+          ) : null}
         </FormControl>
 
         <Button
           colorScheme="azulacento"
-          textColor={'white'}
+          textColor={"white"}
           isLoading={formik.isSubmitting}
+          disabled={isLoading}
           type="submit"
-          width={'100%'}
+          width={"100%"}
         >
           Registrate
         </Button>

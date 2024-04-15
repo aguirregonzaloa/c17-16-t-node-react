@@ -1,6 +1,7 @@
 import React from "react";
 import { Link as ChakraLink, Button, Flex } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 export default function NavBar({ direction, background }) {
   return (
