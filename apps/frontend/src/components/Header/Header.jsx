@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -40,10 +39,9 @@ export default function Header() {
         zIndex: "2",
         width: "100%",
         backgroundColor: scrolled ? "#FEFBF6" : "",
-        transition: "background-color 0.3s ease",
       }}
     >
-      <Flex align="center" mx={isSmallerThan640 ? "20px" : "100px"}>
+      <Flex align="center" mx={{ base: "20px", md: "100px" }}>
         <Image boxSize={20} src={LogoBanner} alt="Logo" />
         <Spacer />
         {isSmallerThan640 ? (
@@ -57,10 +55,10 @@ export default function Header() {
             />
           </Box>
         ) : (
-          <NavBar direction="row" />
+          <NavBar direction="row" background="" />
         )}
       </Flex>
-      {isOpen && <NavBar direction="column" />}
+      {isOpen && <NavBar direction="column" background="beige" />}
     </header>
   );
 }
