@@ -7,7 +7,7 @@ import Functioning from "../Functioning/Functioning";
 
 export default function Home() {
   return (
-    <>
+    <main id="home">
       <Banner />
       <InfoSection
         iconAnimal={ImgDog}
@@ -24,6 +24,6 @@ export default function Home() {
         textButton="Más sobre esto"
       />
       <Functioning />
-    </>
+    </main>
   );
 }
