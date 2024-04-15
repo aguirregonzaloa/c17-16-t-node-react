@@ -1,6 +1,7 @@
 import {
   Heading,
   Input,
+  Text,
   Button,
   Flex,
   FormControl,
@@ -10,10 +11,12 @@ import {
 import { Link as ReactRouterLink } from "react-router-dom";
 import { useFormik } from "formik";
 import { validateRegister as validate } from "../../utils/FormValidation/baseValidation";
+import { useRegisterUser } from "../../utils/hooks/userQuery";
 
 //   import * as React from 'react';
 
 function Register() {
+  const { mutateAsync, isLoading } = useRegisterUser();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -23,10 +26,12 @@ function Register() {
     },
     validate,
     onSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
+      const response = mutateAsync(values);
+
+      response.then((data) => {
+        console.log(data);
         setSubmitting(false);
-      }, 400);
+      });
     },
   });
   return (
@@ -65,7 +70,9 @@ function Register() {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-          {formik.errors.name ? <div>{formik.errors.name}</div> : null}
+          {formik.errors.name ? (
+            <Text color={"red"}>{formik.errors.name}</Text>
+          ) : null}
         </FormControl>
         <FormControl mb={"16px"}>
           <FormLabel mb={"4px"} htmlFor="email">
@@ -78,7 +85,9 @@ function Register() {
             onChange={formik.handleChange}
             value={formik.values.email}
           />{" "}
-          {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+          {formik.errors.email ? (
+            <Text color={"red"}>{formik.errors.email}</Text>
+          ) : null}
         </FormControl>
 
         <FormControl mb={"16px"}>
@@ -92,7 +101,9 @@ function Register() {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+          {formik.errors.password ? (
+            <Text color={"red"}>{formik.errors.password}</Text>
+          ) : null}
         </FormControl>
         <FormControl mb={"24px"}>
           <FormLabel mb={"4px"} htmlFor="confirmpass">
@@ -106,7 +117,7 @@ function Register() {
             value={formik.values.confirmpass}
           />
           {formik.errors.confirmpass ? (
-            <div>{formik.errors.confirmpass}</div>
+            <Text color={"red"}>{formik.errors.confirmpass}</Text>
           ) : null}
         </FormControl>
 
@@ -114,6 +125,7 @@ function Register() {
           colorScheme="azulacento"
           textColor={"white"}
           isLoading={formik.isSubmitting}
+          disabled={isLoading}
           type="submit"
           width={"100%"}
         >

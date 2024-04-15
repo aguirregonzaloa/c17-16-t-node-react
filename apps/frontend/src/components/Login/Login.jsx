@@ -2,6 +2,8 @@ import {
   Heading,
   Input,
   Button,
+  Text,
+  FormErrorMessage,
   Flex,
   FormControl,
   FormLabel,
@@ -13,11 +15,10 @@ import { useFormik } from "formik";
 import { validateLogin as validate } from "../../utils/FormValidation/baseValidation";
 
 // import * as React from 'react';
-import { useGetUser } from "../../utils/hooks/userQuery";
+import { useLoginUser } from "../../utils/hooks/userQuery";
 
 function Login() {
-  const { isPending, error, data, isFetching } = useGetUser(1);
-  console.log(data);
+  const { mutateAsync, isLoading } = useLoginUser();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -25,10 +26,15 @@ function Login() {
     },
     validate,
     onSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
+      const response = mutateAsync(values);
+
+      response.then((data) => {
+        console.log(data);
         setSubmitting(false);
-      }, 400);
+      });
+    },
+    onBlur: () => {
+      console.log("blur");
     },
   });
   return (
@@ -66,7 +72,9 @@ function Login() {
             value={formik.values.email}
             required
           />
-          {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+          {formik.errors.email ? (
+            <Text color={"red"}>{formik.errors.email}</Text>
+          ) : null}
         </FormControl>
         <FormControl mb={"24px"}>
           <FormLabel htmlFor="password">Password</FormLabel>
@@ -75,18 +83,27 @@ function Login() {
             name="password"
             type="password"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.password}
             required
           />
-          {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+          {formik.errors.password && formik.touched.password ? (
+            <Text color={"red"}>{formik.errors.password}</Text>
+          ) : null}
         </FormControl>
 
         <Button
           colorScheme="azulacento"
           textColor={"white"}
           isLoading={formik.isSubmitting}
+          disabled={"true"}
           type="submit"
           width={"100%"}
+          _disabled={{
+            bg: "#dddfe2",
+            transform: "scale(0.98)",
+            borderColor: "#bec3c9",
+          }}
         >
           Inicia Sesión
         </Button>

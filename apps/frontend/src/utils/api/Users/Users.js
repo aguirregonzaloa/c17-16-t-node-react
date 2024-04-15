@@ -3,18 +3,22 @@ import axios from "axios";
 const URL_BASE = "https://jsonplaceholder.typicode.com/users";
 const headers = { "Content-type": "application/json" };
 
-const URL_PROD = "https://us-central1-safepaws-b2e52.cloudfunctions.net/app";
-const initialLogin = {
-  correo: "test@test.com",
-  contraseña: "test123*",
-};
+const URL_PROD =
+  "https://us-central1-safepaws-b2e52.cloudfunctions.net/appPublic";
 
-// https://us-central1-safepaws-b2e52.cloudfunctions.net/app/registro
-const initialRegistrar = {
-  nombre: "test",
-  correo: "test@test.com",
-  contraseña: "test123*",
-};
+// https://us-central1-safepaws-b2e52.cloudfunctions.net/appPublic/registro
+// https://us-central1-safepaws-b2e52.cloudfunctions.net/appPublic/login
+// const initialLogin = {
+//   correo: "test@test.com",
+//   contraseña: "test123*",
+// };
+
+// // https://us-central1-safepaws-b2e52.cloudfunctions.net/app/registro
+// const initialRegistrar = {
+//   nombre: "test",
+//   correo: "test@test.com",
+//   contraseña: "test123*",
+// };
 
 export const getUsers = async () => {
   const response = await axios.get(URL_BASE);
@@ -28,12 +32,24 @@ export const getUserID = async (id) => {
   return response.data;
 };
 
-export const LoginUser = async (email, password) => {
-  const correo = email;
-  const contraseña = password;
+export const LoginUser = async (data) => {
+  const correo = data.email;
+  const contraseña = data.password;
   const response = await axios.post(
     URL_PROD + "/login",
     { correo, contraseña },
+    { headers }
+  );
+  return response;
+};
+
+export const RegisterUser = async (data) => {
+  const nombre = data.name;
+  const correo = data.email;
+  const contraseña = data.password;
+  const response = await axios.post(
+    URL_PROD + "/registro",
+    { nombre, correo, contraseña },
     { headers }
   );
   return response;
