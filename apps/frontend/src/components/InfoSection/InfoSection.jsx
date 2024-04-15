@@ -28,6 +28,7 @@ export default function InfoSection({
       gap={10}
     >
       <Image
+        id="about"
         src={iconAnimal}
         alt="Imagen de animal"
         pos="absolute"
@@ -55,7 +56,7 @@ export default function InfoSection({
                 }
               : { base: "80vw", md: "30vw", xl: "24vw", "2xl": "18vw" }
           }
-          color="azulacent0.900"
+          color="azulacento.900"
           fontWeight="600"
           fontSize="32px"
           lineHeight="42px"
