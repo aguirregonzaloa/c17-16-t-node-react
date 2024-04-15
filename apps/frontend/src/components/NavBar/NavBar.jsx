@@ -3,70 +3,54 @@ import { Link as ChakraLink, Button, Flex } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
-export default function NavBar({ direction }) {
-  //Aprendiendo a usar react-query como state manager globla para
-  //Iniciar sesion y mostrar username en la barra
-  // const { data } = useQuery({ queryKey: ["user", 1] });
+export default function NavBar({ direction, background }) {
   return (
     <nav>
-      <Flex m={2} direction={direction}>
-        {/* <ChakraLink
-          as={ReactRouterLink}
-          to="/"
-          m="3"
-          alignSelf="center"
-          color="gris.400"
-          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-        >
-          {JSON.stringify(data?.name)}
-        </ChakraLink> */}
+      <Flex m={2} direction={direction} bg={background} gap={6}>
         <ChakraLink
           as={ReactRouterLink}
           to="/"
-          m="3"
           alignSelf="center"
-          color="gris.400"
-          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          color="gris.700"
+          fontFamily= "Poppins-Medium"
+          _hover={{ color: "azulacento.500" }}
+          _focus={{ color: "azulacento.500" }}
+          _active={{ color: "azulacento.500" }}
         >
           Inicio
         </ChakraLink>
         <ChakraLink
           as={ReactRouterLink}
           to="/about-we"
-          m="3"
           alignSelf="center"
-          color="gris.400"
-          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          color="gris.700"
+          fontFamily= "Poppins-Medium"
+          _hover={{ color: "azulacento.500" }}
+          _focus={{ color: "azulacento.500" }}
+          _active={{ color: "azulacento.500" }}
         >
           Nosotros
         </ChakraLink>
         <ChakraLink
           as={ReactRouterLink}
           to="/rates"
-          m="3"
           alignSelf="center"
-          color="gris.400"
-          _hover={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _focus={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
-          _active={{ color: "azulacento.500", fontFamily: "Poppins-SemiBold" }}
+          color="gris.700"
+          fontFamily= "Poppins-Medium"
+          _hover={{ color: "azulacento.500" }}
+          _focus={{ color: "azulacento.500" }}
+          _active={{ color: "azulacento.500" }}
         >
           Tarifas
         </ChakraLink>
         <Button
           as={ReactRouterLink}
           to="/login"
-          m="3"
-          bg="verdeacento.500"
+          bg="verdeacento.600"
           color="gris.800"
-          _hover={{ bg: "verdeacento.600" }}
-          _focus={{ bg: "verdeacento.600" }}
-          _active={{ bg: "verdeacento.600" }}
+          _hover={{ bg: "verdeacento.700" }}
+          _focus={{ bg: "verdeacento.700" }}
+          _active={{ bg: "verdeacento.700" }}
         >
           Ingresar
         </Button>
