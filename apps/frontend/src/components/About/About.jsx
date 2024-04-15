@@ -8,9 +8,9 @@ import OutlineCheckCircle from "../../assets/icons/outlineCheckCircle.svg";
 import Certificate from "../../assets/icons/certificate.svg";
 import PerfilCheck from "../../assets/icons/perfilCheck.svg";
 import MagnifyingGlass from "../../assets/icons/magnifyingGlass.svg";
-import ItemInfoSection from "../ItemInfoSection/ItemInfoSection";
+import DescriptionAbout from "../DescriptionAbout/DescriptionAbout";
 
-export default function InfoSection({
+export default function About({
   iconAnimal,
   text,
   order,
@@ -112,17 +112,17 @@ export default function InfoSection({
           />
           {order === 1 ? (
             <>
-              <ItemInfoSection
+              <DescriptionAbout
                 icon={Suitcase}
                 title="Guardería"
                 text="Tu mascota pasa la noche en casa de su cuidador"
               />
-              <ItemInfoSection
+              <DescriptionAbout
                 icon={OutlinePaw}
                 title="Paseos"
                 text="Tu mascota sale a dar un paseo por tu barrio"
               />
-              <ItemInfoSection
+              <DescriptionAbout
                 icon={OutlineCheckCircle}
                 title="Seguro"
                 text="Contamos con un seguro qeu protege a tu perro durante su estancia y actividades"
@@ -130,17 +130,17 @@ export default function InfoSection({
             </>
           ) : (
             <>
-              <ItemInfoSection
+              <DescriptionAbout
                 icon={Certificate}
                 title="Entrenamiento y certificación"
                 text="En técnicas de manejo, primeros auxilios para mascotas y comportamiento animal"
               />
-              <ItemInfoSection
+              <DescriptionAbout
                 icon={PerfilCheck}
                 title="Perfiles completos y detallados"
                 text="Incluye información personal, experiencia y referencias."
               />
-              <ItemInfoSection
+              <DescriptionAbout
                 icon={MagnifyingGlass}
                 title="Revisión continua de desempeño"
                 text="Para garantizar que sigan cumpliendo con nuestros estándares de calidad."
