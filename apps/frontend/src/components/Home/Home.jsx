@@ -4,6 +4,7 @@ import About from "../About/About";
 import ImgDog from "../../assets/img/Dog1.png";
 import ImgCat from "../../assets/img/Cat1.png";
 import Functioning from "../Functioning/Functioning";
+import TopCaregivers from "../TopCaregivers/TopCaregivers";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         order={2}
         textButton="Más sobre esto"
       />
+      <TopCaregivers />
       <Functioning />
     </main>
   );
