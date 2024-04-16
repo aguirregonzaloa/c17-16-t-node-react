@@ -5,6 +5,8 @@ import App from "./App.jsx";
 import "./index.css";
 import theme from "./theme.js";
 
+import { UserProvider } from "./utils/context/UserContext.jsx";
+
 //react-query para controlar las api con backend
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -24,7 +26,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <UserProvider>
+          <App />
+        </UserProvider>
       </QueryClientProvider>
     </ChakraProvider>
   </React.StrictMode>

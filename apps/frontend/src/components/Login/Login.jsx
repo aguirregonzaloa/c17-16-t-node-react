@@ -3,22 +3,25 @@ import {
   Input,
   Button,
   Text,
-  FormErrorMessage,
   Flex,
   FormControl,
   FormLabel,
   Link as ChakraLink,
 } from "@chakra-ui/react";
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import { validateLogin as validate } from "../../utils/FormValidation/baseValidation";
 
-// import * as React from 'react';
+import * as React from "react";
 import { useLoginUser } from "../../utils/hooks/userQuery";
+import { UserContext } from "../../utils/context/UserContext";
 
 function Login() {
-  const { mutateAsync, isLoading } = useLoginUser();
+  const { mutateAsync } = useLoginUser();
+  const [errorLogin, setErrorLogin] = React.useState("");
+  const { setUser } = React.useContext(UserContext);
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -28,13 +31,19 @@ function Login() {
     onSubmit: (values, { setSubmitting }) => {
       const response = mutateAsync(values);
 
-      response.then((data) => {
-        console.log(data);
-        setSubmitting(false);
-      });
-    },
-    onBlur: () => {
-      console.log("blur");
+      response
+        .then((data) => {
+          console.log(data);
+          //Usar data context para cargar usuario en la Barra
+          //Navegacíon
+          setUser(data);
+          navigate("/");
+        })
+        .catch((errors) => {
+          const { message } = errors.response.data;
+          setErrorLogin(message);
+        })
+        .finally(() => setSubmitting(false));
     },
   });
   return (
@@ -70,6 +79,7 @@ function Login() {
             type="email"
             onChange={formik.handleChange}
             value={formik.values.email}
+            placeholder="username@email.com"
             required
           />
           {formik.errors.email ? (
@@ -77,14 +87,14 @@ function Login() {
           ) : null}
         </FormControl>
         <FormControl mb={"24px"}>
-          <FormLabel htmlFor="password">Password</FormLabel>
+          <FormLabel htmlFor="password">Contraseña</FormLabel>
           <Input
             id="password"
             name="password"
             type="password"
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             value={formik.values.password}
+            placeholder="****...."
             required
           />
           {formik.errors.password && formik.touched.password ? (
@@ -96,17 +106,24 @@ function Login() {
           colorScheme="azulacento"
           textColor={"white"}
           isLoading={formik.isSubmitting}
-          disabled={"true"}
+          isDisabled={formik.errors.email || formik.errors.password}
           type="submit"
           width={"100%"}
-          _disabled={{
-            bg: "#dddfe2",
-            transform: "scale(0.98)",
-            borderColor: "#bec3c9",
-          }}
         >
           Inicia Sesión
         </Button>
+        {errorLogin ? (
+          <Text
+            mt={2}
+            width={"100%"}
+            textAlign={"center"}
+            color={"rojo.300"}
+            bg={"rojo.200"}
+            fontWeight={700}
+          >
+            {errorLogin}
+          </Text>
+        ) : null}
       </form>
     </Flex>
   );
