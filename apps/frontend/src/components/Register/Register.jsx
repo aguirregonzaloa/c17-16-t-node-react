@@ -13,10 +13,12 @@ import { useFormik } from "formik";
 import { validateRegister as validate } from "../../utils/FormValidation/baseValidation";
 import { useRegisterUser } from "../../utils/hooks/userQuery";
 
-//   import * as React from 'react';
+import * as React from "react";
 
 function Register() {
-  const { mutateAsync, isLoading } = useRegisterUser();
+  const { mutateAsync } = useRegisterUser();
+  const [errorRegister, setErrorRegister] = React.useState();
+  const [successRegister, setSuccessRegister] = React.useState();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -28,10 +30,15 @@ function Register() {
     onSubmit: (values, { setSubmitting }) => {
       const response = mutateAsync(values);
 
-      response.then((data) => {
-        console.log(data);
-        setSubmitting(false);
-      });
+      response
+        .then((data) => {
+          setSuccessRegister(data.message);
+        })
+        .catch((errors) => {
+          const { message } = errors.response.data;
+          setErrorRegister(message);
+        })
+        .finally(() => setSubmitting(false));
     },
   });
   return (
@@ -125,12 +132,41 @@ function Register() {
           colorScheme="azulacento"
           textColor={"white"}
           isLoading={formik.isSubmitting}
-          disabled={isLoading}
+          isDisabled={
+            formik.errors.name ||
+            formik.errors.email ||
+            formik.errors.password ||
+            formik.errors.confirmpass
+          }
           type="submit"
           width={"100%"}
         >
           Registrate
         </Button>
+        {successRegister ? (
+          <Text
+            mt={2}
+            width={"100%"}
+            textAlign={"center"}
+            color={"green"}
+            bg={"verdeacento.200"}
+            fontWeight={700}
+          >
+            {successRegister}
+          </Text>
+        ) : null}
+        {errorRegister ? (
+          <Text
+            mt={2}
+            width={"100%"}
+            textAlign={"center"}
+            color={"rojo.300"}
+            bg={"rojo.200"}
+            fontFamily="Poppins-Medium"
+          >
+            {errorRegister}
+          </Text>
+        ) : null}
       </form>
     </Flex>
   );
