@@ -11,6 +11,9 @@ import Footer from "./components/Footer/Footer";
 
 import "./App.css";
 
+// import { useGetUser } from "./utils/hooks/userQuery";
+// const { isPending, error, data, isFetching } = useGetUser(1);
+
 function App() {
   return (
     <BrowserRouter>
