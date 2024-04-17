@@ -1,9 +1,9 @@
 const admin = require('firebase-admin');
 const functions = require("firebase-functions");
-const cors  = require('cors');
-const express  = require('express');
+const cors = require('cors');
+const express = require('express');
 const firebase = require("firebase/app");
-const {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} = require("firebase/auth");
+const {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile} = require("firebase/auth");
 const { getFirestore } = require("firebase-admin/firestore");
 require('dotenv').config();
 
@@ -115,17 +115,27 @@ appPublic.post("/registro", async (req, res) => {
   // Crear el usuario en Firebase
   try {
     
+    // creacion de usuario
     const userCredential = await createUserWithEmailAndPassword(auth, correo, contraseña);
-    const docRef = await firestore
+
+    // actualizacion de perfil del usuario en auth
+    await updateProfile(auth.currentUser,{
+      displayName: nombre
+    });
+
+    // creacion y guardado de datos en firestore
+    await firestore
       .collection("users")
       .doc(userCredential.user.uid)
       .set({
-        nombre: nombre,
-        correo: correo,
+        name: nombre,
+        email: correo,
+        photo: '',
+        idPets: [],
       });
 
     // Enviar respuesta de éxito
-    res.status(201).send({ message: "Usuario registrado correctamente", status: true, token: userCredential.user.accessToken });
+    res.status(201).send({ message: "Usuario registrado correctamente", status: true, userId:userCredential.user.uid, email:correo, name:nombre, token: userCredential.user.accessToken});
 
   } catch (error) {
     // Manejar errores de Firebase
@@ -144,14 +154,15 @@ appPublic.post("/login", async (req, res) => {
   }
 
   try {
-    // Sign in user with email and password
+
+    // login de usuario
     const userCredential = await signInWithEmailAndPassword(auth, correo, contraseña);
   
-    // You can send additional information like user ID or a custom token in the response
-    res.status(200).send({ message: "Usuario autenticado correctamente", status: true, token: userCredential.user.accessToken });
+    // respuesta de login exitoso
+    res.status(200).send({ message: "Usuario autenticado correctamente", status: true, status: true, userId:userCredential.user.uid, email:correo, name: userCredential.user.displayName, token: userCredential.user.accessToken });
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
-    res.status(401).send({ message: "Correo o contraseña incorrecta", status: false}); // Adjust error message as needed
+    res.status(401).send({ message: "Correo o contraseña incorrecta", status: false}); 
   }
 });
 
