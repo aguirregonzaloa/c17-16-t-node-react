@@ -57,6 +57,7 @@ export default function About({
               : { base: "80vw", md: "30vw", xl: "24vw", "2xl": "18vw" }
           }
           color="azulacento.900"
+          fontFamily="Poppins-SemiBold"
           fontWeight="600"
           fontSize="32px"
           lineHeight="42px"
@@ -115,17 +116,17 @@ export default function About({
               <DescriptionAbout
                 icon={Suitcase}
                 title="Guardería"
-                text="Tu mascota pasa la noche en casa de su cuidador"
+                text="Tu mascota pasa la noche en casa de su cuidador."
               />
               <DescriptionAbout
                 icon={OutlinePaw}
                 title="Paseos"
-                text="Tu mascota sale a dar un paseo por tu barrio"
+                text="Tu mascota sale a dar un paseo por tu barrio."
               />
               <DescriptionAbout
                 icon={OutlineCheckCircle}
                 title="Seguro"
-                text="Contamos con un seguro qeu protege a tu perro durante su estancia y actividades"
+                text="Contamos con un seguro qeu protege a tu perro durante su estancia y actividades."
               />
             </>
           ) : (
@@ -133,7 +134,7 @@ export default function About({
               <DescriptionAbout
                 icon={Certificate}
                 title="Entrenamiento y certificación"
-                text="En técnicas de manejo, primeros auxilios para mascotas y comportamiento animal"
+                text="En técnicas de manejo, primeros auxilios para mascotas y comportamiento animal."
               />
               <DescriptionAbout
                 icon={PerfilCheck}
