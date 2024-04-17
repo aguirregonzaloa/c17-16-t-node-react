@@ -21,9 +21,9 @@ export default function TopCaregivers() {
     >
       <Image
         src={Dog2}
-        alt="Imagen de perro"
+        alt="Imagen de perro salchicha"
         pos="absolute"
-        top={-40}
+        top="-8.5rem"
         right={{ base: 0, md: 40, xl: 96, "2xl": "36rem" }}
       />
       <Box
