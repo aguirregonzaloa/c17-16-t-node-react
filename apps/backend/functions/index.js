@@ -3,7 +3,7 @@ const functions = require("firebase-functions");
 const cors = require('cors');
 const express = require('express');
 const firebase = require("firebase/app");
-const {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile} = require("firebase/auth");
+const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } = require("firebase/auth");
 const { getFirestore } = require("firebase-admin/firestore");
 require('dotenv').config();
 
@@ -94,10 +94,52 @@ const validateFirebaseIdToken = async (req, res, next) => {
       res.status(403).send("Unauthorized");
       return;
     }
-  };
+};
+
 app.use(validateFirebaseIdToken);
 
 //#region Endpoins Privados
+
+app.post("/pets", async (req, res) => {
+  // verificacion de mascota
+  const { nombre, especie, edad } = req.body;
+  if (!nombre || !especie || !edad) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+  //obtener referencia a la coleccion de mascota en firestore
+  try {
+    const db = getFirestore();
+    mascotasRef = collection(db, "mascotas");
+    //crea un nuevo doc con los datos proporcionados
+    const nuevaMascota = addDoc(mascotasRef, {
+      nombre: nombre,
+      especie: especie,
+      edad: edad
+    })
+    //respuesta de exito al crear tu mascota
+    res.status(201).json({ message: "Felicitaciones, tu mascota se ha registrado exitosamente", id: nuevaMascota.id })
+  } catch (error) {
+    console.error("Error al crear tu mascota", error);
+    res.status(500).json({error: "Ocurrio un error al crear tu mascota"});
+  }
+})
+
+app.get("/pets", async (req, res) => {
+  const userId = req.user.uid;
+try {
+  const userMascotas = collection(firestore.doc(`users/${userId}`), "mascotas");
+const mascotasSnapshot = await getDocs(userMascotas)
+const mascotas = [];
+mascotasSnapshot.forEach((doc) => {
+  mascotas.push({id: doc.id, ...doc.data() })
+});
+res.status(200).json(mascotas);
+}
+catch (error){
+  console.error("Error al obtener mascotas", error);
+  res.status(500).json({error: "Ocurrio un error al obtener las mascotas del usuario"});
+}
+});
 
 exports.app = functions.https.onRequest(app);
 
@@ -133,7 +175,6 @@ appPublic.post("/registro", async (req, res) => {
         photo: '',
         idPets: [],
       });
-
     // Enviar respuesta de éxito
     res.status(201).send({ message: "Usuario registrado correctamente", status: true, userId:userCredential.user.uid, email:correo, name:nombre, token: userCredential.user.accessToken});
 

@@ -1,11 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./components/Home/Home";
 import AboutWe from "./components/AboutWe/AboutWe";
 import Rates from "./components/Rates/Rates";
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
+
+// import { useGetUser } from "./utils/hooks/userQuery";
+// const { isPending, error, data, isFetching } = useGetUser(1);
 
 function App() {
   return (
@@ -16,7 +20,9 @@ function App() {
         <Route path="/about-we" element={<AboutWe />} />
         <Route path="/rates" element={<Rates />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
+      <Outlet />
       <Footer />
     </BrowserRouter>
   );
