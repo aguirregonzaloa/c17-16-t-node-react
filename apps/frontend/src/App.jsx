@@ -26,8 +26,6 @@ function App() {
         <Route path="/register" element={<Register />} />
       </Routes>
       <Outlet />
-      <RatesHome/>
-      <Review/>
       <Footer />
     </BrowserRouter>
   );

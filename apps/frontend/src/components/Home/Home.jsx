@@ -4,6 +4,8 @@ import InfoSection from "../InfoSection/InfoSection";
 import ImgDog from "../../assets/img/Dog1.png";
 import ImgCat from "../../assets/img/Cat1.png";
 import Functioning from "../Functioning/Functioning";
+import RatesHome from "../RatesHome/RatesHome";
+import Review from "../Review/Review";
 
 export default function Home() {
   return (
@@ -23,7 +25,11 @@ export default function Home() {
         order={2}
         textButton="Más sobre esto"
       />
+      <RatesHome/>
       <Functioning />
+      <Review/>
+       
+
     </>
   );
 }
