@@ -22,13 +22,11 @@ export const useLoginUser = () => {
   return useMutation({
     mutationFn: LoginUser,
     onSuccess: (data) => {
-      // console.log(data);
-      const message = "Se ha logeado correctamente";
-      alert(message);
+      //"Se ha logeado correctamente";
       return data;
     },
-    onError: () => {
-      alert("there was an error");
+    onError: (errors) => {
+      return errors;
     },
     // onSettled: () => {
     //   queryClient.invalidateQueries('create');
@@ -41,12 +39,12 @@ export const useRegisterUser = () => {
   return useMutation({
     mutationFn: RegisterUser,
     onSuccess: (data) => {
-      const message = "Se ha registrado correctamente!!!";
-      alert(message);
+      // "Se ha registrado correctamente!!!";
+
       return data;
     },
-    onError: () => {
-      alert("there was an error");
+    onError: (errors) => {
+      return errors;
     },
     // onSettled: () => {
     //   queryClient.invalidateQueries('create');

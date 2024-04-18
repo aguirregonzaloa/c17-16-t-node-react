@@ -40,7 +40,8 @@ export const LoginUser = async (data) => {
     { correo, contraseña },
     { headers }
   );
-  return response;
+  const login = { ...response, correo };
+  return login;
 };
 
 export const RegisterUser = async (data) => {

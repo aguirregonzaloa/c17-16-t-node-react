@@ -1,9 +1,9 @@
 const admin = require('firebase-admin');
 const functions = require("firebase-functions");
-const cors  = require('cors');
-const express  = require('express');
+const cors = require('cors');
+const express = require('express');
 const firebase = require("firebase/app");
-const {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} = require("firebase/auth");
+const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } = require("firebase/auth");
 const { getFirestore } = require("firebase-admin/firestore");
 require('dotenv').config();
 
@@ -49,7 +49,7 @@ appPublic.use(cors({ origin: true }));
 
 // const validateFirebaseIdToken = async (req, res, next) => {
 //     console.log("Check if request is authorized with Firebase ID token");
-  
+
 //     if (
 //       (!req.headers.authorization ||
 //         !req.headers.authorization.startsWith("Bearer ")) &&
@@ -64,7 +64,7 @@ appPublic.use(cors({ origin: true }));
 //       res.status(403).send("Unauthorized");
 //       return;
 //     }
-  
+
 //     let idToken;
 //     if (
 //       req.headers.authorization &&
@@ -82,7 +82,7 @@ appPublic.use(cors({ origin: true }));
 //       res.status(403).send("Unauthorized");
 //       return;
 //     }
-  
+
 //     try {
 //       const decodedIdToken = await admin.auth().verifyIdToken(idToken);
 //       console.log("ID Token correctly decoded", decodedIdToken);
@@ -109,7 +109,7 @@ app.post("/registro", async (req, res) => {
 
   // Crear el usuario en Firebase
   try {
-    
+
     // const signInMethods = await auth.fetchSignInMethodsForEmail(correo);
     // if (signInMethods.length > 0) {
     //   throw new Error("El correo electrónico ya está registrado");
@@ -123,7 +123,7 @@ app.post("/registro", async (req, res) => {
         nombre: nombre,
         correo: correo,
       });
-      console.log(docRef)
+    console.log(docRef)
     // Enviar respuesta de éxito
     res.status(201).send({ message: "Usuario registrado correctamente", status: true });
 
@@ -146,7 +146,7 @@ app.post("/login", async (req, res) => {
   try {
     // Sign in user with email and password
     const userCredential = await signInWithEmailAndPassword(auth, correo, contraseña);
-    
+
     // You can send additional information like user ID or a custom token in the response
     res.status(200).send({ message: "Usuario autenticado correctamente", status: true });
   } catch (error) {
@@ -155,4 +155,44 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/pets", async (req, res) => {
+  // verificacion de mascota
+  const { nombre, especie, edad } = req.body;
+  if (!nombre || !especie || !edad) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+  //obtener referencia a la coleccion de mascota en firestore
+  try {
+    const db = getFirestore();
+    mascotasRef = collection(db, "mascotas");
+    //crea un nuevo doc con los datos proporcionados
+    const nuevaMascota = addDoc(mascotasRef, {
+      nombre: nombre,
+      especie: especie,
+      edad: edad
+    })
+    //respuesta de exito al crear tu mascota
+    res.status(201).json({ message: "Felicitaciones, tu mascota se ha registrado exitosamente", id: nuevaMascota.id })
+  } catch (error) {
+    console.error("Error al crear tu mascota", error);
+    res.status(500).json({error: "Ocurrio un error al crear tu mascota"});
+  }
+})
+
+app.get("/pets", async (req, res) => {
+  const userId = req.user.uid;
+try {
+  const userMascotas = collection(firestore.doc(`users/${userId}`), "mascotas");
+const mascotasSnapshot = await getDocs(userMascotas)
+const mascotas = [];
+mascotasSnapshot.forEach((doc) => {
+  mascotas.push({id: doc.id, ...doc.data() })
+});
+res.status(200).json(mascotas);
+}
+catch (error){
+  console.error("Error al obtener mascotas", error);
+  res.status(500).json({error: "Ocurrio un error al obtener las mascotas del usuario"});
+}
+});
 exports.app = functions.https.onRequest(app);
