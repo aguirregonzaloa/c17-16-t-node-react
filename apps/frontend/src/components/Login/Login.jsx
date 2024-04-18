@@ -7,7 +7,6 @@ import {
   FormControl,
   FormLabel,
   Link as ChakraLink,
-  useDisclosure,
 } from "@chakra-ui/react";
 
 import { useFormik } from "formik";
@@ -16,13 +15,11 @@ import { validateLogin as validate } from "../../utils/FormValidation/baseValida
 import * as React from "react";
 import { useLoginUser } from "../../utils/hooks/userQuery";
 import { UserContext } from "../../utils/context/UserContext";
-// import ModalUser from "../ModalUser/ModalUser";
 
-function Login({ sendDataToParent }) {
+function Login({ sendDataToParent, ModalParent }) {
   const { mutateAsync } = useLoginUser();
   const [errorLogin, setErrorLogin] = React.useState("");
   const { setUser } = React.useContext(UserContext);
-  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const changeToggle = () => {
     sendDataToParent(false);
@@ -35,15 +32,13 @@ function Login({ sendDataToParent }) {
     validate,
     onSubmit: (values, { setSubmitting }) => {
       const response = mutateAsync(values);
-      onClose();
 
       response
         .then((data) => {
-          console.log(data);
           //Usar data context para cargar usuario en la Barra
           //Navegacíon
           setUser(data);
-          // navigate("/");
+          ModalParent();
         })
         .catch((errors) => {
           const { message } = errors.response.data;
@@ -59,7 +54,6 @@ function Login({ sendDataToParent }) {
       align="center"
       justify="center"
     >
-      {/* <ModalUser isOpen={isOpen} onOpen={onOpen} onClose={onClose} /> */}
       <Heading as={"h2"} size="xl" mb={"8px"}>
         Ingresar
       </Heading>
