@@ -8,7 +8,6 @@ import {
   FormLabel,
   Link as ChakraLink,
 } from "@chakra-ui/react";
-import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import { validateLogin as validate } from "../../utils/FormValidation/baseValidation";
@@ -17,11 +16,14 @@ import * as React from "react";
 import { useLoginUser } from "../../utils/hooks/userQuery";
 import { UserContext } from "../../utils/context/UserContext";
 
-function Login() {
+function Login({ sendDataToParent, ModalParent }) {
   const { mutateAsync } = useLoginUser();
   const [errorLogin, setErrorLogin] = React.useState("");
   const { setUser } = React.useContext(UserContext);
-  const navigate = useNavigate();
+
+  const changeToggle = () => {
+    sendDataToParent(false);
+  };
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -33,11 +35,10 @@ function Login() {
 
       response
         .then((data) => {
-          console.log(data);
           //Usar data context para cargar usuario en la Barra
           //Navegacíon
           setUser(data);
-          navigate("/");
+          ModalParent();
         })
         .catch((errors) => {
           const { message } = errors.response.data;
@@ -49,12 +50,9 @@ function Login() {
   return (
     <Flex
       padding="32px 40px"
-      bg="gray.100"
       direction="column"
       align="center"
       justify="center"
-      width={"453px"}
-      margin={"0 auto"}
     >
       <Heading as={"h2"} size="xl" mb={"8px"}>
         Ingresar
@@ -62,8 +60,7 @@ function Login() {
       <Heading as={"h4"} size="md" mb={"24px"}>
         No tienes cuenta?{" "}
         <ChakraLink
-          as={ReactRouterLink}
-          to="/register"
+          onClick={changeToggle}
           color={"azulacento.500"}
           fontWeight={"700"}
         >
