@@ -7,8 +7,8 @@ import {
   FormControl,
   FormLabel,
   Link as ChakraLink,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import { validateLogin as validate } from "../../utils/FormValidation/baseValidation";
@@ -16,12 +16,17 @@ import { validateLogin as validate } from "../../utils/FormValidation/baseValida
 import * as React from "react";
 import { useLoginUser } from "../../utils/hooks/userQuery";
 import { UserContext } from "../../utils/context/UserContext";
+// import ModalUser from "../ModalUser/ModalUser";
 
-function Login() {
+function Login({ sendDataToParent }) {
   const { mutateAsync } = useLoginUser();
   const [errorLogin, setErrorLogin] = React.useState("");
   const { setUser } = React.useContext(UserContext);
-  const navigate = useNavigate();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const changeToggle = () => {
+    sendDataToParent(false);
+  };
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -30,6 +35,7 @@ function Login() {
     validate,
     onSubmit: (values, { setSubmitting }) => {
       const response = mutateAsync(values);
+      onClose();
 
       response
         .then((data) => {
@@ -37,7 +43,7 @@ function Login() {
           //Usar data context para cargar usuario en la Barra
           //Navegacíon
           setUser(data);
-          navigate("/");
+          // navigate("/");
         })
         .catch((errors) => {
           const { message } = errors.response.data;
@@ -49,21 +55,18 @@ function Login() {
   return (
     <Flex
       padding="32px 40px"
-      bg="gray.100"
       direction="column"
       align="center"
       justify="center"
-      width={"453px"}
-      margin={"0 auto"}
     >
+      {/* <ModalUser isOpen={isOpen} onOpen={onOpen} onClose={onClose} /> */}
       <Heading as={"h2"} size="xl" mb={"8px"}>
         Ingresar
       </Heading>
       <Heading as={"h4"} size="md" mb={"24px"}>
         No tienes cuenta?{" "}
         <ChakraLink
-          as={ReactRouterLink}
-          to="/register"
+          onClick={changeToggle}
           color={"azulacento.500"}
           fontWeight={"700"}
         >
