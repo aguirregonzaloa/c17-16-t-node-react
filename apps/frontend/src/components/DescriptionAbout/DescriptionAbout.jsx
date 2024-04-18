@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Text } from "@chakra-ui/react";
 
-export default function ItemInfoSection({ icon, title, text }) {
+export default function DescriptionAbout({ icon, title, text }) {
   return (
     <>
       <Image src={icon} alt="icon" my={2} />

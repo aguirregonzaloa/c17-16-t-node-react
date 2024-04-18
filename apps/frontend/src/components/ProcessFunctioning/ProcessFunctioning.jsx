@@ -14,7 +14,13 @@ export default function ProcessFunctioning({ image, title, description }) {
         >
           {title}
         </Heading>
-        <Text color="gris.600" size="14px" fontWeight="400" lineHeight="21px">
+        <Text
+          color="gris.600"
+          fontFamily="Poppins-Regular"
+          size="14px"
+          fontWeight="400"
+          lineHeight="21px"
+        >
           {description}
         </Text>
       </Box>
