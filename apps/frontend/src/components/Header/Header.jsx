@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -9,7 +8,7 @@ import {
   useBoolean,
   useMediaQuery,
 } from "@chakra-ui/react";
-import Logotipo02 from "../../assets/logos/Logotipo02.svg";
+import LogoBanner from "../../assets/logos/LogoBanner.svg";
 import { IoMenu, IoClose } from "react-icons/io5";
 import NavBar from "../NavBar/NavBar";
 
@@ -40,11 +39,10 @@ export default function Header() {
         zIndex: "2",
         width: "100%",
         backgroundColor: scrolled ? "#FEFBF6" : "",
-        transition: "background-color 0.3s ease",
       }}
     >
-      <Flex align="center" mx={isSmallerThan640 ? "20px" : "100px"}>
-        <Image boxSize={20} src={Logotipo02} alt="Logotipo" />
+      <Flex align="center" mx={{ base: "20px", md: "100px" }}>
+        <Image boxSize={20} src={LogoBanner} alt="Logo" />
         <Spacer />
         {isSmallerThan640 ? (
           <Box>
@@ -57,10 +55,10 @@ export default function Header() {
             />
           </Box>
         ) : (
-          <NavBar direction="row" />
+          <NavBar direction="row" background="" />
         )}
       </Flex>
-      {isOpen && <NavBar direction="column" />}
+      {isOpen && <NavBar direction="column" background="beige" />}
     </header>
   );
 }
