@@ -27,7 +27,6 @@ export default function Home() {
         order={2}
         textButton="Más sobre esto"
       />
-      <Functioning />
       <TopCaregivers />
       <RatesHome/>
       <Functioning />
