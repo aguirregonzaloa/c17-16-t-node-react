@@ -21,6 +21,9 @@ const ModalUser = (props) => {
   function handleDataFromChild(data) {
     setToggle(data);
   }
+  function closeModal() {
+    onClose();
+  }
 
   console.log(toggle);
 
@@ -46,7 +49,10 @@ const ModalUser = (props) => {
             <ModalCloseButton />
             {/* <ModalBody> */}
             {toggle ? (
-              <Login sendDataToParent={handleDataFromChild} />
+              <Login
+                sendDataToParent={handleDataFromChild}
+                ModalParent={closeModal}
+              />
             ) : (
               <Register sendDataToParent={handleDataFromChild} />
             )}
