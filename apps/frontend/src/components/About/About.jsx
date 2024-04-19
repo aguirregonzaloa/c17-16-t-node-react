@@ -126,7 +126,7 @@ export default function About({
               <DescriptionAbout
                 icon={OutlineCheckCircle}
                 title="Seguro"
-                text="Contamos con un seguro qeu protege a tu perro durante su estancia y actividades."
+                text="Contamos con un seguro que protege a tu perro durante su estancia y actividades."
               />
             </>
           ) : (
