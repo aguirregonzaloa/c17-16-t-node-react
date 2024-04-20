@@ -15,10 +15,15 @@ import { useRegisterUser } from "../../utils/hooks/userQuery";
 
 import * as React from "react";
 
-function Register() {
+function Register({ sendDataToParent }) {
   const { mutateAsync } = useRegisterUser();
   const [errorRegister, setErrorRegister] = React.useState();
   const [successRegister, setSuccessRegister] = React.useState();
+
+  const changeToggle = () => {
+    sendDataToParent(true);
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -44,12 +49,9 @@ function Register() {
   return (
     <Flex
       padding="32px 40px"
-      bg="gray.100"
       direction="column"
       align="center"
       justify="center"
-      width={"455px"}
-      margin={"0 auto"}
     >
       <Heading as="h2" size="xl" noOfLines={1} mb={"8px"}>
         Registrate
@@ -57,8 +59,7 @@ function Register() {
       <Heading as="h4" size="md" noOfLines={1} mb={"24px"}>
         Ya tienes una cuenta?{" "}
         <ChakraLink
-          as={ReactRouterLink}
-          to="/login"
+          onClick={changeToggle}
           color={"azulacento.500"}
           fontWeight={"700"}
         >

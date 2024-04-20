@@ -3,7 +3,7 @@ const functions = require("firebase-functions");
 const cors = require('cors');
 const express = require('express');
 const firebase = require("firebase/app");
-const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } = require("firebase/auth");
+const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } = require("firebase/auth");
 const { getFirestore } = require("firebase-admin/firestore");
 require('dotenv').config();
 
@@ -47,114 +47,60 @@ const firestore = getFirestore();
 app.use(cors({ origin: true }));
 appPublic.use(cors({ origin: true }));
 
-// const validateFirebaseIdToken = async (req, res, next) => {
-//     console.log("Check if request is authorized with Firebase ID token");
+const validateFirebaseIdToken = async (req, res, next) => {
+    console.log("Check if request is authorized with Firebase ID token");
+  
+    if (
+      (!req.headers.authorization ||
+        !req.headers.authorization.startsWith("Bearer ")) &&
+      !(req.cookies && req.cookies.__session)
+    ) {
+      console.error(
+        "No Firebase ID token was passed as a Bearer token in the Authorization header.",
+        "Make sure you authorize your request by providing the following HTTP header:",
+        "Authorization: Bearer <Firebase ID Token>",
+        'or by passing a "__session" cookie.'
+      );
+      res.status(403).send("Unauthorized");
+      return;
+    }
+  
+    let idToken;
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith("Bearer ")
+    ) {
+      console.log('Found "Authorization" header');
+      // Read the ID Token from the Authorization header.
+      idToken = req.headers.authorization.split("Bearer ")[1];
+    } else if (req.cookies) {
+      console.log('Found "__session" cookie');
+      // Read the ID Token from cookie.
+      idToken = req.cookies.__session;
+    } else {
+      // No cookie
+      res.status(403).send("Unauthorized");
+      return;
+    }
+  
+    try {
+      const decodedIdToken = await admin.auth().verifyIdToken(idToken);
+      console.log("ID Token correctly decoded", decodedIdToken);
+      req.user = decodedIdToken;
+      next();
+      return;
+    } catch (error) {
+      console.error("Error while verifying Firebase ID token:", error);
+      res.status(403).send("Unauthorized");
+      return;
+    }
+};
 
-//     if (
-//       (!req.headers.authorization ||
-//         !req.headers.authorization.startsWith("Bearer ")) &&
-//       !(req.cookies && req.cookies.__session)
-//     ) {
-//       console.error(
-//         "No Firebase ID token was passed as a Bearer token in the Authorization header.",
-//         "Make sure you authorize your request by providing the following HTTP header:",
-//         "Authorization: Bearer <Firebase ID Token>",
-//         'or by passing a "__session" cookie.'
-//       );
-//       res.status(403).send("Unauthorized");
-//       return;
-//     }
+app.use(validateFirebaseIdToken);
 
-//     let idToken;
-//     if (
-//       req.headers.authorization &&
-//       req.headers.authorization.startsWith("Bearer ")
-//     ) {
-//       console.log('Found "Authorization" header');
-//       // Read the ID Token from the Authorization header.
-//       idToken = req.headers.authorization.split("Bearer ")[1];
-//     } else if (req.cookies) {
-//       console.log('Found "__session" cookie');
-//       // Read the ID Token from cookie.
-//       idToken = req.cookies.__session;
-//     } else {
-//       // No cookie
-//       res.status(403).send("Unauthorized");
-//       return;
-//     }
+//#region Endpoins Privados
 
-//     try {
-//       const decodedIdToken = await admin.auth().verifyIdToken(idToken);
-//       console.log("ID Token correctly decoded", decodedIdToken);
-//       req.user = decodedIdToken;
-//       next();
-//       return;
-//     } catch (error) {
-//       console.error("Error while verifying Firebase ID token:", error);
-//       res.status(403).send("Unauthorized");
-//       return;
-//     }
-//   };
-// app.use(validateFirebaseIdToken);
-
-// Registro
-
-app.post("/registro", async (req, res) => {
-  const { nombre, correo, contraseña } = req.body;
-
-  // Validar la entrada
-  if (!nombre || !correo || !contraseña) {
-    return res.status(400).send("Faltan datos obligatorios");
-  }
-
-  // Crear el usuario en Firebase
-  try {
-
-    // const signInMethods = await auth.fetchSignInMethodsForEmail(correo);
-    // if (signInMethods.length > 0) {
-    //   throw new Error("El correo electrónico ya está registrado");
-    // }
-
-    const userCredential = await createUserWithEmailAndPassword(auth, correo, contraseña);
-    const docRef = await firestore
-      .collection("users")
-      .doc(userCredential.user.uid)
-      .set({
-        nombre: nombre,
-        correo: correo,
-      });
-    console.log(docRef)
-    // Enviar respuesta de éxito
-    res.status(201).send({ message: "Usuario registrado correctamente", status: true });
-
-  } catch (error) {
-    // Manejar errores de Firebase
-    console.error("Error al registrar usuario:", error);
-    res.status(400).send(error.message);
-  }
-});
-
-// Login
-app.post("/login", async (req, res) => {
-  const { correo, contraseña } = req.body;
-
-  // Validate input
-  if (!correo || !contraseña) {
-    return res.status(400).send("Faltan datos obligatorios (correo y contraseña)");
-  }
-
-  try {
-    // Sign in user with email and password
-    const userCredential = await signInWithEmailAndPassword(auth, correo, contraseña);
-
-    // You can send additional information like user ID or a custom token in the response
-    res.status(200).send({ message: "Usuario autenticado correctamente", status: true });
-  } catch (error) {
-    console.error("Error al iniciar sesión:", error);
-    res.status(401).send("Correo o contraseña incorrectos"); // Adjust error message as needed
-  }
-});
-
+//------------------ Mascotas --------------------------
 app.post("/pets", async (req, res) => {
   // verificacion de mascota
   const { nombre, especie, edad } = req.body;
@@ -195,4 +141,267 @@ catch (error){
   res.status(500).json({error: "Ocurrio un error al obtener las mascotas del usuario"});
 }
 });
+
+//------------------ Cuidadores ------------------------
+app.post("/registroCuidadores", async (req, res) =>{
+  const { nombre, correo, contraseña } = req.body;
+
+  // Validar la entrada
+  if (!nombre || !correo || !contraseña) {
+    return res.status(400).send({ message: "Error, Faltan datos del nombre, correo o contraseña", status: false });
+  }else if (contraseña.length < 6 ) {
+    return res.status(400).send({ message: "Error, la contraseña debe contener más de 6 caracteres", status: false });
+  }
+
+  // Crear el usuario en Firebase
+  try {
+
+    const usersRef = firestore.collection("petSitters");
+    const query = usersRef.where('email', '==', correo);
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.size > 0) {
+      // El usuario existe
+      res.status(400).send({ message: "Error, el usuario ya existe", status: false });
+    } else {
+      // El usuario no existe se procese a crearlo
+      const userCredential = await createUserWithEmailAndPassword(auth, correo, contraseña);
+
+      // actualizacion de perfil del usuario en auth
+      await updateProfile(auth.currentUser,{
+        displayName: nombre
+      });
+
+      // creacion y guardado de datos en firestore
+      await firestore
+        .collection("petSitters")
+        .doc(userCredential.user.uid)
+        .set({
+          name: nombre,
+          email: correo,
+          photo: '',
+        });
+
+      await firestore
+        .collection("petSitters")
+        .doc(userCredential.user.uid + '/' + "information" + '/private')
+        .set({
+          address: "",
+          phone: "",
+          location: {},
+          bookings:{}
+        })
+
+      await firestore
+        .collection("petSitters")
+        .doc(userCredential.user.uid + '/' + "information" + '/public')
+        .set({
+          services:{
+            housing: false,
+            walks: false
+          },
+          rates:{
+            housing: 0,
+            walks: 0
+          },
+          aboutMe:{
+            aboutMe: "Agregar información sobre mi",
+            experience: 0,
+            certifications: []
+          },
+          petAccepted: {
+            dogs: false,
+            cats: false
+          },
+          gallery:[],
+          availability: {
+            datesOccupied: []
+          },
+          availableQuotas: 0,
+          approximateLocation:{}
+        })
+
+      // Enviar respuesta de éxito
+      return res.status(201).send({ message: "Usuario registrado correctamente", status: true, userId:userCredential.user.uid, email:correo, name:nombre, token: userCredential.user.accessToken});  
+    }
+  } catch (error) {
+    // Manejar errores de Firebase
+    console.error("Error al registrar usuario:", error);
+    return res.status(400).send({ message: "Error al registrar usuario", status: false });
+  }
+})
+
+app.get("/cuidadores/:idCuidador", async (req, res) =>{
+  const { idCuidador } = req.params;
+
+  if (!idCuidador) {
+    return res.status(400).send({ message: "Error, falta el ID del cuidador", status: false });
+  }
+
+  try {
+    const cuidadorRef = firestore.collection("petSitters").doc(idCuidador);
+    const cuidadorDoc = await cuidadorRef.get();
+
+    if (!cuidadorDoc.exists) {
+      return res.status(404).send({ message: "Error, el cuidador no existe", status: false });
+    }
+
+    const data = cuidadorDoc.data(); 
+
+    const nestedCollectionsRef = cuidadorRef.collection("information");
+    const nestedCollectionsSnapshot = await nestedCollectionsRef.get();
+
+    const nestedData = {};
+    for (const doc of nestedCollectionsSnapshot.docs) {
+      const collectionPath = doc.id; 
+      nestedData[collectionPath] = doc.data(); 
+    }
+
+    data.information = nestedData; 
+
+
+    return res.status(200).send({ message: "Datos completos del cuidador", status: true, data });
+  } catch (error) {
+
+    console.error("Error al obtener datos del cuidador:", error);
+    return res.status(500).send({ message: "Error al obtener datos del cuidador", status: false });
+  }
+})
+
+app.put("/editar/cuidador/:idCuidador", async (req,res) =>{
+  const { idCuidador } = req.params;
+  const dataToUpdate = req.body; // Data to be updated
+
+  // Validate ID and data
+  if (!idCuidador || !dataToUpdate) {
+    return res.status(400).send({ message: "Error, faltan datos del ID o datos de actualización", status: false });
+  }
+
+  // Update data in Firebase
+  try {
+    const cuidadorRef = firestore.collection("petSitters").doc(idCuidador);
+    const cuidadorDoc = await cuidadorRef.get();
+
+    if (!cuidadorDoc.exists) {
+      return res.status(404).send({ message: "Error, el cuidador no existe", status: false });
+    }
+
+    // Update specific fields (avoid overwriting everything)
+    await cuidadorRef.update(dataToUpdate);
+
+    // Enviar respuesta de éxito
+    return res.status(200).send({ message: "Datos del cuidador actualizados", status: true });
+  } catch (error) {
+    // Manejar errores de Firebase
+    console.error("Error al actualizar datos del cuidador:", error);
+    return res.status(500).send({ message: "Error al actualizar datos del cuidador", status: false });
+  }
+})
+
+//------------------ Cuidadores ------------------------
 exports.app = functions.https.onRequest(app);
+
+//#region Endpoins Publicos
+
+// Registro de Usuario
+appPublic.post("/registro", async (req, res) => {
+  const { nombre, correo, contraseña } = req.body;
+
+  // Validar la entrada
+  if (!nombre || !correo || !contraseña) {
+    return res.status(400).send({ message: "Error, Faltan datos del nombre, correo o contraseña", status: false });
+  }else if (contraseña.length < 6 ) {
+    return res.status(400).send({ message: "Error, la contraseña debe contener más de 6 caracteres", status: false });
+  }
+
+  // Crear el usuario en Firebase
+  try {
+
+    const usersRef = firestore.collection("users");
+    const query = usersRef.where('email', '==', correo);
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.size > 0) {
+      // El usuario existe
+      res.status(400).send({ message: "Error, el usuario ya existe", status: false });
+    } else {
+      // El usuario no existe se procese a crearlo
+      const userCredential = await createUserWithEmailAndPassword(auth, correo, contraseña);
+
+      // actualizacion de perfil del usuario en auth
+      await updateProfile(auth.currentUser,{
+        displayName: nombre
+      });
+
+      // creacion y guardado de datos en firestore
+      await firestore
+        .collection("users")
+        .doc(userCredential.user.uid)
+        .set({
+          name: nombre,
+          email: correo,
+          photo: '',
+          idPets: [],
+        });
+      // Enviar respuesta de éxito
+      return res.status(201).send({ message: "Usuario registrado correctamente", status: true, userId:userCredential.user.uid, email:correo, name:nombre, token: userCredential.user.accessToken});  
+    }
+  } catch (error) {
+    // Manejar errores de Firebase
+    console.error("Error al registrar usuario:", error);
+    return res.status(400).send({ message: "Error al registrar usuario", status: false });
+  }
+});
+
+// Login de Usuario
+appPublic.post("/login", async (req, res) => {
+  const { correo, contraseña } = req.body;
+
+  // Validate input
+  if (!correo || !contraseña) {
+    return res.status(400).send({ message: "Faltan datos obligatorios (correo y contraseña)", status: false });
+  }
+
+  try {
+
+    // login de usuario
+    const userCredential = await signInWithEmailAndPassword(auth, correo, contraseña);
+    // respuesta de login exitoso
+    res.status(200).send({ message: "Usuario autenticado correctamente", status: true, status: true, userId:userCredential.user.uid, email:correo, name: userCredential.user.displayName, token: userCredential.user.accessToken });
+  } catch (error) {
+    console.error("Error al iniciar sesión:", error);
+    res.status(401).send({ message: "Correo o contraseña incorrecta", status: false}); 
+  }
+});
+
+appPublic.get("/cuidadores", async (req, res) => {
+  // Obtener todos los cuidadores de Firebase
+  try {
+    const cuidadoresRef = firestore.collection("petSitters");
+    const cuidadoresSnapshot = await cuidadoresRef.get();
+
+    // Procesar cada documento de cuidador
+    const dataPublicos = [];
+    for (const doc of cuidadoresSnapshot.docs) {
+      const idCuidador = doc.id;
+      const name = doc.data().name;
+      const photo = doc.data().photo;
+      const cuidadorRef = doc.ref.collection("information").doc("public");
+      const cuidadorDoc = await cuidadorRef.get();
+
+      if (cuidadorDoc.exists) {
+        const dataPublica = cuidadorDoc.data();
+        dataPublicos.push({ idCuidador: idCuidador, name:name, photo:photo, ...dataPublica }); // Añadir ID del cuidador
+      }
+    }
+
+    // Enviar respuesta con los datos públicos de todos los cuidadores
+    return res.status(200).send({ message: "Datos públicos de todos los cuidadores", status: true, data: dataPublicos });
+  } catch (error) {
+    // Manejar errores de Firebase
+    console.error("Error al obtener datos públicos de cuidadores:", error);
+    return res.status(500).send({ message: "Error al obtener datos públicos de cuidadores", status: false });
+  }
+})
+
+exports.appPublic = functions.https.onRequest(appPublic);
