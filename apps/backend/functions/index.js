@@ -121,25 +121,63 @@ app.post("/pets", async (req, res) => {
     res.status(201).json({ message: "Felicitaciones, tu mascota se ha registrado exitosamente", id: nuevaMascota.id })
   } catch (error) {
     console.error("Error al crear tu mascota", error);
-    res.status(500).json({error: "Ocurrio un error al crear tu mascota"});
+    res.status(500).json({ error: "Ocurrio un error al crear tu mascota" });
   }
 })
 
 app.get("/pets", async (req, res) => {
   const userId = req.user.uid;
-try {
-  const userMascotas = collection(firestore.doc(`users/${userId}`), "mascotas");
-const mascotasSnapshot = await getDocs(userMascotas)
-const mascotas = [];
-mascotasSnapshot.forEach((doc) => {
-  mascotas.push({id: doc.id, ...doc.data() })
+  try {
+    const userMascotas = collection(firestore.doc(`users/${userId}`), "mascotas");
+    const mascotasSnapshot = await getDocs(userMascotas)
+    const mascotas = [];
+    mascotasSnapshot.forEach((doc) => {
+      mascotas.push({ id: doc.id, ...doc.data() })
+    });
+    res.status(200).json(mascotas);
+  }
+  catch (error) {
+    console.error("Error al obtener mascotas", error);
+    res.status(500).json({ error: "Ocurrio un error al obtener las mascotas del usuario" });
+  }
 });
-res.status(200).json(mascotas);
+app.put("/pets/:petId", async (req, res) => {
+  const petId = req.params.petId;
+  const { nombre, especie, edad } = req.body;
+  if (!nombre || !especie || !edad) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+  try {
+    const petDocRef = firestore.collection("mascotas").doc(petId);
+    await petDocRef.update({
+      nombre: nombre,
+      especie: especie,
+      edad: edad
+    });
+    res.status(200).json({
+      message: "Tu mascota se actualizo correctamente"
+    });
+  } catch (error) {
+    console.error("Errror al actualizar tu mascota ", error);
+    res.status(500).json({ error: "Ocurrio un error al actualizar la mascota" });
+  }
 }
-catch (error){
-  console.error("Error al obtener mascotas", error);
-  res.status(500).json({error: "Ocurrio un error al obtener las mascotas del usuario"});
-}
+
+)
+app.delete("/pets/:petId", async (req, res) => {
+  const petId = req.params.petId;
+  try {
+    const petDocRef = firestore.collection("mascotas").doc(petId);
+    const petDoc = await petDocRef.get();
+    if (!petDoc.exists) {
+      return res.status(404).json({ Error: "Error la mascota no existe" });
+    }
+    await petDocRef.delete();
+    res.status(200).json({ message: "Tu mascota ha sido eliminada correctamente" })
+  } catch (error) {
+    console.error("error al eliminar la mascota", error);
+    res.status(500).json({ Error: "ocurrio un error al eliminar la mascota" });
+  }
 });
 
 //------------------ Cuidadores ------------------------
@@ -298,7 +336,6 @@ app.put("/editar/cuidador/:idCuidador", async (req,res) =>{
   }
 })
 
-//------------------ Cuidadores ------------------------
 exports.app = functions.https.onRequest(app);
 
 //#region Endpoins Publicos
