@@ -12,7 +12,7 @@ export default function Home() {
       <Banner />
       <About
         iconAnimal={ImgDog}
-        text="Somos el intermediario que se encarga de reunirte con el mejor cuidado para tu mascota."
+        text="Somos el intermediario que se encarga de reunirte con el mejor cuidador para tu mascota."
         title="Nuestros Servicios"
         order={1}
         textButton="Más de nosotros"
