@@ -1,4 +1,5 @@
 import {
+  Box,
   Heading,
   Input,
   Button,
@@ -54,29 +55,41 @@ function Login({ sendDataToParent, ModalParent }) {
       align="center"
       justify="center"
     >
-      <Heading as={"h2"} size="xl" mb={"8px"}>
-        Ingresar
-      </Heading>
-      <Heading as={"h4"} size="md" mb={"24px"}>
-        No tienes cuenta?{" "}
-        <ChakraLink
-          onClick={changeToggle}
-          color={"azulacento.500"}
-          fontWeight={"700"}
-        >
-          Registrate
-        </ChakraLink>
-      </Heading>
+      <Box gap={2} textAlign="center">
+        <Heading as={"h2"} fontSize="32px" fontWeight="400" lineHeight="48px">
+          Ingresar
+        </Heading>
+        <Heading as={"h4"} size="md" mb={"24px"} fontWeight="400">
+          No tienes cuenta?{" "}
+          <ChakraLink
+            onClick={changeToggle}
+            color={"azulacento.500"}
+            fontFamily="Poppins-Regular"
+            fontWeight={"600"}
+          >
+            Regístrate
+          </ChakraLink>
+        </Heading>
+      </Box>
       <form onSubmit={formik.handleSubmit} style={{ width: "100%" }}>
         <FormControl mb={"16px"}>
-          <FormLabel htmlFor="email">Correo electrónico</FormLabel>
+          <FormLabel
+            htmlFor="email"
+            fontFamily="Poppins-Regular"
+            fontWeight="400"
+            fontSize="16px"
+            lineHeight="24px"
+          >
+            Correo electrónico
+          </FormLabel>
           <Input
             id="email"
             name="email"
             type="email"
             onChange={formik.handleChange}
             value={formik.values.email}
-            placeholder="username@email.com"
+            placeholder="Dirección de correo"
+            borderColor="gris.200"
             required
           />
           {formik.errors.email ? (
@@ -84,14 +97,23 @@ function Login({ sendDataToParent, ModalParent }) {
           ) : null}
         </FormControl>
         <FormControl mb={"24px"}>
-          <FormLabel htmlFor="password">Contraseña</FormLabel>
+          <FormLabel
+            htmlFor="password"
+            fontFamily="Poppins-Regular"
+            fontWeight="400"
+            fontSize="16px"
+            lineHeight="24px"
+          >
+            Contraseña
+          </FormLabel>
           <Input
             id="password"
             name="password"
             type="password"
             onChange={formik.handleChange}
             value={formik.values.password}
-            placeholder="****...."
+            placeholder="******************"
+            borderColor="gris.200"
             required
           />
           {formik.errors.password && formik.touched.password ? (
@@ -106,6 +128,10 @@ function Login({ sendDataToParent, ModalParent }) {
           isDisabled={formik.errors.email || formik.errors.password}
           type="submit"
           width={"100%"}
+          fontFamily="Poppins-Regular"
+          fontWeight="400"
+          fontSize="16px"
+          lineHeight="24px"
         >
           Inicia Sesión
         </Button>
