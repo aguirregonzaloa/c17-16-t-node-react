@@ -8,11 +8,11 @@ import MiniDog from "../../assets/icons/MiniDog.svg";
 
 export default function Banner() {
   return (
-    <Flex h="100%" direction={{ base: "column", lg: "row" }}>
+    <Flex direction={{ base: "column", lg: "row" }}>
       <Box
         bg="white"
         w={{ base: "100vw", lg: "50%" }}
-        h={{ base: "75vh", sm: "65vh", lg: "100vh" }}
+        minH={{ base: "80vh", lg: "100vh" }}
       >
         <Grid
           w="367.62px"
