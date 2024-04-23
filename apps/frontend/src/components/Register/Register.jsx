@@ -1,4 +1,5 @@
 import {
+  Box,
   Heading,
   Input,
   Text,
@@ -53,28 +54,41 @@ function Register({ sendDataToParent }) {
       align="center"
       justify="center"
     >
-      <Heading as="h2" size="xl" noOfLines={1} mb={"8px"}>
-        Registrate
-      </Heading>
-      <Heading as="h4" size="md" noOfLines={1} mb={"24px"}>
-        Ya tienes una cuenta?{" "}
-        <ChakraLink
-          onClick={changeToggle}
-          color={"azulacento.500"}
-          fontWeight={"700"}
-        >
-          Inicia sesión
-        </ChakraLink>
-      </Heading>
+      <Box gap={2} textAlign="center">
+        <Heading as="h2" fontSize="32px" fontWeight="400" lineHeight="48px">
+          Regístrate
+        </Heading>
+        <Heading as="h4" size="md" noOfLines={1} mb={"24px"} fontWeight="400">
+          Ya tienes una cuenta?{" "}
+          <ChakraLink
+            onClick={changeToggle}
+            fontFamily="Poppins-Regular"
+            color={"azulacento.500"}
+            fontWeight={"600"}
+          >
+            Inicia sesión
+          </ChakraLink>
+        </Heading>
+      </Box>
+
       <form onSubmit={formik.handleSubmit} style={{ width: "100%" }}>
         <FormControl mb={"16px"}>
-          <FormLabel mb={"4px"} htmlFor="name">
+          <FormLabel
+            mb={"4px"}
+            htmlFor="name"
+            fontFamily="Poppins-Regular"
+            fontWeight="400"
+            fontSize="16px"
+            lineHeight="24px"
+          >
             Nombre
           </FormLabel>
           <Input
             id="name"
             name="name"
             type="name"
+            placeholder="Nombre"
+            borderColor="gris.200"
             onChange={formik.handleChange}
             value={formik.values.name}
           />
@@ -83,13 +97,22 @@ function Register({ sendDataToParent }) {
           ) : null}
         </FormControl>
         <FormControl mb={"16px"}>
-          <FormLabel mb={"4px"} htmlFor="email">
+          <FormLabel
+            mb={"4px"}
+            htmlFor="email"
+            fontFamily="Poppins-Regular"
+            fontWeight="400"
+            fontSize="16px"
+            lineHeight="24px"
+          >
             Correo electrónico
           </FormLabel>
           <Input
             id="email"
             name="email"
             type="email"
+            placeholder="Correo@..."
+            borderColor="gris.200"
             onChange={formik.handleChange}
             value={formik.values.email}
           />{" "}
@@ -99,13 +122,22 @@ function Register({ sendDataToParent }) {
         </FormControl>
 
         <FormControl mb={"16px"}>
-          <FormLabel mb={"4px"} htmlFor="password">
+          <FormLabel
+            mb={"4px"}
+            htmlFor="password"
+            fontFamily="Poppins-Regular"
+            fontWeight="400"
+            fontSize="16px"
+            lineHeight="24px"
+          >
             Contraseña
           </FormLabel>
           <Input
             id="password"
             name="password"
             type="password"
+            placeholder="******************"
+            borderColor="gris.200"
             onChange={formik.handleChange}
             value={formik.values.password}
           />
@@ -114,13 +146,22 @@ function Register({ sendDataToParent }) {
           ) : null}
         </FormControl>
         <FormControl mb={"24px"}>
-          <FormLabel mb={"4px"} htmlFor="confirmpass">
+          <FormLabel
+            mb={"4px"}
+            htmlFor="confirmpass"
+            fontFamily="Poppins-Regular"
+            fontWeight="400"
+            fontSize="16px"
+            lineHeight="24px"
+          >
             Confirmar Contraseña
           </FormLabel>
           <Input
             id="confirmpass"
             name="confirmpass"
             type="password"
+            placeholder="******************"
+            borderColor="gris.200"
             onChange={formik.handleChange}
             value={formik.values.confirmpass}
           />
@@ -141,8 +182,12 @@ function Register({ sendDataToParent }) {
           }
           type="submit"
           width={"100%"}
+          fontFamily="Poppins-Regular"
+          fontWeight="400"
+          fontSize="16px"
+          lineHeight="24px"
         >
-          Registrate
+          Regístrate
         </Button>
         {successRegister ? (
           <Text
