@@ -38,7 +38,7 @@ function Register({ sendDataToParent }) {
 
       response
         .then((data) => {
-          setSuccessRegister(data.message);
+          setSuccessRegister("Se ha registrado correctamente");
         })
         .catch((errors) => {
           const { message } = errors.response.data;

@@ -5,6 +5,7 @@ import VectorBanner2 from "../../assets/icons/VectorBanner2.svg";
 import imgBanner from "../../assets/img/ImgBanner.png";
 import MiniCat from "../../assets/icons/MiniCat.svg";
 import MiniDog from "../../assets/icons/MiniDog.svg";
+import SearchingBar from "../SearchingBar/SearchingBar";
 
 export default function Banner() {
   return (
@@ -56,6 +57,7 @@ export default function Banner() {
           >
             Encuentra los mejores cuidadores de mascotas de Buenos Aires
           </Text>
+          <SearchingBar />
         </Grid>
       </Box>
       <Box w={{ base: "100%", lg: "50%" }} h="100vh" pos="relative">
@@ -65,7 +67,7 @@ export default function Banner() {
           alt="icon mini cat"
           pos="absolute"
           top={{ base: -16, lg: 20 }}
-          left={{base: -4, lg:-16}}
+          left={{ base: -4, lg: -16 }}
         />
         <Image
           src={VectorBanner2}
@@ -73,11 +75,11 @@ export default function Banner() {
           pos="absolute"
           top={{
             base: -12,
-            lg: "60vh"
+            lg: "60vh",
           }}
           left={{
             base: undefined,
-            lg: -12
+            lg: -12,
           }}
           right={{ base: 0, lg: undefined }}
         />
