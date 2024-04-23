@@ -10,12 +10,12 @@ const userData = {
   isLoggin: false,
   pets: [
     { id: 1, type: "cat", name: "lolo" },
-    { id: 1, type: "dog", name: "Dodo" },
+    { id: 2, type: "dog", name: "Dodo" },
   ],
   reservations: [
-    { id: 1, date: "29/05/24", careName: "Leandro" },
-    { id: 1, date: "29/05/24", careName: "Leandro" },
-    { id: 1, date: "29/05/24", careName: "Leandro" },
+    { id: 1, date: "29/05/24", careName: "Leandro", mypet: "lolo" },
+    { id: 2, date: "30/05/24", careName: "Leandro", mypet: "lolo" },
+    { id: 3, date: "05/06/24", careName: "Julieta", mypet: "lolo" },
   ],
 };
 

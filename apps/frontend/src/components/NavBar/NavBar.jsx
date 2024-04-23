@@ -5,7 +5,7 @@ import {
   Flex,
   useDisclosure,
 } from "@chakra-ui/react";
-import { Link as ReactRouterLink } from "react-router-dom";
+import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../utils/context/UserContext";
 import ModalUser from "../ModalUser/ModalUser";
 
@@ -14,10 +14,13 @@ import ModalUser from "../ModalUser/ModalUser";
 export default function NavBar({ direction, background }) {
   const { user, setUser } = React.useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
 
   const logout = () => {
     const userData = { correo: "", status: false, token: "" };
+    localStorage.removeItem("token");
     setUser(userData);
+    navigate("/");
   };
 
   return (
@@ -81,7 +84,7 @@ export default function NavBar({ direction, background }) {
             _focus={{ color: "azulacento.500" }}
             _active={{ color: "azulacento.500" }}
           >
-            {user.correo}
+            {user.email}
           </ChakraLink>
         )}
         {user.status && (

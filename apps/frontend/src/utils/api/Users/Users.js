@@ -12,8 +12,7 @@ export const LoginUser = async (data) => {
     { correo, contraseña },
     { headers }
   );
-  const login = { ...response, correo };
-  return login;
+  return response.data;
 };
 
 export const RegisterUser = async (data) => {
@@ -25,5 +24,13 @@ export const RegisterUser = async (data) => {
     { nombre, correo, contraseña },
     { headers }
   );
+  return response;
+};
+
+export const SesionToken = () => {
+  const token = "hjas";
+
+  const headers = { "Content-type": "application/json", token: token };
+  const response = axios.get(URL_PROD, { headers });
   return response;
 };

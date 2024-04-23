@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Text, Button } from "@chakra-ui/react";
 import ImgMei from "../../assets/img/ImgMei.png";
 import IconLocation from "../../assets/icons/IconLocation.svg";
 import { IoIosStar } from "react-icons/io";
@@ -7,7 +7,7 @@ import { LuClock3 } from "react-icons/lu";
 import IconDogPurple from "../../assets/icons/IconDogPurple.svg";
 import IconCatPurple from "../../assets/icons/IconCatPurple.svg";
 
-export default function CaregiverCard({ name }) {
+export default function CaregiverCard({ name, onAddReservation }) {
   return (
     <Flex justify="space-between" align="center" w="539px" margin={"20px auto"}>
       <Box>
@@ -109,6 +109,9 @@ export default function CaregiverCard({ name }) {
         >
           por hora
         </Text>
+        <Button colorScheme={"azulacento"} onClick={onAddReservation}>
+          Reservación
+        </Button>
       </Box>
     </Flex>
   );
