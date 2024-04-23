@@ -20,7 +20,7 @@ import { UserContext } from "../../utils/context/UserContext";
 function Login({ sendDataToParent, ModalParent }) {
   const { mutateAsync } = useLoginUser();
   const [errorLogin, setErrorLogin] = React.useState("");
-  const { setUser } = React.useContext(UserContext);
+  const { user, setUser } = React.useContext(UserContext);
 
   const changeToggle = () => {
     sendDataToParent(false);
@@ -38,11 +38,16 @@ function Login({ sendDataToParent, ModalParent }) {
         .then((data) => {
           //Usar data context para cargar usuario en la Barra
           //Navegacíon
-          setUser(data);
+          const addUser = { ...user, ...data };
+          setUser(addUser);
+          console.log(data);
+          //Guarda en localStorage el token
+          localStorage.setItem("token", data?.token);
           ModalParent();
         })
         .catch((errors) => {
-          const { message } = errors.response.data;
+          // const { message } = errors.response.data;
+          const message = "No se pudo iniciar sesión";
           setErrorLogin(message);
         })
         .finally(() => setSubmitting(false));

@@ -1,19 +1,19 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import {
-  getUsers,
-  getUserID,
+  // getUsers,
+  // getUserID,
   LoginUser,
   RegisterUser,
 } from "../api/Users/Users";
 
 //******PRUEBA DE QUERY*******/
-export const useGetUsers = () => {
-  return useQuery({ queryKey: ["users"], queryFn: getUsers });
-};
+// export const useGetUsers = () => {
+//   return useQuery({ queryKey: ["users"], queryFn: getUsers });
+// };
 
-export const useGetUser = (id) => {
-  return useQuery({ queryKey: ["user", id], queryFn: () => getUserID(id) });
-};
+// export const useGetUser = (id) => {
+//   return useQuery({ queryKey: ["user", id], queryFn: () => getUserID(id) });
+// };
 //********************************* */
 
 //***********************************/
