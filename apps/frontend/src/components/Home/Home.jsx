@@ -7,7 +7,7 @@ import Functioning from "../Functioning/Functioning";
 import TopCaregivers from "../TopCaregivers/TopCaregivers";
 import RatesHome from "../RatesHome/RatesHome";
 import Review from "../Review/Review";
-
+import DogFooter from "../DogFooter/DogFooter";
 
 export default function Home() {
   return (
@@ -31,6 +31,7 @@ export default function Home() {
       <RatesHome/>
       <Functioning />
       <Review/>
+      <DogFooter/>
     </main>
   );
 }
