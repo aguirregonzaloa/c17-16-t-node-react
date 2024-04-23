@@ -25,7 +25,8 @@ export default function NavBar({ direction, background }) {
       <ModalUser isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       <Flex m={2} direction={direction} bg={background} gap={6}>
         <ChakraLink
-          href="#home"
+          as={ReactRouterLink}
+          to="/"
           alignSelf="center"
           color="gris.700"
           fontFamily="Poppins-Medium"
@@ -72,7 +73,7 @@ export default function NavBar({ direction, background }) {
         ) : (
           <ChakraLink
             as={ReactRouterLink}
-            to="/"
+            to="/myprofile"
             alignSelf="center"
             color="gris.700"
             fontFamily="Poppins-Medium"

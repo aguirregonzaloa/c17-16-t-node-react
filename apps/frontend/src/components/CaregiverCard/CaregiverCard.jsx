@@ -7,9 +7,9 @@ import { LuClock3 } from "react-icons/lu";
 import IconDogPurple from "../../assets/icons/IconDogPurple.svg";
 import IconCatPurple from "../../assets/icons/IconCatPurple.svg";
 
-export default function CaregiverCard() {
+export default function CaregiverCard({ name }) {
   return (
-    <Flex justify="space-between" align="center" w="539px">
+    <Flex justify="space-between" align="center" w="539px" margin={"20px auto"}>
       <Box>
         <Image src={ImgMei} alt="Iamgen del cuidador" />
         <Text
@@ -31,7 +31,7 @@ export default function CaregiverCard() {
           lineHeight="30px"
           color="gris.800"
         >
-          Mei
+          {name}
         </Heading>
         <Text
           fontSize="14px"
