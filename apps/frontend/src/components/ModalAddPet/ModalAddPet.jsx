@@ -35,7 +35,17 @@ export default function ModalAddPet() {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button
+        onClick={onOpen}
+        fontSize="Poppins-SemiBold"
+        bg="azulacento.500"
+        color="white"
+        _hover={{ backgroundColor: "azulacento.600" }}
+        _focus={{ backgroundColor: "azulacento.600" }}
+        _active={{ backgroundColor: "azulacento.600" }}
+      >
+        Agregar mascota
+      </Button>
 
       <Modal
         initialFocusRef={initialRef}
@@ -114,7 +124,17 @@ export default function ModalAddPet() {
               opacity="20%"
               w="100%"
             />
-            <Button mt={5} w="100%" bg="azulacento.500" color="white" mr={3}>
+            <Button
+              mt={5}
+              w="100%"
+              fontSize="Poppins-SemiBold"
+              bg="azulacento.500"
+              color="white"
+              _hover={{ backgroundColor: "azulacento.600" }}
+              _focus={{ backgroundColor: "azulacento.600" }}
+              _active={{ backgroundColor: "azulacento.600" }}
+              mr={3}
+            >
               Ingresar +
             </Button>
           </ModalBody>
