@@ -12,7 +12,7 @@ import DescriptionAbout from "../DescriptionAbout/DescriptionAbout";
 
 export default function About({ iconAnimal, text, order, title, textButton }) {
   return (
-    <div style={{ paddingTop: "45px" }} id="about">
+    <div style={{ paddingTop: "70px" }} id="about">
       <Flex
         direction={{ base: "column", md: "row" }}
         justify="center"

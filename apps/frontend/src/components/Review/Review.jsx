@@ -12,7 +12,7 @@ import VectorBanner2_Review from "../../assets/icons/VectorBanner2.svg";
 const Review = () => {
   return (
     <Flex
-      p="80px 150px 64px 150px"
+      p="0px 150px 64px 150px"
       gap="40px"
       textAlign="center"
       justify="center"
@@ -36,30 +36,29 @@ const Review = () => {
       >
         Qué opinan nuestros clientes
       </Text>
-
-      <Image
-        src={VectorBanner2_Review}
-        alt="VectorBanner2"
-        position="relative"
-        left={{ base: "355px", lg: "293px" }}
-        top="-32px"
-      ></Image>
-      <Image
-        src={VectorBanner1_Review}
-        alt="VectorBanner1"
-        position="relative"
-        left= {{ base: "364px", lg: "293px" }}
-        top={{ base: "689px", lg: "228px" }}
-      ></Image>
-
       <Flex
-        marginTop="-290px"
         direction={"column"}
         justify="space-between"
         align="center"
         p="0px 90px"
+        pos="relative"
       >
-        <Flex direction={{ base: "column", lg: "row" }} gap="16px">
+        <Image
+          src={VectorBanner2_Review}
+          alt="VectorBanner2"
+          position="absolute"
+          right={{ base: 0 }}
+          top={{ base: 0, md: -6 }}
+          transform="scaleX(-1)"
+        ></Image>
+        <Image
+          src={VectorBanner1_Review}
+          alt="VectorBanner1"
+          position="absolute"
+          right={{ base: 0 }}
+          bottom={{ base: 0 }}
+        ></Image>
+        <Flex direction={{ base: "column", md: "row" }} gap="16px">
           <Box padding="24px 21px">
             <Box
               color="gris.700"
@@ -75,11 +74,19 @@ const Review = () => {
                 left="164px"
                 bottom="40px"
               ></Image>{" "}
-              Estaba un poco nerviosa de dejarlas, pero ella me escuchó sobre el
-              cuidado de las perritas, y les puso música para que se acoplaran.{" "}
+              <Text
+                fontFamily="Poppins-Regular"
+                fontSize="14px"
+                fontWeight="400"
+                lineHeight="21px"
+                textAlign="start"
+              >
+                Estaba un poco nerviosa de dejarlas, pero ella me escuchó sobre
+                el cuidado de las perritas, y les puso música para que se
+                acoplaran.
+              </Text>
             </Box>
           </Box>
-
           <Box gap="16px" padding="24px 21px">
             <Box>
               <Box
@@ -96,13 +103,21 @@ const Review = () => {
                   left="164px"
                   bottom="40px"
                 ></Image>
-                Su compromiso con el bienestar de mi mascota es evidente en cada
-                interacción.
+                <Text
+                  fontFamily="Poppins-Regular"
+                  fontSize="14px"
+                  fontWeight="400"
+                  lineHeight="21px"
+                  textAlign="start"
+                >
+                  Su compromiso con el bienestar de mi mascota es evidente en
+                  cada interacción.
+                </Text>
               </Box>
             </Box>
           </Box>
         </Flex>
-        <Flex direction={{ base: "column", lg: "row" }} gap="16px">
+        <Flex direction={{ base: "column", md: "row" }} gap="16px">
           <Box gap="16px" padding="24px 21px">
             <Box
               color="gris.700"
@@ -118,8 +133,16 @@ const Review = () => {
                 left="164px"
                 bottom="40px"
               ></Image>
-              Su atención dedicada y amor por los peludos lo convierten en el
-              mejor amigo de mi mascota durante mis ausencias.
+              <Text
+                fontFamily="Poppins-Regular"
+                fontSize="14px"
+                fontWeight="400"
+                lineHeight="21px"
+                textAlign="start"
+              >
+                Su atención dedicada y amor por los peludos lo convierten en el
+                mejor amigo de mi mascota durante mis ausencias.
+              </Text>
             </Box>
           </Box>
           <Box gap="16px" padding="24px 21px">
@@ -137,28 +160,35 @@ const Review = () => {
                 left="164px"
                 bottom="40px"
               ></Image>
-              Su calma y habilidades para el manejo de mascotas resalta su
-              pasión y confianza.
+              <Text
+                fontFamily="Poppins-Regular"
+                fontSize="14px"
+                fontWeight="400"
+                lineHeight="21px"
+                textAlign="start"
+              >
+                Su calma y habilidades para el manejo de mascotas resalta su
+                pasión y confianza.
+              </Text>
             </Box>
           </Box>
         </Flex>
+        <Image
+          src={VectorBanner1_Review}
+          alt="VectorBanner1"
+          position="absolute"
+          left={{ base: 0, md: 4 }}
+          top={{ base: 0, md: -32 }}
+          transform="scaleX(-1)"
+        ></Image>
+        <Image
+          src={VectorBanner2_Review}
+          alt="VectorBanner2"
+          position="absolute"
+          left={{ base: 0, md: 8 }}
+          bottom={{ base: 0, md: -10 }}
+        ></Image>
       </Flex>
-
-      <Image
-        src={VectorBanner1_Review}
-        alt="VectorBanner1"
-        position="relative"
-        right= {{ base: "360px", lg: "293px" }}
-        top={{ base: "-1012px", lg: "-630px" }}
-      ></Image>
-
-      <Image
-        src={VectorBanner2_Review}
-        alt="VectorBanner2"
-        position="relative"
-        right={{ base: "368px", lg: "293px" }}
-        top={{ base: "-180px", lg: "-292px"  }}
-      ></Image>
     </Flex>
   );
 };

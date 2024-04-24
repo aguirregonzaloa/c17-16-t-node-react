@@ -31,7 +31,7 @@ const SearchingBar = () => {
       bg={"white"}
       align="center"
       justify="center"
-      zIndex={"10"}
+      zIndex={1}
       width={"840px"}
     >
       <form onSubmit={formik.handleSubmit}>

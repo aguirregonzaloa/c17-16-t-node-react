@@ -4,11 +4,11 @@ import Dog from "../../assets/img/Dog_Rates.png";
 import Manito_violeta from "../../assets/img/manito_violeta.png";
 import VectorBanner1 from "../../assets/icons/VectorBanner1.svg";
 import VectorBanner2 from "../../assets/icons/VectorBanner2.svg";
-import shadow from "../../assets/img/Shadow.png";
+import Shadow from "../../assets/img/Shadow.png";
 
 const RatesHome = () => {
   return (
-    <Box mb={10} id="rates" pos="relative">
+    <Box mb={10} pos="relative" id="rates">
       <Image
         src={Dog}
         alt="Dog_rates"
@@ -16,7 +16,6 @@ const RatesHome = () => {
         top={{ base: -64, md: -48 }}
         left="0"
       />
-
       <Box w="349px" margin="auto" textAlign="center" marginBottom="40px">
         <Image
           src={Manito_violeta}
@@ -33,36 +32,46 @@ const RatesHome = () => {
         >
           Tarifas
         </Text>
-        <Text fontFamily="Poppins-Regular" color="gris.800">
-          Nuestras tarifas asequibles para cuidado y paseo de perros
+        <Text
+          color="gris.800"
+          fontFamily="Poppins-Medium"
+          fontSize="16px"
+          fontWeight="400"
+          lineHeight="25px"
+        >
+          Nuestras tarifas asequibles para cuidado
         </Text>
       </Box>
-
       <Flex
         direction={{ base: "column", md: "row" }}
         gap={5}
         justify="center"
         align="center"
       >
+        <Image src={Shadow} pos="absolute" top={16} zIndex={0} />
         <Card
           w="295px"
           borderRadius="20px"
-          padding="48px 32px 48px 32px"
+          padding="48px 32px"
           textAlign="center"
           gap="32px"
-          pos="regular"
-          zIndex={0}
+          pos="relative"
+          zIndex={1}
         >
-
+          <Image
+            src={VectorBanner1}
+            alt="icono verde"
+            pos="absolute"
+            top={-10}
+            right={-12}
+          ></Image>
           <Image
             src={VectorBanner2}
             alt="icono verde"
             pos="absolute"
-            bottom="-10px"
-            right="792px"
-            zIndex={1}
+            bottom={-6}
+            left="-3.4rem"
           ></Image>
-
           <Text
             color="azulacento.800"
             fontSize="20px"
