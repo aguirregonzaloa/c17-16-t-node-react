@@ -6,7 +6,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
-import { UserContext } from "../../utils/context/UserContext";
+import { UserContext, userData } from "../../utils/context/UserContext";
 import ModalUser from "../ModalUser/ModalUser";
 
 /*Hace un click en boto ingresar y que abra el Modal */
@@ -17,7 +17,7 @@ export default function NavBar({ direction, background }) {
   const navigate = useNavigate();
 
   const logout = () => {
-    const userData = { correo: "", status: false, token: "" };
+    // const userData = { correo: "", status: false, token: "" };
     localStorage.removeItem("token");
     setUser(userData);
     navigate("/");
