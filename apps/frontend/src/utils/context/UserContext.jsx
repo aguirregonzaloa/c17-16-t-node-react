@@ -2,7 +2,7 @@ import * as React from "react";
 
 export const UserContext = React.createContext();
 
-const userData = {
+export const userData = {
   correo: "",
   name: "",
   status: false,
