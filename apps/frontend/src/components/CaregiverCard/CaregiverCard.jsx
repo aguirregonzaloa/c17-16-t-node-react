@@ -1,4 +1,12 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 import ImgMei from "../../assets/img/ImgMei.png";
 import IconLocation from "../../assets/icons/IconLocation.svg";
 import { IoIosStar } from "react-icons/io";
@@ -6,10 +14,17 @@ import IconDialogueBubbles from "../../assets/icons/IconDialogueBubbles.svg";
 import { LuClock3 } from "react-icons/lu";
 import IconDogPurple from "../../assets/icons/IconDogPurple.svg";
 import IconCatPurple from "../../assets/icons/IconCatPurple.svg";
+import { UserContext } from "../../utils/context/UserContext";
+import * as React from "react";
+import ModalUser from "../ModalUser/ModalUser";
 
-export default function CaregiverCard() {
+export default function CaregiverCard({ name, onAddReservation }) {
+  const { user } = React.useContext(UserContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <Flex justify="space-between" align="center" w="539px">
+    <Flex justify="space-between" align="center" w="539px" margin={"20px auto"}>
+      <ModalUser isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       <Box>
         <Image src={ImgMei} alt="Iamgen del cuidador" />
         <Text
@@ -31,7 +46,7 @@ export default function CaregiverCard() {
           lineHeight="30px"
           color="gris.800"
         >
-          Mei
+          {name}
         </Heading>
         <Text
           fontSize="14px"
@@ -109,6 +124,13 @@ export default function CaregiverCard() {
         >
           por hora
         </Text>
+        {/* {user.status ? ( */}
+        <Button
+          colorScheme={"azulacento"}
+          onClick={user.status ? onAddReservation : onOpen}
+        >
+          Reservación
+        </Button>
       </Box>
     </Flex>
   );

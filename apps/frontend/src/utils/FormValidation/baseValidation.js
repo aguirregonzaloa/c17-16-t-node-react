@@ -22,7 +22,7 @@ export const validateRegister = (values) => {
   if (!values.name) {
     errors.name = "Required";
   } else if (values.name.length < 3) {
-    errors.name = "Debe tener más de 5 carácteres";
+    errors.name = "Debe tener más de 3 carácteres";
   } else if (values.name.length > 200) {
     errors.name = "Debe tener menos de 200 carácteres";
   }
@@ -35,14 +35,14 @@ export const validateRegister = (values) => {
 
   if (!values.password) {
     errors.password = "Required";
-  } else if (values.password.length < 3) {
-    errors.password = "Debe tener más de 3 carácteres";
+  } else if (values.password.length < 6) {
+    errors.password = "Debe tener más de 6 carácteres";
   }
 
   if (!values.confirmpass) {
     errors.confirmpass = "Required";
-  } else if (values.confirmpass.length < 3) {
-    errors.confirmpass = "Debe tener más de 3 carácteres";
+  } else if (values.confirmpass.length < 6) {
+    errors.confirmpass = "Debe tener más de 6 carácteres";
   }
   return errors;
 };

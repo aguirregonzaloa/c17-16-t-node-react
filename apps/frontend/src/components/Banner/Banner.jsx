@@ -5,14 +5,16 @@ import VectorBanner2 from "../../assets/icons/VectorBanner2.svg";
 import imgBanner from "../../assets/img/ImgBanner.png";
 import MiniCat from "../../assets/icons/MiniCat.svg";
 import MiniDog from "../../assets/icons/MiniDog.svg";
+import SearchingBar from "../SearchingBar/SearchingBar";
 
 export default function Banner() {
   return (
-    <Flex h="100%" direction={{ base: "column", lg: "row" }}>
+    <Flex direction={{ base: "column", lg: "row" }}>
       <Box
+        id="home"
         bg="white"
         w={{ base: "100vw", lg: "50%" }}
-        h={{ base: "75vh", sm: "65vh", lg: "100vh" }}
+        minH={{ base: "80vh", lg: "100vh" }}
       >
         <Grid
           w="367.62px"
@@ -20,7 +22,7 @@ export default function Banner() {
             base: "relative",
             xl: "absolute",
           }}
-          top="170px"
+          top={24}
           left={{ base: "50px", sm: "80px", md: "100px" }}
           gap="36px"
         >
@@ -38,6 +40,7 @@ export default function Banner() {
             top={{ base: "100px", lg: "170px" }}
             left={52}
           />
+          <Box w="400px">
           <Text
             fontFamily="Mercuria"
             fontWeight="400"
@@ -53,9 +56,12 @@ export default function Banner() {
             fontWeight="500"
             fontSize="20px"
             lineHeight="30px"
+            mt={2}
           >
             Encuentra los mejores cuidadores de mascotas de Buenos Aires
           </Text>
+          </Box>
+          <SearchingBar />
         </Grid>
       </Box>
       <Box w={{ base: "100%", lg: "50%" }} h="100vh" pos="relative">
@@ -65,7 +71,7 @@ export default function Banner() {
           alt="icon mini cat"
           pos="absolute"
           top={{ base: -16, lg: 20 }}
-          left={{base: -4, lg:-16}}
+          left={{ base: -4, lg: -16 }}
         />
         <Image
           src={VectorBanner2}
@@ -73,11 +79,11 @@ export default function Banner() {
           pos="absolute"
           top={{
             base: -12,
-            lg: "60vh"
+            lg: "60vh",
           }}
           left={{
             base: undefined,
-            lg: -12
+            lg: -12,
           }}
           right={{ base: 0, lg: undefined }}
         />

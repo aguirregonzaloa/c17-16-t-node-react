@@ -25,8 +25,6 @@ const ModalUser = (props) => {
     onClose();
   }
 
-  console.log(toggle);
-
   return (
     <div>
       <>

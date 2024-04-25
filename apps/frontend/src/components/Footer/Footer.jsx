@@ -1,152 +1,189 @@
 import React from "react";
-import {
-  Box,
-  Link,
-  Text,
-  Image,
-  Divider,
-  Flex,
-  Spacer,
-} from "@chakra-ui/react";
+import { Box, Link, Text, Image, Divider, Flex } from "@chakra-ui/react";
 import LogoFooter from "../../assets/img/LogoFooter.svg";
 import LogoF from "../../assets/img/facebook.svg";
 import LogoC from "../../assets/img/correo.svg";
 import LogoW from "../../assets/img/wpp.svg";
 import LogoI from "../../assets/img/instagram.svg";
 
-import "./Footer.css";
-
 const Footer = () => {
   return (
-    <Box as="footer" className="footer">
-      <Box className="container__footer">
-        <Box className="box__footer">
-          <Flex>
-            <Box>
-              <Image src={LogoFooter} alt="LogoFooter" />
-              <Text fontFamily="regular" className="logoTitle">
-                Tus mascotas en tus mejores manos{" "}
-              </Text>
-            </Box>
-          </Flex>
-        </Box>
-        <Flex>
-          <Box>
-            <Text className="titleS">Seccíon</Text>
-            <Box>
-              <Link
-                margin="6px"
-                href="#"
-                color="#e6e6e6"
-                fontSize="14px"
-                fontFamily="semibold"
-                className="linkI"
-              >
-                Inicio
-              </Link>
-
-              <Link
-                margin="1px"
-                href="#"
-                color="#e6e6e6"
-                fontSize="14px"
-                className="linkS"
-              >
-                Sobre nosotros
-              </Link>
-
-              <Link
-                href="#"
-                textDecoration="none"
-                color="#e6e6e6"
-                fontSize="14px"
-                className="linkT"
-              >
-                Tarifas
-              </Link>
-            </Box>
+    <Box as="footer" bg="azulacento.500" p={"32px 100px 32px 100px" }
+    
+   
+    >
+      <Flex justify="space-between" direction={{ base: "column", md: "row" }}
+      marginBottom="20px"
+      >
+        <Box w="368px" h="92px">
+          <Box m="20px"
+                     
+          >
+            <Image src={LogoFooter} alt="LogoFooter" />
           </Box>
-
+          <Text
+            color="#FAFAFA"
+            fontFamily="Poppins-Regular"
+            fontWeight={400}
+            lineHeight="19px"
+          >
+            Tus mascotas en tus mejores manos
+          </Text>
+        </Box>
+        <Flex gap={6}>
           <Box>
-            <Text as="h2" className="titleR">
+            <Text as="h2" color="#FFFFFF">
+              Seccíon
+            </Text>
+            <Flex flexDirection="column" marginTop="20px">
+              <Flex alignItems="center">
+                <Link
+                  as="a"
+                  margin="4px"
+                  color="#FFFFFF"
+                  fontSize="14px"
+                  fontFamily="Poppins-Regular"
+                  padding="8px"
+                  fontWeight={400}
+                  lineHeight="21px"
+                >
+                  Inicio
+                </Link>
+              </Flex>
+              <Flex align="center">
+                <Link
+                  as="a"
+                  color="#E6E6E6"
+                  fontSize="14px"
+                  fontFamily="Poppins-Regular"
+                  padding="8px"
+                  fontWeight={400}
+                  lineHeight="21px"
+                >
+                  Sobre nosotros
+                </Link>
+              </Flex>
+              <Flex align="center">
+                <Link
+                  as="a"
+                  color="#E6E6E6"
+                  fontSize="14px"
+                  fontFamily="Poppins-Regular"
+                  padding="8px"
+                  fontWeight={400}
+                  lineHeight="21px"
+                >
+                  Tarifas
+                </Link>
+              </Flex>
+            </Flex>
+          </Box>
+          <Box>
+            <Text as="h2" align="center" color="#FFFFFF">
               Redes
             </Text>
-            <Flex marginTop="20px" display="flex">
-              <Image src={LogoI} alt="LogoInstagram" />
-              <Text
-                margin="4px"
-                color="#e6e6e6"
-                fontSize="14px"
-                fontFamily="regular"
-                padding="8px"
-              >
-                {" "}
-                Instagram
-              </Text>
+            <Flex flexDirection="column" marginTop="20px">
+              <Flex align="center">
+                <Image src={LogoI} alt="LogoInstagram" />
+                <Link
+                  margin="4px"
+                  color="#E6E6E6"
+                  fontSize="14px"
+                  fontFamily="Poppins-Regular"
+                  padding="8px"
+                  fontWeight={400}
+                  lineHeight="21px"
+                  href="https://www.instagram.com/safepaws.bsas/?igsh=amVod3Fmc2RtdWRh&utm_source=qr" 
+                  target="_blank" 
+                >
+                  Instagram
+                </Link>
+              </Flex>
+              <Flex align="center">
+                <Image src={LogoF} alt="LogoFacebook" />
+                <Link
+                  color="#E6E6E6"
+                  fontSize="14px"
+                  fontFamily="Poppins-Regular"
+                  padding="8px"
+                  fontWeight={400}
+                  lineHeight="21px"
+                >
+                  Facebook
+                </Link>
+              </Flex>
             </Flex>
-
-            <Box display="flex">
-              <Image src={LogoF} alt="LogoFacebook" />
-              <Text
-                color="#e6e6e6"
-                fontSize="14px"
-                fontFamily="regular"
-                padding="8px"
-              >
-                Facebook
-              </Text>
-            </Box>
           </Box>
-
           <Box>
-            <Text as="h2" className="titleC">
-              Contactanos
+            <Text as="h2" align="center" color="#FFFFFF">
+              Contáctanos
             </Text>
-            <Box marginTop="20px" display="flex">
-              <Image src={LogoW} alt="LogoTelefono" />
-              <Text
-                margin="4px"
-                color="#e6e6e6"
-                fontSize="14px"
-                fontFamily="regular"
-                padding="8px"
-              >
-                +54-11-11234-56
-              </Text>
-            </Box>
-            <Box display="flex">
-              <Image src={LogoC} alt="LogoCorreo" />
-              <Text
-                color="#e6e6e6"
-                fontSize="14px"
-                fontFamily="regular"
-                padding="8px"
-              >
-                Safe@paws.com
-              </Text>
-            </Box>
+            <Flex flexDirection="column" marginTop="20px">
+              <Flex align="center">
+                <Image src={LogoW} alt="LogoTelefono" />
+                <Text
+                  margin="4px"
+                  color="#E6E6E6"
+                  fontSize="14px"
+                  fontFamily="Poppins-Regular"
+                  padding="8px"
+                  fontWeight={400}
+                  lineHeight="21px"
+                >
+                  +54-11-11234-56
+                </Text>
+              </Flex>
+              <Flex align="center">
+                <Image src={LogoC} alt="LogoCorreo" />
+                <Text
+                  color="#E6E6E6"
+                  fontSize="14px"
+                  fontFamily="Poppins-Regular"
+                  padding="8px"
+                  fontWeight={400}
+                  lineHeight="21px"
+                >
+                  Safe@paws.com
+                </Text>
+              </Flex>
+            </Flex>
           </Box>
         </Flex>
-        <Divider />
-        <Flex>
-          <Box marginTop="30px">
-            <Text color="#E6E6E6">Todos los derechos reservados 2024 </Text>
-          </Box>
-          <Spacer />
-        </Flex>
+      </Flex>
+      <Divider />
+      <Flex justify="space-between"
+      >
+        <Box marginTop="30px">
+          <Text color="#FFFFFF" fontWeight={400} lineHeight="18px">
+            Todos los derechos reservados 2024{" "}
+          </Text>
+        </Box>
 
-        <Flex>
-          <Box marginTop="30px">
-            <Link href="#" as="a" margin="16px" color="#E6E6E6">
-              Términos
-            </Link>
+        <Box marginTop="30px">
+          <Link
+            
+            margin="16px"
+            color="#FFFFFF"
+            fontWeight={400}
+            lineHeight="21px"
+            fontFamily="Poppins-Regular"
+            textDecor="none"
+          >
+            Términos
+          </Link>
 
-            <Link href="#" as="a" color="#E6E6E6">
-              Privacidad
-            </Link>
-          </Box>
-        </Flex>
-      </Box>
+          <Link
+            
+            color="#FFFFFF"
+            fontWeight={400}
+            lineHeight="21px"
+            fontFamily="Poppins-Regular"
+            textDecor="none"
+          >
+            Privacidad
+          </Link>
+        </Box>
+      </Flex>
     </Box>
   );
 };

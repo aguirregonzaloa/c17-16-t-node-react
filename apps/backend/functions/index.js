@@ -183,6 +183,45 @@ app.get("/pets/:idUser", async (req, res) => {
   }
 });
 
+app.put("/pets/:petId", async (req, res) => {
+  const petId = req.params.petId;
+  const { nombre, especie, edad } = req.body;
+  if (!nombre || !especie || !edad) {
+    return res.status(400).json({ error: "Faltan datos obligatorios" });
+  }
+  try {
+    const petDocRef = firestore.collection("mascotas").doc(petId);
+    await petDocRef.update({
+      nombre: nombre,
+      especie: especie,
+      edad: edad
+    });
+    res.status(200).json({
+      message: "Tu mascota se actualizo correctamente"
+    });
+  } catch (error) {
+    console.error("Errror al actualizar tu mascota ", error);
+    res.status(500).json({ error: "Ocurrio un error al actualizar la mascota" });
+  }
+}
+
+)
+app.delete("/pets/:petId", async (req, res) => {
+  const petId = req.params.petId;
+  try {
+    const petDocRef = firestore.collection("mascotas").doc(petId);
+    const petDoc = await petDocRef.get();
+    if (!petDoc.exists) {
+      return res.status(404).json({ Error: "Error la mascota no existe" });
+    }
+    await petDocRef.delete();
+    res.status(200).json({ message: "Tu mascota ha sido eliminada correctamente" })
+  } catch (error) {
+    console.error("error al eliminar la mascota", error);
+    res.status(500).json({ Error: "ocurrio un error al eliminar la mascota" });
+  }
+});
+
 //------------------ Cuidadores ------------------------
 app.post("/registroCuidadores", async (req, res) =>{
   const { nombre, correo, contraseña } = req.body;
