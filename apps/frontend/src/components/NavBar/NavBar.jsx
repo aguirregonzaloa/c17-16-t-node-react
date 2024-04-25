@@ -36,6 +36,9 @@ export default function NavBar({ direction, background }) {
           _hover={{ color: "azulacento.500" }}
           _focus={{ color: "azulacento.500" }}
           _active={{ color: "azulacento.500" }}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
         >
           Inicio
         </ChakraLink>
