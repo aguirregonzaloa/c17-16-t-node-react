@@ -41,8 +41,15 @@ function Login({ sendDataToParent, ModalParent }) {
           const addUser = { ...user, ...data };
           setUser(addUser);
           console.log(data);
-          //Guarda en localStorage el token
+          //Guarda en localStorage el token y usuario
           localStorage.setItem("token", data?.token);
+          const localUser = {
+            email: data.email,
+            name: data.name,
+            status: data.status,
+          };
+          localStorage.setItem("user", JSON.stringify(localUser));
+
           ModalParent();
         })
         .catch((errors) => {
