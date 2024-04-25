@@ -1,13 +1,24 @@
 import * as React from "react";
-import { Button, Container, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { UserContext } from "../utils/context/UserContext";
 import PetCard from "../components/PetCard/PetCard";
 import ReservationCard from "../components/ReservationCard/ReservationCard";
 import { Navigate } from "react-router-dom";
 
+import ModalAddPet from "../components/ModalAddPet/ModalAddPet";
+
 const UserProfile = () => {
   const { user, setUser } = React.useContext(UserContext);
   /*Agregar parametros desde el Modal de mascotas */
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  /*Agregar funcion en el ModalAddPet*/
   const addPet = () => {
     const newPet = { id: user.pets.length + 1, type: "cat", name: "rober" };
     //agregar a pets al array de user
@@ -60,15 +71,8 @@ const UserProfile = () => {
             onClick={() => deletePet(pet.id)}
           />
         ))}
-        <Button
-          onClick={addPet}
-          colorScheme={"azulacento"}
-          rounded={50}
-          w={100}
-          h={100}
-        >
-          Add
-        </Button>
+
+        <ModalAddPet isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       </Flex>
 
       <Heading>Mis Reservas</Heading>

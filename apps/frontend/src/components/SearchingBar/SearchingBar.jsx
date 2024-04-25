@@ -12,14 +12,21 @@ import { Form, useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useGetGivers } from "../../utils/hooks/giversQuery";
 import { BsArrowRightCircleFill } from "react-icons/bs";
+import flatpickr from "flatpickr";
 
 const SearchingBar = () => {
   const navegate = useNavigate();
   const { mutateAsync } = useGetGivers();
+  // flatpickr("#currentDate", {
+  //   enableTime: true,
+  //   dateFormat: "d/m/Y H:i",
+  //   minDate: "today",
+  // });
+
   const formik = useFormik({
     initialValues: {
       pet: "",
-      currentDate: "",
+      currentDate: Date.now("dd/mm/YYYY"),
     },
     // validate,
     onSubmit: (values, { setSubmitting }) => {
@@ -41,7 +48,7 @@ const SearchingBar = () => {
       bg="white"
       zIndex={1}
       w={{ base: "93vw", sm: "92vw", md: "73vw", lg: "65vw" }}
-      mt={{base: 0, '2xl': 72}}
+      mt={{ base: 0, "2xl": 72 }}
     >
       <form onSubmit={formik.handleSubmit}>
         <Flex
@@ -50,7 +57,9 @@ const SearchingBar = () => {
           gap="20px"
         >
           <FormControl>
-            <FormLabel htmlFor="pet" fontFamily="Poppins-Medium" >Mascota</FormLabel>
+            <FormLabel htmlFor="pet" fontFamily="Poppins-Medium">
+              Mascota
+            </FormLabel>
             <Select
               borderColor={{ base: "gris.200", lg: "white" }}
               id="pet"
@@ -61,13 +70,15 @@ const SearchingBar = () => {
               color="gris.600"
               icon="none"
             >
-              <option value="Dog" selected>Perro</option>
+              <option value="Dog" selected>
+                Perro
+              </option>
               <option value="Cat">Gato</option>
               <option value="Both">Ambos</option>
             </Select>
           </FormControl>
           <Divider
-            display={{base: "none", lg: "block"}}
+            display={{ base: "none", lg: "block" }}
             orientation="vertical"
             borderWidth="1px"
             borderColor="azulacento.800"
@@ -75,7 +86,9 @@ const SearchingBar = () => {
             h="60px"
           />
           <FormControl>
-            <FormLabel htmlFor="currentDate" fontFamily="Poppins-Medium" >Fecha</FormLabel>
+            <FormLabel htmlFor="currentDate" fontFamily="Poppins-Medium">
+              Fecha
+            </FormLabel>
             <Input
               borderColor={{ base: "gris.200", lg: "white" }}
               id="currentDate"
@@ -90,7 +103,7 @@ const SearchingBar = () => {
           ) : null} */}
           </FormControl>
           <Divider
-            display={{base: "none", lg: "block"}}
+            display={{ base: "none", lg: "block" }}
             orientation="vertical"
             borderWidth="1px"
             borderColor="azulacento.800"

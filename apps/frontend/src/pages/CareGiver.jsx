@@ -32,11 +32,12 @@ const CareGivers = (props) => {
       >
         Cuidadores
       </Heading>
-      {JSON.stringify(user?.reservations)}
+      {/* {JSON.stringify(user?.reservations)} */}
       <ul>
         {state.data.data.map((item) => (
           <CaregiverCard
             name={item.name}
+            photo={item.photo}
             key={item.id}
             onAddReservation={() => addReservation(item)}
           />
