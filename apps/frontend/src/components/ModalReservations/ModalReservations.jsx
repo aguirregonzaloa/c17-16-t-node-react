@@ -12,26 +12,23 @@ import {
   FormLabel,
   Input,
   Button,
+  Select,
   Spacer,
 } from "@chakra-ui/react";
 import { Formik, useFormik } from "formik";
 
 import * as React from "react";
+import { UserContext } from "../../utils/context/UserContext";
 
 const ModalReservations = (props) => {
-  const { isOpen, onOpen, onClose } = props;
-  // const [toggle, setToggle] = React.useState(true);
+  const { isOpen, onClose } = props;
+  const { user } = React.useContext(UserContext);
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
-  function handleDataFromChild(data) {
-    //   setToggle(data);
-  }
-  function closeModal() {
-    onClose();
-  }
+
   const formik = useFormik({
     initialValues: {
-      pet: "Perro",
+      petName: "",
       currentDate: "",
     },
     // validate,
@@ -82,16 +79,14 @@ const ModalReservations = (props) => {
                     as="h3"
                     fontWeight={"300"}
                   >
-                    <strong>$5000</strong> día
+                    <strong>$7000</strong> día
                   </Heading>
                 </Flex>
               </ModalHeader>
             </ModalBody>
             <form onSubmit={formik.handleSubmit} style={{ padding: "20px" }}>
-              <FormControl>
-                <FormLabel mb={"4px"} htmlFor="currentDate">
-                  Fecha
-                </FormLabel>
+              <FormControl margin={"4px"}>
+                <FormLabel htmlFor="currentDate">Fecha</FormLabel>
                 <Input
                   id="currentDate"
                   name="currentDate"
@@ -99,6 +94,27 @@ const ModalReservations = (props) => {
                   onChange={formik.handleChange}
                   value={formik.values.currentDate}
                 />
+                {/* {formik.errors.password ? (
+            <Text color={"red"}>{formik.errors.password}</Text>
+          ) : null} */}
+              </FormControl>
+              <FormControl margin={" 40px 0 "}>
+                <FormLabel mb={"4px"} htmlFor="currentDate">
+                  Tu Mascota
+                </FormLabel>
+                <Select
+                  id="petName"
+                  name="petName"
+                  placeholder="Select option"
+                  onChange={formik.handleChange}
+                  value={formik.values.petName}
+                >
+                  {user?.pets.map((pet) => (
+                    <option key={pet.id} value={pet.name}>
+                      {pet.name}
+                    </option>
+                  ))}
+                </Select>
                 {/* {formik.errors.password ? (
             <Text color={"red"}>{formik.errors.password}</Text>
           ) : null} */}
@@ -126,7 +142,7 @@ const ModalReservations = (props) => {
               </Heading>
               {/* <Spacer /> */}
               <Heading as={"h4"} fontSize={"20px"}>
-                $5000
+                $7000
               </Heading>
             </Flex>
             {/* </ModalFooter> */}
