@@ -22,7 +22,7 @@ export default function Home() {
       />
       <About
         iconAnimal={ImgCat}
-        text="Todos nuestros paseadores tienen un certificado de cuidador."
+        text="Todos nuestros cuidadores tienen un certificado."
         title="Certificado de cuidador"
         order={2}
         textButton="Más sobre esto"

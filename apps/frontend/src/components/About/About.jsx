@@ -114,6 +114,11 @@ export default function About({ iconAnimal, text, order, title, textButton }) {
                   title="Guardería"
                   text="Tu mascota pasa la noche en casa de su cuidador."
                 />
+                {/* <DescriptionAbout
+                  icon={OutlinePaw}
+                  title="Paseos"
+                  text="Tu mascota sale a dar un paseo por tu barrio."
+                /> */}
                 <DescriptionAbout
                   icon={OutlineCheckCircle}
                   title="Seguro"
@@ -127,11 +132,11 @@ export default function About({ iconAnimal, text, order, title, textButton }) {
                   title="Entrenamiento y certificación"
                   text="En técnicas de manejo, primeros auxilios para mascotas y comportamiento animal."
                 />
-                <DescriptionAbout
+                {/* <DescriptionAbout
                   icon={PerfilCheck}
                   title="Perfiles completos y detallados"
                   text="Incluye información personal, experiencia y referencias."
-                />
+                /> */}
                 <DescriptionAbout
                   icon={MagnifyingGlass}
                   title="Revisión continua de desempeño"
