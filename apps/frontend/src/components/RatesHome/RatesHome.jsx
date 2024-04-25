@@ -14,7 +14,7 @@ const RatesHome = () => {
           src={Dog}
           alt="Dog_rates"
           pos="absolute"
-          top={{ base: -64, md: -48 }}
+          top={{ base: -80, md: -48 }}
           left="0"
         />
         <Box w="349px" margin="auto" textAlign="center" marginBottom="40px">
