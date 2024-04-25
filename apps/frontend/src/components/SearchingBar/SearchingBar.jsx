@@ -41,6 +41,7 @@ const SearchingBar = () => {
       bg="white"
       zIndex={1}
       w={{ base: "93vw", sm: "92vw", md: "73vw", lg: "65vw" }}
+      mt={{base: 0, '2xl': 72}}
     >
       <form onSubmit={formik.handleSubmit}>
         <Flex

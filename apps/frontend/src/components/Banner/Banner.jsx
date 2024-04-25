@@ -14,7 +14,7 @@ export default function Banner() {
         id="home"
         bg="white"
         w={{ base: "100vw", lg: "50%" }}
-        minH={{ base: "80vh", lg: "100vh" }}
+        minH={{ base: "50vh", lg: "100vh" }}
       >
         <Grid
           w="367.62px"
