@@ -2,13 +2,13 @@ import axios from "axios";
 
 const headers = { "Content-type": "application/json" };
 
-import { URL_PROD } from "../GlobalURL";
+import { URL_PROD_APP_PUBLIC } from "../GlobalURL";
 
 export const LoginUser = async (data) => {
   const correo = data.email;
   const contraseña = data.password;
   const response = await axios.post(
-    URL_PROD + "/login",
+    URL_PROD_APP_PUBLIC + "/login",
     { correo, contraseña },
     { headers }
   );
@@ -20,7 +20,7 @@ export const RegisterUser = async (data) => {
   const correo = data.email;
   const contraseña = data.password;
   const response = await axios.post(
-    URL_PROD + "/registro",
+    URL_PROD_APP_PUBLIC + "/registro",
     { nombre, correo, contraseña },
     { headers }
   );
@@ -31,6 +31,6 @@ export const SesionToken = () => {
   const token = "hjas";
 
   const headers = { "Content-type": "application/json", token: token };
-  const response = axios.get(URL_PROD, { headers });
+  const response = axios.get(URL_PROD_APP_PUBLIC, { headers });
   return response;
 };

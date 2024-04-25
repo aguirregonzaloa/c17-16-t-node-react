@@ -5,6 +5,9 @@ import ImgDog from "../../assets/img/Dog1.png";
 import ImgCat from "../../assets/img/Cat1.png";
 import Functioning from "../Functioning/Functioning";
 import TopCaregivers from "../TopCaregivers/TopCaregivers";
+import RatesHome from "../RatesHome/RatesHome";
+import Review from "../Review/Review";
+import DogFooter from "../DogFooter/DogFooter";
 
 export default function Home() {
   return (
@@ -25,7 +28,10 @@ export default function Home() {
         textButton="Más sobre esto"
       />
       <TopCaregivers />
+      <RatesHome/>
       <Functioning />
+      <Review/>
+      <DogFooter/>
     </main>
   );
 }

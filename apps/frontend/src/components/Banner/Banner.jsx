@@ -9,11 +9,12 @@ import SearchingBar from "../SearchingBar/SearchingBar";
 
 export default function Banner() {
   return (
-    <Flex h="100%" direction={{ base: "column", lg: "row" }}>
+    <Flex direction={{ base: "column", lg: "row" }}>
       <Box
+        id="home"
         bg="white"
         w={{ base: "100vw", lg: "50%" }}
-        h={{ base: "75vh", sm: "65vh", lg: "100vh" }}
+        minH={{ base: "80vh", lg: "100vh" }}
       >
         <Grid
           w="367.62px"
@@ -21,7 +22,7 @@ export default function Banner() {
             base: "relative",
             xl: "absolute",
           }}
-          top="170px"
+          top={24}
           left={{ base: "50px", sm: "80px", md: "100px" }}
           gap="36px"
         >
@@ -39,6 +40,7 @@ export default function Banner() {
             top={{ base: "100px", lg: "170px" }}
             left={52}
           />
+          <Box w="400px">
           <Text
             fontFamily="Mercuria"
             fontWeight="400"
@@ -54,9 +56,11 @@ export default function Banner() {
             fontWeight="500"
             fontSize="20px"
             lineHeight="30px"
+            mt={2}
           >
             Encuentra los mejores cuidadores de mascotas de Buenos Aires
           </Text>
+          </Box>
           <SearchingBar />
         </Grid>
       </Box>
