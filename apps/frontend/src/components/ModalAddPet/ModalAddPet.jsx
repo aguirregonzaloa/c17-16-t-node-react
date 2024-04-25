@@ -7,7 +7,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  useDisclosure,
+  // useDisclosure,
   FormLabel,
   FormControl,
   Input,
@@ -18,8 +18,8 @@ import {
 } from "@chakra-ui/react";
 import RadioTypePet from "../RadioTypePet/RadioTypePet";
 
-export default function ModalAddPet() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function ModalAddPet({ isOpen, onOpen, onClose }) {
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);

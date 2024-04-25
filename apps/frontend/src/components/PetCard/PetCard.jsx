@@ -4,9 +4,9 @@ import ImgMei from "../../assets/img/ImgMei.png";
 export default function PetCard({ id, name, type, onClick }) {
   return (
     <Flex direction="column" align="center" margin={"20px auto"}>
-      <Box>
+      {/* <Box>
         <Image src={ImgMei} alt="Iamgen del cuidador" />
-      </Box>
+      </Box> */}
       <Heading
         as="h4"
         fontFamily="Poppins-Medium"

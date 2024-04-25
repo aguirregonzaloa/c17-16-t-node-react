@@ -19,7 +19,7 @@ import * as React from "react";
 import ModalUser from "../ModalUser/ModalUser";
 import ModalReservations from "../ModalReservations/ModalReservations";
 
-export default function CaregiverCard({ name, onAddReservation }) {
+export default function CaregiverCard({ name, photo, onAddReservation }) {
   const { user } = React.useContext(UserContext);
   const {
     isOpen: isUserOpen,
@@ -45,7 +45,7 @@ export default function CaregiverCard({ name, onAddReservation }) {
         onClose={onReservationClose}
       />
       <Box>
-        <Image src={ImgMei} alt="Iamgen del cuidador" />
+        <Image src={photo} alt="Iamgen del cuidador" />
         <Text
           fontWeight="400"
           fontSize="14px"
@@ -53,7 +53,7 @@ export default function CaregiverCard({ name, onAddReservation }) {
           color="azulacento.500"
           textAlign="center"
         >
-          2 vacantes
+          vacante
         </Text>
       </Box>
       <Box gap={2}>
@@ -86,7 +86,7 @@ export default function CaregiverCard({ name, onAddReservation }) {
             Palermo, Buenos Aires
           </Text>
         </Flex>
-        <Box gap={3}>
+        {/* <Box gap={3}>
           <Flex gap={4} align="center">
             <IoIosStar size="20px" color="#FFC058" alt="Icono de estrella" />
             <Text
@@ -110,8 +110,8 @@ export default function CaregiverCard({ name, onAddReservation }) {
               50 reseñas
             </Text>
           </Flex>
-        </Box>
-        <Flex p="2px 0px" gap={4} align="center" color="azulacento.500">
+        </Box> */}
+        {/* <Flex p="2px 0px" gap={4} align="center" color="azulacento.500">
           <LuClock3 size="20px" alt="Icono de reloj" />
           <Text fontWeight="400" fontSize="14px" lineHeight="24px">
             8 - 12 | 15 - 19
@@ -123,7 +123,7 @@ export default function CaregiverCard({ name, onAddReservation }) {
             <Image src={IconCatPurple} alt="Icono de gato violeta" />
             <Image src={IconDogPurple} alt="Icono de perro violeta" />
           </Flex>
-        </Flex>
+        </Flex> */}
       </Box>
       <Box>
         <Text
@@ -133,7 +133,7 @@ export default function CaregiverCard({ name, onAddReservation }) {
           lineHeight="24px"
           color="azulacento.500"
         >
-          $5000
+          $7000
         </Text>
         <Text
           fontSize="14px"
@@ -141,7 +141,7 @@ export default function CaregiverCard({ name, onAddReservation }) {
           lineHeight="24px"
           color="gris.700"
         >
-          por hora
+          por día
         </Text>
         {/* {user.status ? ( */}
         <Button

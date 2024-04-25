@@ -37,6 +37,7 @@ const CareGivers = (props) => {
         {state.data.data.map((item) => (
           <CaregiverCard
             name={item.name}
+            photo={item.photo}
             key={item.id}
             onAddReservation={() => addReservation(item)}
           />
