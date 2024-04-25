@@ -28,7 +28,7 @@ export default function About({ iconAnimal, text, order, title, textButton }) {
           pos="absolute"
           top={
             order === 1
-              ? { base: -80, lg: -56 }
+              ? { base: -80, lg: -64 }
               : { base: -24, md: -12, lg: -10 }
           }
           left={order === 1 ? 0 : undefined}
@@ -60,7 +60,7 @@ export default function About({ iconAnimal, text, order, title, textButton }) {
           >
             {text}
           </Text>
-          <Button
+          {/* <Button
             rightIcon={<GoArrowUpRight size="24px" />}
             bg="azulacento.500"
             color="#FFFF"
@@ -69,7 +69,7 @@ export default function About({ iconAnimal, text, order, title, textButton }) {
             _hover={{ bg: "azulacento.600" }}
           >
             {textButton}
-          </Button>
+          </Button> */}
           <Image
             src={Paws}
             alt="Patitas"
@@ -113,11 +113,6 @@ export default function About({ iconAnimal, text, order, title, textButton }) {
                   icon={Suitcase}
                   title="Guardería"
                   text="Tu mascota pasa la noche en casa de su cuidador."
-                />
-                <DescriptionAbout
-                  icon={OutlinePaw}
-                  title="Paseos"
-                  text="Tu mascota sale a dar un paseo por tu barrio."
                 />
                 <DescriptionAbout
                   icon={OutlineCheckCircle}
