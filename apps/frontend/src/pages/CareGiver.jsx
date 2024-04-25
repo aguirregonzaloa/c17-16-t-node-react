@@ -34,7 +34,7 @@ const CareGivers = (props) => {
       </Heading>
       {JSON.stringify(user?.reservations)}
       <ul>
-        {state.data.map((item) => (
+        {state.data.data.map((item) => (
           <CaregiverCard
             name={item.name}
             key={item.id}
