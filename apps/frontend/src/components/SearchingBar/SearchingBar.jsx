@@ -1,15 +1,24 @@
-import { Flex, Input, FormControl, FormLabel, Button } from "@chakra-ui/react";
+import {
+  Flex,
+  Input,
+  FormControl,
+  FormLabel,
+  Button,
+  Select,
+  Divider,
+  Box,
+} from "@chakra-ui/react";
 import { Form, useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useGetGivers } from "../../utils/hooks/giversQuery";
+import { BsArrowRightCircleFill } from "react-icons/bs";
 
 const SearchingBar = () => {
   const navegate = useNavigate();
   const { mutateAsync } = useGetGivers();
   const formik = useFormik({
     initialValues: {
-      pet: "Perro",
-      service: "Alojamiento",
+      pet: "",
       currentDate: "",
     },
     // validate,
@@ -22,67 +31,73 @@ const SearchingBar = () => {
         .finally(() => setSubmitting(false));
     },
   });
+
   return (
-    <Flex
-      padding="32px 40px"
-      border={"2px solid"}
-      borderColor={"azulacento.200"}
-      borderRadius={10}
-      bg={"white"}
-      align="center"
-      justify="center"
+    <Box
+      p={{ base: "20px 15px", md: "20px 40px" }}
+      border="2px solid"
+      borderColor="azulacento.200"
+      borderRadius="18px"
+      bg="white"
       zIndex={1}
-      width={"840px"}
+      w={{ base: "93vw", sm: "92vw", md: "73vw", lg: "65vw" }}
+      mt={{base: 0, '2xl': 72}}
     >
       <form onSubmit={formik.handleSubmit}>
-        <Flex width={"100%"} justifyContent={"center"} alignItems={"center"}>
+        <Flex
+          direction={{ base: "column", lg: "row" }}
+          alignItems="center"
+          gap="20px"
+        >
           <FormControl>
-            <FormLabel mb={"4px"} htmlFor="pet">
-              Mascota
-            </FormLabel>
-            <Input
+            <FormLabel htmlFor="pet" fontFamily="Poppins-Medium" >Mascota</FormLabel>
+            <Select
+              borderColor={{ base: "gris.200", lg: "white" }}
               id="pet"
               name="pet"
               type="pet"
-              onChange={formik.handleChange}
               value={formik.values.pet}
-            />
-            {/* {formik.errors.name ? (
-            <Text color={"red"}>{formik.errors.name}</Text>
-          ) : null} */}
-          </FormControl>
-          <FormControl>
-            <FormLabel mb={"4px"} htmlFor="service">
-              Servicio
-            </FormLabel>
-            <Input
-              id="service"
-              name="service"
-              type="service"
               onChange={formik.handleChange}
-              value={formik.values.service}
-            />{" "}
-            {/* {formik.errors.email ? (
-            <Text color={"red"}>{formik.errors.email}</Text>
-          ) : null} */}
+              color="gris.600"
+              icon="none"
+            >
+              <option value="Dog" selected>Perro</option>
+              <option value="Cat">Gato</option>
+              <option value="Both">Ambos</option>
+            </Select>
           </FormControl>
-
+          <Divider
+            display={{base: "none", lg: "block"}}
+            orientation="vertical"
+            borderWidth="1px"
+            borderColor="azulacento.800"
+            opacity="20%"
+            h="60px"
+          />
           <FormControl>
-            <FormLabel mb={"4px"} htmlFor="currentDate">
-              Fecha
-            </FormLabel>
+            <FormLabel htmlFor="currentDate" fontFamily="Poppins-Medium" >Fecha</FormLabel>
             <Input
+              borderColor={{ base: "gris.200", lg: "white" }}
               id="currentDate"
               name="currentDate"
               type="Date"
               onChange={formik.handleChange}
               value={formik.values.currentDate}
+              color="gris.600"
             />
             {/* {formik.errors.password ? (
             <Text color={"red"}>{formik.errors.password}</Text>
           ) : null} */}
           </FormControl>
-
+          <Divider
+            display={{base: "none", lg: "block"}}
+            orientation="vertical"
+            borderWidth="1px"
+            borderColor="azulacento.800"
+            opacity="20%"
+            h="60px"
+          />
+          <Divider orientation="vertical" mx={2} />
           <Button
             colorScheme="azulacento"
             textColor={"white"}
@@ -93,13 +108,23 @@ const SearchingBar = () => {
               formik.errors.currentDate
             }
             type="submit"
-            width={"100%"}
+            py="28px"
+            border="2px"
+            borderColor="azulacento.200"
+            w={{ base: "100%", md: "50%" }}
+            borderRadius="10px"
+            gap="10px"
+            fontFamily="Poppins-Regular"
+            fontSize="18px"
+            fontWeight="600"
+            lineHeight="24px"
+            rightIcon={<BsArrowRightCircleFill size="20px" />}
           >
             Buscar
           </Button>
         </Flex>
       </form>
-    </Flex>
+    </Box>
   );
 };
 
