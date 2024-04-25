@@ -20,7 +20,7 @@ export default function Header() {
   useEffect(() => {
     //Modifica el color del header al hacer scroll
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 10) {
         setScrolled(true);
       } else {
         setScrolled(false);

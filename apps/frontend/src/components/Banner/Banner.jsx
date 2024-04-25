@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Image, Text, Grid } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, Grid, Container } from "@chakra-ui/react";
 import VectorBanner1 from "../../assets/icons/VectorBanner1.svg";
 import VectorBanner2 from "../../assets/icons/VectorBanner2.svg";
 import imgBanner from "../../assets/img/ImgBanner.png";
@@ -14,7 +14,7 @@ export default function Banner() {
         id="home"
         bg="white"
         w={{ base: "100vw", lg: "50%" }}
-        minH={{ base: "80vh", lg: "100vh" }}
+        minH={{ base: "50vh", lg: "100vh" }}
       >
         <Grid
           w="367.62px"
@@ -22,8 +22,8 @@ export default function Banner() {
             base: "relative",
             xl: "absolute",
           }}
-          top={24}
-          left={{ base: "50px", sm: "80px", md: "100px" }}
+          top={{base: 32, lg: 24}}
+          left={{ base: "20px", md: "100px" }}
           gap="36px"
         >
           <Image
@@ -41,25 +41,25 @@ export default function Banner() {
             left={52}
           />
           <Box w="400px">
-          <Text
-            fontFamily="Mercuria"
-            fontWeight="400"
-            fontSize="46px"
-            lineHeight="60px"
-            pt={{ base: 0, lg: 20 }}
-          >
-            CUIDAMOS A TU MEJOR AMIGO PELUDO
-          </Text>
-          <Text
-            color="gris.800"
-            fontFamily="Poppins-Regular"
-            fontWeight="500"
-            fontSize="20px"
-            lineHeight="30px"
-            mt={2}
-          >
-            Encuentra los mejores cuidadores de mascotas de Buenos Aires
-          </Text>
+            <Text
+              fontFamily="Mercuria"
+              fontWeight="400"
+              fontSize="46px"
+              lineHeight="60px"
+              pt={{ base: 0, lg: 20 }}
+            >
+              CUIDAMOS A TU MEJOR AMIGO PELUDO
+            </Text>
+            <Text
+              color="gris.800"
+              fontFamily="Poppins-Regular"
+              fontWeight="500"
+              fontSize="20px"
+              lineHeight="30px"
+              mt={2}
+            >
+              Encuentra los mejores cuidadores de mascotas de Buenos Aires
+            </Text>
           </Box>
           <SearchingBar />
         </Grid>
@@ -71,7 +71,7 @@ export default function Banner() {
           alt="icon mini cat"
           pos="absolute"
           top={{ base: -16, lg: 20 }}
-          left={{ base: -4, lg: -16 }}
+          left={{ base: -2, lg: -16 }}
         />
         <Image
           src={VectorBanner2}
