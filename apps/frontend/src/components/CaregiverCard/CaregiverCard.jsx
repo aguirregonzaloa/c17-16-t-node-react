@@ -17,14 +17,33 @@ import IconCatPurple from "../../assets/icons/IconCatPurple.svg";
 import { UserContext } from "../../utils/context/UserContext";
 import * as React from "react";
 import ModalUser from "../ModalUser/ModalUser";
+import ModalReservations from "../ModalReservations/ModalReservations";
 
 export default function CaregiverCard({ name, onAddReservation }) {
   const { user } = React.useContext(UserContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isUserOpen,
+    onOpen: onUserOpen,
+    onClose: onUserClose,
+  } = useDisclosure();
+  const {
+    isOpen: isReservationOpen,
+    onOpen: onReservationOpen,
+    onClose: onReservationClose,
+  } = useDisclosure();
 
   return (
     <Flex justify="space-between" align="center" w="539px" margin={"20px auto"}>
-      <ModalUser isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+      <ModalUser
+        isOpen={isUserOpen}
+        onOpen={onUserOpen}
+        onClose={onUserClose}
+      />
+      <ModalReservations
+        isOpen={isReservationOpen}
+        onOpen={onReservationOpen}
+        onClose={onReservationClose}
+      />
       <Box>
         <Image src={ImgMei} alt="Iamgen del cuidador" />
         <Text
@@ -127,7 +146,7 @@ export default function CaregiverCard({ name, onAddReservation }) {
         {/* {user.status ? ( */}
         <Button
           colorScheme={"azulacento"}
-          onClick={user.status ? onAddReservation : onOpen}
+          onClick={user.status ? onReservationOpen : onUserOpen}
         >
           Reservación
         </Button>
