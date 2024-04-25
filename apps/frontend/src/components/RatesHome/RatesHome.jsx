@@ -40,7 +40,7 @@ const RatesHome = () => {
             fontWeight="400"
             lineHeight="25px"
           >
-            Nuestras tarifas asequibles para cuidado
+            Nuestras tarifas asequibles para el cuidado de tus mascotas
           </Text>
         </Box>
         <Flex
@@ -110,7 +110,7 @@ const RatesHome = () => {
                 lineHeight="21px"
               >
                 {" "}
-                por hora
+                por día
               </Text>
             </HStack>
             <Box gap="14px">
@@ -164,7 +164,7 @@ const RatesHome = () => {
                 Pago en efectivo
               </Text>
             </Box>
-            <Box>
+            {/* <Box>
               <Button
                 w="100%"
                 bg="azulacento.500"
@@ -174,7 +174,7 @@ const RatesHome = () => {
               >
                 Más info.
               </Button>
-            </Box>
+            </Box> */}
           </Card>
         </Flex>
       </Box>
