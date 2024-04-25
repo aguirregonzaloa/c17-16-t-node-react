@@ -5,6 +5,7 @@ const express = require('express');
 const firebase = require("firebase/app");
 const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } = require("firebase/auth");
 const { getFirestore } = require("firebase-admin/firestore");
+const { user } = require('firebase-functions/v1/auth');
 require('dotenv').config();
 
 const app = express();
@@ -102,44 +103,84 @@ app.use(validateFirebaseIdToken);
 
 //------------------ Mascotas --------------------------
 app.post("/pets", async (req, res) => {
-  // verificacion de mascota
+  // Validate pet data
   const { nombre, especie, edad } = req.body;
   if (!nombre || !especie || !edad) {
     return res.status(400).json({ error: "Faltan datos obligatorios" });
   }
-  //obtener referencia a la coleccion de mascota en firestore
+
+  // Get user ID
+  const userID = req.user.uid; // Assuming you have user authentication in place
+
+  // Create pet document in the "pets" collection
   try {
-    const db = getFirestore();
-    mascotasRef = collection(db, "mascotas");
-    //crea un nuevo doc con los datos proporcionados
-    const nuevaMascota = addDoc(mascotasRef, {
+    const petRef = firestore.collection("pets").doc();
+    await petRef.set({
       nombre: nombre,
       especie: especie,
-      edad: edad
-    })
-    //respuesta de exito al crear tu mascota
-    res.status(201).json({ message: "Felicitaciones, tu mascota se ha registrado exitosamente", id: nuevaMascota.id })
+      edad: edad,
+      userID: userID, // Link pet to user
+    });
+
+    const petID = petRef.id; // Get the pet ID
+
+    // Update user document to add pet ID to idPets array
+    const userRef = firestore.collection("users").doc(userID);
+    const userDoc = await userRef.get();
+    if (userDoc.exists) {
+      const userData = userDoc.data();
+      const idPets = userData.idPets || []; // Initialize idPets if not present
+      idPets.push(petID); // Add pet ID to the array
+
+      await userRef.update({ idPets }); // Update user document
+
+      // Send success response with pet ID
+      res.status(201).json({ message: "Felicitaciones, tu mascota se ha registrado exitosamente", id: petID });
+    } else {
+      console.error("Error al obtener documento de usuario", error);
+      res.status(500).json({ error: "Ocurrio un error al crear tu mascota" });
+    }
   } catch (error) {
     console.error("Error al crear tu mascota", error);
-    res.status(500).json({error: "Ocurrio un error al crear tu mascota"});
+    res.status(500).json({ error: "Ocurrio un error al crear tu mascota" });
   }
 })
 
-app.get("/pets", async (req, res) => {
-  const userId = req.user.uid;
-try {
-  const userMascotas = collection(firestore.doc(`users/${userId}`), "mascotas");
-const mascotasSnapshot = await getDocs(userMascotas)
-const mascotas = [];
-mascotasSnapshot.forEach((doc) => {
-  mascotas.push({id: doc.id, ...doc.data() })
-});
-res.status(200).json(mascotas);
-}
-catch (error){
-  console.error("Error al obtener mascotas", error);
-  res.status(500).json({error: "Ocurrio un error al obtener las mascotas del usuario"});
-}
+app.get("/pets/:idUser", async (req, res) => {
+
+  const userID = req.params.idUser;
+
+  // Retrieve user document
+  try {
+    const userRef = firestore.collection("users").doc(userID);
+    const userDoc = await userRef.get();
+
+    if (userDoc.exists) {
+      const userData = userDoc.data();
+      const idPets = userData.idPets || []; // Get the idPets array
+
+      // Fetch pet data for each pet ID in the array
+      const pets = [];
+      for (const petID of idPets) {
+        const petRef = firestore.collection("pets").doc(petID);
+        const petDoc = await petRef.get();
+
+        if (petDoc.exists) {
+          const petData = petDoc.data();
+          pets.push(petData); // Add pet data to the array
+        }
+      }
+
+      // Send success response with pets data
+      res.status(200).json({ message: "Tus mascotas", pets });
+    } else {
+      console.error("Error al obtener documento de usuario", error);
+      res.status(500).json({ error: "Ocurrio un error al obtener tus mascotas" });
+    }
+  } catch (error) {
+    console.error("Error al obtener tus mascotas", error);
+    res.status(500).json({ error: "Ocurrio un error al obtener tus mascotas" });
+  }
 });
 
 //------------------ Cuidadores ------------------------
@@ -298,7 +339,94 @@ app.put("/editar/cuidador/:idCuidador", async (req,res) =>{
   }
 })
 
-//------------------ Cuidadores ------------------------
+app.post("/reservations", async (req, res) => {
+  // Validate reservation data
+  const { userID, petID, sitterID, startDate, endDate } = req.body;
+  if (!petID || !sitterID || !startDate || !endDate) {
+    return res.status(400).json({ error: "Faltan datos obligatorios para la reserva" });
+  }
+
+  // Check if user owns the pet
+  try {
+    const petRef = firestore.collection("pets").doc(petID);
+    const petDoc = await petRef.get();
+
+    if (!petDoc.exists) {
+      return res.status(404).json({ error: "La mascota no existe" });
+    }
+
+    const petData = petDoc.data();
+    if (petData.userID !== userID) {
+      return res.status(403).json({ error: "No tienes permiso para reservar esta mascota" });
+    }
+  } catch (error) {
+    console.error("Error al obtener la mascota:", error);
+    return res.status(500).json({ error: "Ocurrio un error al crear la reserva" });
+  }
+
+  // Check sitter availability for requested dates
+  try {
+    const sitterRef = firestore.collection("petSitters").doc(sitterID);
+    const sitterDoc = await sitterRef.get();
+
+    if (!sitterDoc.exists) {
+      return res.status(404).json({ error: "El cuidador no existe" });
+    }
+
+    const nestedCollectionsRef = sitterRef.collection("information").doc("public");
+    const nestedCollectionsSnapshot = await nestedCollectionsRef.get();
+
+    const isAvailable = nestedCollectionsSnapshot.data().availability.datesOccupied.every(
+      (occupiedDate) => !(occupiedDate >= startDate && occupiedDate <= endDate)
+    );
+    if (!isAvailable) {
+      return res.status(409).json({ error: "El cuidador no está disponible en las fechas solicitadas" });
+    }
+
+    const reservationData = {
+      petID:petID,
+      sitterID:sitterID,
+      userID:userID,
+      startDate:startDate,
+      endDate:endDate,
+      status: "pending", 
+    }
+
+    const updatedDatesOccupied = [...nestedCollectionsSnapshot.data().availability.datesOccupied, reservationData];
+
+    await sitterRef.update({
+      "information.public.availability.datesOccupied": updatedDatesOccupied,
+    });
+
+  } catch (error) {
+    console.error("Error al obtener datos del cuidador:", error);
+    return res.status(500).json({ error: "Ocurrio un error al crear la reserva" });
+  }
+
+  // Create reservation document in "reservations" collection
+  try {
+    const reservationRef = firestore.collection("reservations").doc();
+    await reservationRef.set({
+      petID:petID,
+      sitterID:sitterID,
+      userID:userID,
+      startDate:startDate,
+      endDate:endDate,
+      status: "pending", // Initial reservation status (can be pending, confirmed, cancelled)
+    });
+
+    await firestore.collection("users").doc(userID).collection("public").doc
+
+     
+
+    // Send success response with reservation ID
+    res.status(201).json({ message: "Reserva creada exitosamente", id: reservationRef.id });
+  } catch (error) {
+    console.error("Error al crear la reserva:", error);
+    return res.status(500).json({ error: "Ocurrio un error al crear la reserva" });
+  }
+});
+
 exports.app = functions.https.onRequest(app);
 
 //#region Endpoins Publicos
