@@ -6,6 +6,7 @@ import {
   Text,
   Button,
   useDisclosure,
+  Grid,
 } from "@chakra-ui/react";
 import ImgMei from "../../assets/img/ImgMei.png";
 import IconLocation from "../../assets/icons/IconLocation.svg";
@@ -40,7 +41,7 @@ export default function CaregiverCard({
   } = useDisclosure();
 
   return (
-    <Flex justify="space-between" align="center" w="539px" margin={"20px auto"}>
+    <>
       <ModalUser
         isOpen={isUserOpen}
         onOpen={onUserOpen}
@@ -53,49 +54,58 @@ export default function CaregiverCard({
         onOpen={onReservationOpen}
         onClose={onReservationClose}
       />
-      <Box>
-        <Image src={photo} alt="Iamgen del cuidador" />
-        <Text
-          fontWeight="400"
-          fontSize="14px"
-          lineHeight="24px"
-          color="azulacento.500"
-          textAlign="center"
-        >
-          vacante
-        </Text>
-      </Box>
-      <Box gap={2}>
-        <Heading
-          as="h4"
-          fontFamily="Poppins-Medium"
-          fontSize="20px"
-          fontWeight="600"
-          lineHeight="30px"
-          color="gris.800"
-        >
-          {name}
-        </Heading>
-        <Text
-          fontSize="14px"
-          fontWeight="400"
-          lineHeight="24px"
-          color="gris.800"
-        >
-          Lo cuidamos como si fuera nuestro ❤️
-        </Text>
-        <Flex gap={2}>
-          <Image src={IconLocation} alt="Icono de ubicación" />
+      <Flex
+        justify="space-between"
+        align="center"
+        margin={"20px auto"}
+        gap="18px"
+      >
+        <Box>
+          <Image src={photo} alt="Iamgen del cuidador" borderRadius="8px" />
+          <Text
+            fontWeight="400"
+            fontSize="14px"
+            lineHeight="24px"
+            bg="azulacento.100"
+            color="azulacento.500"
+            borderRadius="8px"
+            textAlign="center"
+            mt={1}
+          >
+            Vacante
+          </Text>
+        </Box>
+        <Grid gap={1}>
+          <Heading
+            as="h4"
+            fontFamily="Poppins-Medium"
+            fontSize="20px"
+            fontWeight="600"
+            lineHeight="30px"
+            color="gris.800"
+          >
+            {name}
+          </Heading>
           <Text
             fontSize="14px"
             fontWeight="400"
             lineHeight="24px"
-            color="gris.600"
+            color="gris.800"
           >
-            Palermo, Buenos Aires
+            Lo cuidamos como si fuera nuestro ❤️
           </Text>
-        </Flex>
-        {/* <Box gap={3}>
+          <Flex gap={2}>
+            <Image src={IconLocation} alt="Icono de ubicación" />
+            <Text
+              fontSize="14px"
+              fontWeight="400"
+              lineHeight="24px"
+              color="gris.600"
+            >
+              Palermo, Buenos Aires
+            </Text>
+          </Flex>
+          {/* <Box gap={3}>
           <Flex gap={4} align="center">
             <IoIosStar size="20px" color="#FFC058" alt="Icono de estrella" />
             <Text
@@ -120,7 +130,7 @@ export default function CaregiverCard({
             </Text>
           </Flex>
         </Box> */}
-        {/* <Flex p="2px 0px" gap={4} align="center" color="azulacento.500">
+          {/* <Flex p="2px 0px" gap={4} align="center" color="azulacento.500">
           <LuClock3 size="20px" alt="Icono de reloj" />
           <Text fontWeight="400" fontSize="14px" lineHeight="24px">
             8 - 12 | 15 - 19
@@ -133,33 +143,35 @@ export default function CaregiverCard({
             <Image src={IconDogPurple} alt="Icono de perro violeta" />
           </Flex>
         </Flex> */}
-      </Box>
-      <Box>
-        <Text
-          fontFamily="Poppins-Medium"
-          fontSize="20px"
-          fontWeight="600"
-          lineHeight="24px"
-          color="azulacento.500"
-        >
-          $7000
-        </Text>
-        <Text
-          fontSize="14px"
-          fontWeight="400"
-          lineHeight="24px"
-          color="gris.700"
-        >
-          por día
-        </Text>
-        {/* {user.status ? ( */}
-        <Button
-          colorScheme={"azulacento"}
-          onClick={user.status ? onReservationOpen : onUserOpen}
-        >
-          Reservación
-        </Button>
-      </Box>
-    </Flex>
+        </Grid>
+        <Grid gap={3}>
+          <Text
+            fontFamily="Poppins-Medium"
+            fontSize="20px"
+            fontWeight="600"
+            lineHeight="24px"
+            color="azulacento.500"
+          >
+            $7000
+            <Text
+              fontFamily="Poppins-Regular"
+              fontSize="16px"
+              fontWeight="400"
+              lineHeight="24px"
+              color="gris.700"
+            >
+              por día
+            </Text>
+          </Text>
+          {/* {user.status ? ( */}
+          <Button
+            colorScheme={"azulacento"}
+            onClick={user.status ? onReservationOpen : onUserOpen}
+          >
+            Reservar
+          </Button>
+        </Grid>
+      </Flex>
+    </>
   );
 }

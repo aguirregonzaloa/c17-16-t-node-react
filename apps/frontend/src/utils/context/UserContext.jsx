@@ -9,14 +9,13 @@ export const userData = {
   token: "",
   isLoggin: false,
   pets: [
-    { id: 1, type: "cat", name: "lolo" },
-    { id: 2, type: "dog", name: "Dodo" },
+    { id: 1, type: "(Perro)", name: "Roco" },
   ],
-  reservations: [
-    { id: 1, date: "29/05/24", careName: "Leandro", mypet: "lolo" },
-    { id: 2, date: "30/05/24", careName: "Leandro", mypet: "lolo" },
-    { id: 3, date: "05/06/24", careName: "Julieta", mypet: "lolo" },
-  ],
+  // reservations: [
+  //   { id: 1, date: "29/05/24", careName: "Leandro", mypet: "lolo" },
+  //   { id: 2, date: "30/05/24", careName: "Leandro", mypet: "lolo" },
+  //   { id: 3, date: "05/06/24", careName: "Julieta", mypet: "lolo" },
+  // ],
 };
 
 //------------CAREGIVERS------------//

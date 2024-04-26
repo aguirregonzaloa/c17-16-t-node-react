@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   Flex,
   Input,
@@ -13,21 +14,33 @@ import { useNavigate } from "react-router-dom";
 import { useGetGivers } from "../../utils/hooks/giverQuery";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import flatpickr from "flatpickr";
-import moment from "moment";
+import "flatpickr/dist/flatpickr.min.css"; 
+import { Spanish } from "flatpickr/dist/l10n/es";
+
 
 const SearchingBar = () => {
   const navegate = useNavigate();
   const { mutateAsync } = useGetGivers();
-  // flatpickr("#currentDate", {
-  //   enableTime: true,
-  //   dateFormat: "d/m/Y H:i",
-  //   minDate: "today",
-  // });
+  const currentDateInputRef = useRef(null);
+
+  useEffect(() => {
+    flatpickr(currentDateInputRef.current, {
+      locale: "es",
+      dateFormat: "d-m-Y",
+      minDate: "today",
+      onChange: function(selectedDates, dateString) {
+        formik.setFieldValue("currentDate", dateString);
+      }
+    });
+    flatpickr.localize(Spanish);
+  }, []);
+
 
   const formik = useFormik({
     initialValues: {
       pet: "",
-      currentDateSend: "",
+      currentDateSend: new Date().toISOString().split('T')[0].split('-').reverse().join('-'),
+
     },
     // validate,
     onSubmit: (values, { setSubmitting }) => {
@@ -97,10 +110,12 @@ const SearchingBar = () => {
               Fecha
             </FormLabel>
             <Input
+              ref={currentDateInputRef}
               borderColor={{ base: "gris.200", lg: "white" }}
               id="currentDateSend"
               name="currentDateSend"
-              type="Date"
+              type="text"
+
               onChange={formik.handleChange}
               value={formik.values.currentDateSend}
               color="gris.600"
