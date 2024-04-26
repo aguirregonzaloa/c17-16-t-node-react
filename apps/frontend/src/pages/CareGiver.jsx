@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import CaregiverCard from "../components/CaregiverCard/CaregiverCard";
 import { useContext } from "react";
 import { UserContext } from "../utils/context/UserContext";
+import moment from "moment";
 
 const CareGivers = (props) => {
   const { state } = useLocation();
@@ -30,14 +31,17 @@ const CareGivers = (props) => {
         lineHeight="30px"
         color="gris.800"
       >
-        Cuidadores
+        Cuidadores{" "}
+        {moment(state.cuidadorData.currentDate).format("DD/MM/YYYY").toString()}
       </Heading>
       {/* {JSON.stringify(user?.reservations)} */}
       <ul>
-        {state.data.data.map((item) => (
+        {state.cuidadorData.data.map((item) => (
           <CaregiverCard
+            id={item.idCuidador}
             name={item.name}
             photo={item.photo}
+            currentDate={state.cuidadorData.currentDate}
             key={item.id}
             onAddReservation={() => addReservation(item)}
           />

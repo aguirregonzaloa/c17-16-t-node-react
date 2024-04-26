@@ -13,29 +13,42 @@ import {
   Input,
   Button,
   Select,
-  Spacer,
+  Text,
 } from "@chakra-ui/react";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 
 import * as React from "react";
 import { UserContext } from "../../utils/context/UserContext";
+import { useAddReservations } from "../../utils/hooks/reservationQuery";
+import moment from "moment";
 
 const ModalReservations = (props) => {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, sitterID, petstartDateID } = props;
   const { user } = React.useContext(UserContext);
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
+  const { mutateAsync } = useAddReservations();
+
   const formik = useFormik({
     initialValues: {
-      petName: "",
-      currentDate: "",
+      userId: user.userId,
+      petID: "hdUHaEBPokgGP4OrNcTFebTeg572",
+      petstartDateID: "2024/07/04",
+      sitterID,
+      endDate: "2025/04/05",
     },
     // validate,
     onSubmit: (values, { setSubmitting }) => {
-      alert(JSON.stringify(values));
-
-      setSubmitting(false);
+      const response = mutateAsync(values);
+      response
+        .then((data) => console.log(data))
+        .catch((e) => console.log(e))
+        .finally(() => {
+          setSubmitting(false);
+        });
+      alert(JSON.stringify("Su Reserva Ya ha Sido Realizar"));
+      // setSubmitting(false);
     },
   });
 
@@ -87,13 +100,9 @@ const ModalReservations = (props) => {
             <form onSubmit={formik.handleSubmit} style={{ padding: "20px" }}>
               <FormControl margin={"4px"}>
                 <FormLabel htmlFor="currentDate">Fecha</FormLabel>
-                <Input
-                  id="currentDate"
-                  name="currentDate"
-                  type="Date"
-                  onChange={formik.handleChange}
-                  value={formik.values.currentDate}
-                />
+                <Text>
+                  {moment(petstartDateID).format("DD/MM/YYYY").toString()}
+                </Text>
                 {/* {formik.errors.password ? (
             <Text color={"red"}>{formik.errors.password}</Text>
           ) : null} */}
@@ -103,14 +112,14 @@ const ModalReservations = (props) => {
                   Tu Mascota
                 </FormLabel>
                 <Select
-                  id="petName"
-                  name="petName"
+                  id="petID"
+                  name="petID"
                   placeholder="Select option"
                   onChange={formik.handleChange}
-                  value={formik.values.petName}
+                  value={formik.values.petID}
                 >
                   {user?.pets.map((pet) => (
-                    <option key={pet.id} value={pet.name}>
+                    <option key={pet.id} value={pet.id}>
                       {pet.name}
                     </option>
                   ))}

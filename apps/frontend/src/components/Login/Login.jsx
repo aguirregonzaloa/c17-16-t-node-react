@@ -44,6 +44,7 @@ function Login({ sendDataToParent, ModalParent }) {
           //Guarda en localStorage el token y usuario
           localStorage.setItem("token", data?.token);
           const localUser = {
+            userId: data.userId,
             email: data.email,
             name: data.name,
             status: data.status,
