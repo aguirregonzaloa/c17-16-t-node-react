@@ -5,7 +5,11 @@ import {
   Flex,
   useDisclosure,
 } from "@chakra-ui/react";
-import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
+import {
+  Link as ReactRouterLink,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { UserContext, userData } from "../../utils/context/UserContext";
 import ModalUser from "../ModalUser/ModalUser";
 
@@ -15,14 +19,16 @@ export default function NavBar({ direction, background }) {
   const { user, setUser } = React.useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
+  let location = useLocation();
 
   const logout = () => {
     // const userData = { correo: "", status: false, token: "" };
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUser(userData);
-    navigate("/");
+    if (location.pathname !== "/cuidadores") navigate("/");
   };
-
+  console.log(location);
   return (
     <nav>
       <ModalUser isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
