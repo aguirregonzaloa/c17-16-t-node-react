@@ -14,9 +14,8 @@ import { useNavigate } from "react-router-dom";
 import { useGetGivers } from "../../utils/hooks/giverQuery";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css"; 
+import "flatpickr/dist/flatpickr.min.css";
 import { Spanish } from "flatpickr/dist/l10n/es";
-
 
 const SearchingBar = () => {
   const navegate = useNavigate();
@@ -28,19 +27,22 @@ const SearchingBar = () => {
       locale: "es",
       dateFormat: "d-m-Y",
       minDate: "today",
-      onChange: function(selectedDates, dateString) {
+      onChange: function (selectedDates, dateString) {
         formik.setFieldValue("currentDate", dateString);
-      }
+      },
     });
     flatpickr.localize(Spanish);
   }, []);
 
-
   const formik = useFormik({
     initialValues: {
       pet: "",
-      currentDateSend: new Date().toISOString().split('T')[0].split('-').reverse().join('-'),
-
+      currentDateSend: new Date()
+        .toISOString()
+        .split("T")[0]
+        .split("-")
+        .reverse()
+        .join("-"),
     },
     // validate,
     onSubmit: (values, { setSubmitting }) => {
@@ -50,8 +52,8 @@ const SearchingBar = () => {
           const currentDate = values.currentDateSend;
 
           const cuidadorData = { ...data, currentDate };
-          // console.log(JSON.stringify(cuidadorData));
-          // console.log(JSON.stringify(currentDate));
+          console.log(JSON.stringify(cuidadorData));
+          console.log(JSON.stringify(currentDate));
           navegate("/cuidadores", { state: { cuidadorData } });
         })
         .catch((e) => console.log(e))
@@ -115,7 +117,6 @@ const SearchingBar = () => {
               id="currentDateSend"
               name="currentDateSend"
               type="text"
-
               onChange={formik.handleChange}
               value={formik.values.currentDateSend}
               color="gris.600"
