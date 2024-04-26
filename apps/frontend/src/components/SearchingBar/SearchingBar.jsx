@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { Form, useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useGetGivers } from "../../utils/hooks/giversQuery";
+import { useGetGivers } from "../../utils/hooks/giverQuery";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import flatpickr from "flatpickr";
 
