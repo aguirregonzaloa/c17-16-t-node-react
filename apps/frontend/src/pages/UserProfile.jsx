@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   Button,
+  Box,
   Container,
   Flex,
   Heading,
@@ -34,33 +35,51 @@ const UserProfile = () => {
   };
   /*-------------------------------*/
 
-  const deleteReservation = (id) => {
-    const reservations = user.reservations.filter(
-      (reservation) => reservation.id !== id
-    );
-    const delUserReservetion = { ...user, reservations };
-    setUser(delUserReservetion);
-  };
+  // const deleteReservation = (id) => {
+  //   const reservations = user.reservations.filter(
+  //     (reservation) => reservation.id !== id
+  //   );
+  //   const delUserReservetion = { ...user, reservations };
+  //   setUser(delUserReservetion);
+  // };
 
   //Si no esta iniciada la sesion return a home
   if (!user.status) return <Navigate to={"/"} />;
 
   return (
-    <Container pt={"80px"} minH={"1600px"}>
-      <Heading>Mi Datos</Heading>
-      <Text>Nombre: {user.name}</Text>
-      <Text>Correo: {user.email}</Text>
+    <Box mx={{ base: "20px", md: "100px" }} pt={"80px"} minH={"1600px"}>
+      <Text
+        as="h2"
+        color="#000000"
+        fontSize="30px"
+        fontFamily="Poppins-SemiBold"
+      >
+        Mis datos
+      </Text>
+      <Text fontFamily="Poppins-Regular" fontSize="18px">
+        Nombre: {user.name}
+      </Text>
+      <Text fontFamily="Poppins-Regular" fontSize="18px">
+        Correo: {user.email}
+      </Text>
       {/* {JSON.stringify(user)} */}
       {/*
       Mostrar Nombre user.name
       Mostrar user.correo
     */}
-      <Heading>Mis Mascotas</Heading>
+      <Text
+        as="h2"
+        color="#000000"
+        fontSize="30px"
+        fontFamily="Poppins-SemiBold"
+      >
+        Mis mascotas
+      </Text>
       <Flex
+        direction="column"
         gap={"10px"}
         flexWrap={"wrap"}
         justifyContent={"center"}
-        alignItems={"center"}
       >
         {user.pets.map((pet) => (
           <PetCard
@@ -72,13 +91,15 @@ const UserProfile = () => {
           />
         ))}
 
-        <ModalAddPet isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+        <Box>
+          <ModalAddPet isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+        </Box>
       </Flex>
 
-      <Heading>Mis Reservas</Heading>
+      {/* <Heading>Mis Reservas</Heading> */}
       {/* Lista de mascota y poder agregar y sacar */}
       {/* Lista de reservas, solo quitar */}
-      <Flex direction={"column"}>
+      {/* <Flex direction={"column"}>
         {user.reservations.map((reser) => (
           <ReservationCard
             careName={reser.careName}
@@ -88,8 +109,8 @@ const UserProfile = () => {
             onClick={() => deleteReservation(reser.id)}
           />
         ))}
-      </Flex>
-    </Container>
+      </Flex> */}
+    </Box>
   );
 };
 

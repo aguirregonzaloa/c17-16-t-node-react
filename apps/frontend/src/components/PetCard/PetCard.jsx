@@ -1,9 +1,10 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import ImgMei from "../../assets/img/ImgMei.png";
+import { MdDelete } from "react-icons/md";
 
 export default function PetCard({ id, name, type, onClick }) {
   return (
-    <Flex direction="column" align="center" margin={"20px auto"}>
+    <Flex align="center" gap="8px" >
       {/* <Box>
         <Image src={ImgMei} alt="Iamgen del cuidador" />
       </Box> */}
@@ -27,8 +28,8 @@ export default function PetCard({ id, name, type, onClick }) {
       >
         {type}
       </Heading>
-      <Button onClick={onClick} bg="rojo.200" color="white">
-        del
+      <Button onClick={onClick} bg="azulacento.500" color="white">
+        <MdDelete />
       </Button>
     </Flex>
   );
