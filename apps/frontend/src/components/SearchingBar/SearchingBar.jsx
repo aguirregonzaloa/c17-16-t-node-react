@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Form, useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useGetGivers } from "../../utils/hooks/giversQuery";
+import { useGetGivers } from "../../utils/hooks/giverQuery";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css"; 
@@ -43,9 +43,15 @@ const SearchingBar = () => {
     // validate,
     onSubmit: (values, { setSubmitting }) => {
       const givers = mutateAsync();
-      // alert(JSON.stringify(values));
       givers
-        .then((data) => navegate("/cuidadores", { state: { data } }))
+        .then((data) => {
+          const currentDate = values.currentDateSend;
+
+          const cuidadorData = { ...data, currentDate };
+          // console.log(JSON.stringify(cuidadorData));
+          // console.log(JSON.stringify(currentDate));
+          navegate("/cuidadores", { state: { cuidadorData } });
+        })
         .catch((e) => console.log(e))
         .finally(() => setSubmitting(false));
     },
@@ -98,7 +104,7 @@ const SearchingBar = () => {
             h="60px"
           />
           <FormControl>
-            <FormLabel htmlFor="currentDate" fontFamily="Poppins-Medium">
+            <FormLabel htmlFor="currentDateSend" fontFamily="Poppins-Medium">
               Fecha
             </FormLabel>
             <Input
@@ -108,8 +114,9 @@ const SearchingBar = () => {
               name="currentDate"
               type="text"
               onChange={formik.handleChange}
-              value={formik.values.currentDate}
+              value={formik.values.currentDateSend}
               color="gris.600"
+              data-date-format="DD MMMM YYYY"
             />
             {/* {formik.errors.password ? (
             <Text color={"red"}>{formik.errors.password}</Text>

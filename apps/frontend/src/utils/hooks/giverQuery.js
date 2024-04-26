@@ -16,3 +16,19 @@ export const useGetGivers = () => {
     // }
   });
 };
+
+// export const useGetGiversAll = () => {
+//   return useQuery({
+//     mutationFn: getCareGivers,
+//     onSuccess: (data) => {
+//       //"Se ha logeado correctamente";
+//       return data;
+//     },
+//     onError: (errors) => {
+//       return errors;
+//     },
+//     // onSettled: () => {
+//     //   queryClient.invalidateQueries('create');
+//     // }
+//   });
+// };
