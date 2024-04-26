@@ -28,6 +28,7 @@ export const createReservation = async (data) => {
   const sitterID = data.sitterID;
   const petstartDateID = data.petstartDateID;
   const endDate = data.endDate;
+  console.log(userID, petID, sitterID, petstartDateID, endDate);
 
   const response = await axios.post(
     URL_PROD_APP + "/reservations",

@@ -31,9 +31,15 @@ export default function ModalAddPet({ isOpen, onOpen, onClose }) {
     },
 
     onSubmit: (values, { setSubmitting }) => {
-      // const response = mutateAsync(values);
+      const response = mutateAsync(values);
+      response
+        .then((data) => console.log(data))
+        .catch((e) => console.log(e))
+        .finally(() => {
+          setSubmitting(false);
+        });
       alert(JSON.stringify(values));
-      setSubmitting(false);
+      // setSubmitting(false);
     },
   });
 
@@ -44,7 +50,9 @@ export default function ModalAddPet({ isOpen, onOpen, onClose }) {
     id: "typePet",
     name: "typePet",
     defaultValue: "perro",
-    onChange: console.log,
+    onChange: (value) => {
+      formik.setFieldValue("typePet", value);
+    },
   });
 
   const group = getRootProps();
@@ -112,13 +120,7 @@ export default function ModalAddPet({ isOpen, onOpen, onClose }) {
                       const radio = getRadioProps({ value });
                       // formik.values.typePet = value;
                       return (
-                        <RadioTypePet
-                          key={value}
-                          {...radio}
-                          onChange={formik.handleChange}
-                          // id="typePet"
-                          // name="typePet"
-                        >
+                        <RadioTypePet key={value} {...radio}>
                           {value}
                         </RadioTypePet>
                       );

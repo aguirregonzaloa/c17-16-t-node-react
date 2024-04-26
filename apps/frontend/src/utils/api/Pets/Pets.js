@@ -13,9 +13,9 @@ export const addPet = async (data) => {
   // "especie": "Gato",
   // "edad": "2*"
 
-  const nombre = data.nombre;
-  const especie = data.especie;
-  const edad = data.edad;
+  const nombre = data.namePet;
+  const especie = data.typePet;
+  const edad = 1;
 
   const response = await axios.post(
     URL_PROD_APP + "/pets",

@@ -93,7 +93,7 @@ export default function NavBar({ direction, background }) {
             _focus={{ color: "azulacento.500" }}
             _active={{ color: "azulacento.500" }}
           >
-            {user.email}
+            {user.name}
           </ChakraLink>
         )}
         {user.status && (

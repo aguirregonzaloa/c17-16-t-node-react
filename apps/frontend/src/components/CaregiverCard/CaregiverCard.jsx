@@ -19,7 +19,14 @@ import * as React from "react";
 import ModalUser from "../ModalUser/ModalUser";
 import ModalReservations from "../ModalReservations/ModalReservations";
 
-export default function CaregiverCard({ name, photo, onAddReservation }) {
+export default function CaregiverCard({
+  id,
+  name,
+  photo,
+  currentDate,
+  onAddReservation,
+}) {
+  // console.log("CareCarddate: ", currentDate1);
   const { user } = React.useContext(UserContext);
   const {
     isOpen: isUserOpen,
@@ -40,6 +47,8 @@ export default function CaregiverCard({ name, photo, onAddReservation }) {
         onClose={onUserClose}
       />
       <ModalReservations
+        sitterID={id}
+        petstartDateID={currentDate}
         isOpen={isReservationOpen}
         onOpen={onReservationOpen}
         onClose={onReservationClose}

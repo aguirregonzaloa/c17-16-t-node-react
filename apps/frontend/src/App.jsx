@@ -16,36 +16,32 @@ import { useGetReservations } from "./utils/hooks/reservationQuery";
 
 function App() {
   const { user, setUser } = React.useContext(UserContext);
-  // const {
-  //   isPending: isPendingP,
-  //   error: errorP,
-  //   data: dataP,
-  //   isFetching: isFetchingP,
-  // } = useGetPets();
-  // const {
-  //   isPending: isPendingR,
-  //   error: errorR,
-  //   data: dataR,
-  //   isFetching: isFetchingR,
-  // } = useGetReservations();
-  React.useEffect(
-    () => {
-      const localUser = JSON.parse(localStorage.getItem("user"));
-      if (localUser) {
-        const addUser = { ...user, ...localUser };
-        setUser(addUser);
-      }
+  const {
+    isPending: isPendingP,
+    error: errorP,
+    data: dataP,
+    isFetching: isFetchingP,
+  } = useGetPets();
+  const {
+    isPending: isPendingR,
+    error: errorR,
+    data: dataR,
+    isFetching: isFetchingR,
+  } = useGetReservations();
+  React.useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    if (localUser) {
+      const addUser = { ...user, ...localUser };
 
-      // console.log(localUser);
+      setUser(addUser);
       // if (!isPendingR && !isPendingP) {
       //   console.log("Pet Error: " + errorP, "Data: " + JSON.stringify(dataP));
       //   console.log("Reser Error: " + errorR, "Data: " + JSON.stringify(dataR));
       // }
-    },
-    [
-      /*isFetchingP, isFetchingR*/
-    ]
-  );
+    }
+
+    // console.log(user);
+  }, [isFetchingP, isFetchingR]);
 
   return (
     <BrowserRouter>
