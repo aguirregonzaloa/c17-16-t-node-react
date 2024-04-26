@@ -11,21 +11,41 @@ import UserProfile from "./pages/UserProfile";
 import * as React from "react";
 import { UserContext } from "./utils/context/UserContext";
 
-// import { useGetUser } from "./utils/hooks/userQuery";
-// const { isPending, error, data, isFetching } = useGetUser(1);
+import { useGetPets } from "./utils/hooks/petQuery";
+import { useGetReservations } from "./utils/hooks/reservationQuery";
 
 function App() {
   const { user, setUser } = React.useContext(UserContext);
-  React.useEffect(() => {
-    const localUser = JSON.parse(localStorage.getItem("user"));
-    if (localUser) {
-      const addUser = { ...user, ...localUser };
-      setUser(addUser);
-    }
+  // const {
+  //   isPending: isPendingP,
+  //   error: errorP,
+  //   data: dataP,
+  //   isFetching: isFetchingP,
+  // } = useGetPets();
+  // const {
+  //   isPending: isPendingR,
+  //   error: errorR,
+  //   data: dataR,
+  //   isFetching: isFetchingR,
+  // } = useGetReservations();
+  React.useEffect(
+    () => {
+      const localUser = JSON.parse(localStorage.getItem("user"));
+      if (localUser) {
+        const addUser = { ...user, ...localUser };
+        setUser(addUser);
+      }
 
-    // console.log(localUser);
-    // console.log(user);
-  }, []);
+      // console.log(localUser);
+      // if (!isPendingR && !isPendingP) {
+      //   console.log("Pet Error: " + errorP, "Data: " + JSON.stringify(dataP));
+      //   console.log("Reser Error: " + errorR, "Data: " + JSON.stringify(dataR));
+      // }
+    },
+    [
+      /*isFetchingP, isFetchingR*/
+    ]
+  );
 
   return (
     <BrowserRouter>

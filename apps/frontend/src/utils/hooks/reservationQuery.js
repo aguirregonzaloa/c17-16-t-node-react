@@ -4,7 +4,7 @@ import {
   getReservations,
 } from "../api/Reservations/Reservations";
 
-export const useAddPet = () => {
+export const useAddReservations = () => {
   return useMutation({
     mutationFn: createReservation,
     onSuccess: (data) => {
@@ -20,7 +20,7 @@ export const useAddPet = () => {
   });
 };
 
-export const useGetPets = () => {
+export const useGetReservations = () => {
   return useQuery({
     queryKey: ["reservations"],
     queryFn: getReservations,

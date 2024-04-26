@@ -26,7 +26,9 @@ export const addPet = async (data) => {
 };
 
 export const getPets = async (idUser) => {
-  const response = await axios.get(URL_PROD_APP + "/pets/" + idUser, {
+  const localUser = JSON.parse(localStorage.getItem("user"));
+  // console.log(localUser);
+  const response = await axios.get(URL_PROD_APP + "/pets/" + localUser.userId, {
     headers,
   });
   return response.data;

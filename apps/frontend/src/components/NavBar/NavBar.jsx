@@ -28,7 +28,7 @@ export default function NavBar({ direction, background }) {
     setUser(userData);
     if (location.pathname !== "/cuidadores") navigate("/");
   };
-  console.log(location);
+  // console.log(location);
   return (
     <nav>
       <ModalUser isOpen={isOpen} onOpen={onOpen} onClose={onClose} />

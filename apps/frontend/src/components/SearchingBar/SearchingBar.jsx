@@ -26,7 +26,7 @@ const SearchingBar = () => {
   const formik = useFormik({
     initialValues: {
       pet: "",
-      currentDate: Date.now("dd/mm/YYYY"),
+      currentDate: "",
     },
     // validate,
     onSubmit: (values, { setSubmitting }) => {

@@ -5,6 +5,9 @@ const headers = {
   Authorization: "Bearer " + token,
 };
 
+const localUser = JSON.parse(localStorage.getItem("user"));
+// console.log(localUser);
+
 import { URL_PROD_APP } from "../GlobalURL";
 
 export const createReservation = async (data) => {
@@ -20,7 +23,7 @@ export const createReservation = async (data) => {
   // "startDate":"2024-05-01",
   // "endDate":"2024-05-07"}
 
-  const userID = data.userID;
+  const userID = localUser.userId;
   const petID = data.petID;
   const sitterID = data.sitterID;
   const petstartDateID = data.petstartDateID;
@@ -35,8 +38,11 @@ export const createReservation = async (data) => {
 };
 
 export const getReservations = async (idUser) => {
-  const response = await axios.get(URL_PROD_APP + "/reservations/" + idUser, {
-    headers,
-  });
+  const response = await axios.get(
+    URL_PROD_APP + "/reservations/" + localUser.userId,
+    {
+      headers,
+    }
+  );
   return response.data;
 };
