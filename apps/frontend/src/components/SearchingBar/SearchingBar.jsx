@@ -28,7 +28,7 @@ const SearchingBar = () => {
       dateFormat: "d-m-Y",
       minDate: "today",
       onChange: function (selectedDates, dateString) {
-        formik.setFieldValue("currentDate", dateString);
+        formik.setFieldValue("currentDateSend", dateString);
       },
     });
     flatpickr.localize(Spanish);

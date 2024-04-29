@@ -46,8 +46,8 @@ const ModalReservations = (props) => {
         .catch((e) => console.log(e))
         .finally(() => {
           setSubmitting(false);
+          onClose();
         });
-      alert(JSON.stringify("Su Reserva Ya ha Sido Realizar"));
       // setSubmitting(false);
     },
   });
