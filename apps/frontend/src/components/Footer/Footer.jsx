@@ -30,53 +30,54 @@ const Footer = () => {
             color="#FAFAFA"
             fontFamily="Poppins-Regular"
             fontWeight={400}
+            fontSize="14px"
             lineHeight="19px"
           >
             Tus mascotas en las mejores manos
           </Text>
         </Flex>
-        <Flex
-          gap={6}
-          direction={{ base: "column", lg: "row" }}
-          textAlign="center"
-        >
-          <Box mt="20px" m={{base:"0px", lg :"0"}}>
-            <Text as="h2" color="#FFFFFF">
-              Sección
+        <Flex mt={{base: 8, lg: 0}} gap={6} direction={{ base: "column", lg: "row" }}>
+          <Box mt="20px" m={{ base: "0px", lg: "0" }}>
+            <Text
+              as="h2"
+              color="white"
+              fontFamily="Poppins-Medium"
+              fontSize="16px"
+              textAlign={{ base: "center", lg: "none" }}
+            >
+              Secciones
             </Text>
-            <Flex flexDirection="column"
+            <Flex
+              mt="16px"
+              flexDirection="column"
+              gap="8px"
+              textAlign={{ base: "center", lg: "none" }}
             >
               <Link
                 as="a"
-                margin="4px"
-                color="#FFFFFF"
+                color="gris.100"
                 fontSize="14px"
                 fontFamily="Poppins-Regular"
-                padding="8px"
                 fontWeight={400}
                 lineHeight="21px"
               >
                 Inicio
               </Link>
-
               <Link
                 as="a"
-                color="#E6E6E6"
+                color="gris.100"
                 fontSize="14px"
                 fontFamily="Poppins-Regular"
-                padding="8px"
                 fontWeight={400}
                 lineHeight="21px"
               >
                 Sobre nosotros
               </Link>
-
               <Link
                 as="a"
-                color="#E6E6E6"
+                color="gris.100"
                 fontSize="14px"
                 fontFamily="Poppins-Regular"
-                padding="8px"
                 fontWeight={400}
                 lineHeight="21px"
               >
@@ -85,22 +86,27 @@ const Footer = () => {
             </Flex>
           </Box>
           <Box>
-            <Text as="h2" align="center" color="#FFFFFF">
+            <Text
+              as="h2"
+              color="white"
+              fontFamily="Poppins-Medium"
+              fontSize="16px"
+              textAlign={{ base: "center", lg: "none" }}
+            >
               Redes
             </Text>
             <Flex
               flexDirection="column"
-              marginTop="20px"
+              mt="16px"
               textAlign={{ base: "center", lg: "start" }}
             >
-              <Flex justify="center" align="center">
+              <Flex justify="center" align="center" gap="8px">
                 <Image src={LogoI} alt="LogoInstagram" />
                 <Link
                   margin="4px"
-                  color="#E6E6E6"
+                  color="gris.100"
                   fontSize="14px"
                   fontFamily="Poppins-Regular"
-                  padding="8px"
                   fontWeight={400}
                   lineHeight="21px"
                   href="https://www.instagram.com/safepaws.bsas/?igsh=amVod3Fmc2RtdWRh&utm_source=qr"
@@ -109,10 +115,10 @@ const Footer = () => {
                   Instagram
                 </Link>
               </Flex>
-              <Flex justify="center" align="center">
+              {/* <Flex justify="center" align="center">
                 <Image src={LogoF} alt="LogoFacebook" />
                 <Link
-                  color="#E6E6E6"
+                  color="gris.100"
                   fontSize="14px"
                   fontFamily="Poppins-Regular"
                   padding="8px"
@@ -121,35 +127,39 @@ const Footer = () => {
                 >
                   Facebook
                 </Link>
-              </Flex>
+              </Flex> */}
             </Flex>
           </Box>
           <Box>
-            <Text as="h2" align="center" color="#FFFFFF">
-              Contáctanos
+            <Text
+              as="h2"
+              color="white"
+              fontFamily="Poppins-Medium"
+              fontSize="16px"
+              textAlign={{ base: "center", lg: "none" }}
+            >
+              Contactanos
             </Text>
-            <Flex flexDirection="column" marginTop="20px">
-              <Flex justify="center" align="center">
+            <Flex flexDirection="column" mt="16px" gap="8px">
+              <Flex justify="center" align="center" gap="8px">
                 <Image src={LogoW} alt="LogoTelefono" />
                 <Text
                   margin="4px"
-                  color="#E6E6E6"
+                  color="gris.100"
                   fontSize="14px"
                   fontFamily="Poppins-Regular"
-                  padding="8px"
                   fontWeight={400}
                   lineHeight="21px"
                 >
-                  +54-11-11234-56
+                  +54 11 1234 5678
                 </Text>
               </Flex>
-              <Flex justify="center" align="center">
+              <Flex justify="center" align="center" gap="8px">
                 <Image src={LogoC} alt="LogoCorreo" />
                 <Text
-                  color="#E6E6E6"
+                  color="gris.100"
                   fontSize="14px"
                   fontFamily="Poppins-Regular"
-                  padding="8px"
                   fontWeight={400}
                   lineHeight="21px"
                 >
@@ -161,33 +171,32 @@ const Footer = () => {
         </Flex>
       </Flex>
       <Divider />
-      <Flex justify="space-between">
-        <Box marginTop="30px">
-          <Text color="#FFFFFF" fontWeight={400} lineHeight="18px">
-            Todos los derechos reservados{" "}
+      <Flex justify="space-between" align="center" color="white" gap="24px">
+        <Box mt="24px">
+          <Text fontWeight={400} lineHeight="18px" fontSize="12px">
+            Todos los derechos reservados 2024
           </Text>
         </Box>
 
-        <Box marginTop="30px">
+        <Box mt="24px">
           <Link
             margin="16px"
-            color="#FFFFFF"
             fontWeight={400}
             lineHeight="21px"
             fontFamily="Poppins-Regular"
             textDecor="none"
+            fontSize="14px"
           >
-            terminos
+            Términos
           </Link>
-
           <Link
-            color="#FFFFFF"
             fontWeight={400}
             lineHeight="21px"
             fontFamily="Poppins-Regular"
             textDecor="none"
+            fontSize="14px"
           >
-            privacidad
+            Privacidad
           </Link>
         </Box>
       </Flex>
