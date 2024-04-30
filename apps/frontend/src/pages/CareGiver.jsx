@@ -31,8 +31,7 @@ const CareGivers = (props) => {
         lineHeight="30px"
         color="gris.800"
       >
-        Cuidadores{" "}
-        {moment(state.cuidadorData.currentDate).format("DD/MM/YYYY").toString()}
+        Cuidadores {state.cuidadorData.currentDate}
       </Heading>
       {/* {JSON.stringify(user?.reservations)} */}
       <ul>

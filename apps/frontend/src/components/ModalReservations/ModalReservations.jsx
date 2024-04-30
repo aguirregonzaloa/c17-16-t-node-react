@@ -46,8 +46,8 @@ const ModalReservations = (props) => {
         .catch((e) => console.log(e))
         .finally(() => {
           setSubmitting(false);
+          onClose();
         });
-      alert(JSON.stringify("Su Reserva Ya ha Sido Realizar"));
       // setSubmitting(false);
     },
   });
@@ -100,9 +100,7 @@ const ModalReservations = (props) => {
             <form onSubmit={formik.handleSubmit} style={{ padding: "20px" }}>
               <FormControl margin={"4px"}>
                 <FormLabel htmlFor="currentDate">Fecha</FormLabel>
-                <Text>
-                  {moment(petstartDateID).format("DD/MM/YYYY").toString()}
-                </Text>
+                <Text>{petstartDateID}</Text>
                 {/* {formik.errors.password ? (
             <Text color={"red"}>{formik.errors.password}</Text>
           ) : null} */}
