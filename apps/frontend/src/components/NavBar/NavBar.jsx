@@ -29,27 +29,38 @@ export default function NavBar({ direction, background }) {
     if (location.pathname !== "/cuidadores") navigate("/");
   };
   // console.log(location);
+
+  //Hace que los links se dirijan a la sección del home que les corresponda
+  const handleNavClick = (sectionId) => {
+    navigate("/");
+    setTimeout(() => {
+      const sectionElement = document.getElementById(sectionId);
+      if (sectionElement) {
+        window.scrollTo({
+          top: sectionElement.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  };
+
   return (
     <nav>
       <ModalUser isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       <Flex m={2} direction={direction} bg={background} gap={6}>
         <ChakraLink
-          as={ReactRouterLink}
-          to="/"
+          onClick={() => handleNavClick("banner")}
           alignSelf="center"
           color="gris.700"
           fontFamily="Poppins-Medium"
           _hover={{ color: "azulacento.500" }}
           _focus={{ color: "azulacento.500" }}
           _active={{ color: "azulacento.500" }}
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
         >
           Inicio
         </ChakraLink>
         <ChakraLink
-          href="#about"
+          onClick={() => handleNavClick("about")}
           alignSelf="center"
           color="gris.700"
           fontFamily="Poppins-Medium"
@@ -60,7 +71,7 @@ export default function NavBar({ direction, background }) {
           Nosotros
         </ChakraLink>
         <ChakraLink
-          href="#rates"
+          onClick={() => handleNavClick("rates")}
           alignSelf="center"
           color="gris.700"
           fontFamily="Poppins-Medium"
@@ -92,6 +103,9 @@ export default function NavBar({ direction, background }) {
             _hover={{ color: "azulacento.500" }}
             _focus={{ color: "azulacento.500" }}
             _active={{ color: "azulacento.500" }}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "auto" });
+            }}
           >
             {user.name}
           </ChakraLink>
