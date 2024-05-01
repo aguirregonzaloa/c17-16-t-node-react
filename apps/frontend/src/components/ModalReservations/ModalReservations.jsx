@@ -2,7 +2,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalBody,
   ModalCloseButton,
   Heading,
@@ -59,42 +58,46 @@ const ModalReservations = (props) => {
           finalFocusRef={finalRef}
           isOpen={isOpen}
           onClose={onClose}
-          size="xl" // sets the size of the modal
-          isCentered // centers the modal on the screen
+          size="xl"
+          isCentered
         >
           <ModalOverlay />
-          <ModalContent
-            w="100%" // sets the width of the modal content
-            maxW="300px" // sets the maximum width of the modal content
-            mx="auto" // centers the modal content horizontally
-            bg="gray.100"
-          >
+          <ModalContent w="100%" maxW="300px" mx="auto" bg="gray.100">
             {/* <ModalHeader>Create your account</ModalHeader> */}
             <ModalCloseButton />
             <ModalBody>
-                <Flex justify="space-between" align="center" py="25px">
-                  <Text
-                    fontSize="16px"
-                    fontFamily="Poppins-Medium"
-                    color="azulacento.500"
-                    bg={"azulacento.100"}
-                    p="4px 8px"
-                    borderRadius="6px"
-                  >
-                    Guardería
-                  </Text>
-                  <Heading
-                    fontSize="22px"
-                    as="h3"
-                    fontWeight="300"
-                    color="gris.800"
-                  >
-                    <strong>$7000</strong> día
-                  </Heading>
-                </Flex>
-              <form onSubmit={formik.handleSubmit} style={{ paddingBottom: "20px" }}>
+              <Flex justify="space-between" align="center" pt="25px" pb="15px">
+                <Text
+                  fontSize="16px"
+                  fontFamily="Poppins-Medium"
+                  color="azulacento.500"
+                  bg={"azulacento.100"}
+                  p="4px 8px"
+                  borderRadius="6px"
+                >
+                  Guardería
+                </Text>
+                <Heading
+                  fontSize="22px"
+                  as="h3"
+                  fontWeight="300"
+                  color="gris.800"
+                >
+                  <strong>$7000</strong> día
+                </Heading>
+              </Flex>
+              <form
+                onSubmit={formik.handleSubmit}
+                style={{ paddingBottom: "20px" }}
+              >
                 <FormControl>
-                  <FormLabel htmlFor="currentDate">Fecha</FormLabel>
+                  <FormLabel
+                    htmlFor="currentDate"
+                    fontFamily="Poppins-Medium"
+                    fontSize="14px"
+                  >
+                    Fecha
+                  </FormLabel>
                   <Text
                     p="8px 15px"
                     border="1px solid"
@@ -110,14 +113,18 @@ const ModalReservations = (props) => {
                   ) : null} */}
                 </FormControl>
                 <FormControl margin="20px 0">
-                  <FormLabel mb="4px" htmlFor="currentDate">
+                  <FormLabel
+                    htmlFor="currentDate"
+                    fontFamily="Poppins-Medium"
+                    fontSize="14px"
+                  >
                     Mascota
                   </FormLabel>
                   <Select
                     borderColor="gris.200"
                     id="petID"
                     name="petID"
-                    placeholder="Select option"
+                    placeholder="Seleccionar"
                     onChange={formik.handleChange}
                     value={formik.values.petID}
                   >
@@ -139,6 +146,9 @@ const ModalReservations = (props) => {
                   isDisabled={formik.errors.pet || formik.errors.currentDate}
                   type="submit"
                   width="100%"
+                  fontFamily="Poppins-SemiBold"
+                  lineHeight="24px"
+                  fontSize="15px"
                 >
                   Reservar
                 </Button>
