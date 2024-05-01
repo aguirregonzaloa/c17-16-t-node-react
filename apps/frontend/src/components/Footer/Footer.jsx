@@ -5,8 +5,25 @@ import LogoF from "../../assets/img/facebook.svg";
 import LogoC from "../../assets/img/correo.svg";
 import LogoW from "../../assets/img/wpp.svg";
 import LogoI from "../../assets/img/instagram.svg";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  //Hace que los links se dirijan a la sección del home que corresponda
+  const handleNavClick = (sectionId) => {
+    navigate("/");
+    setTimeout(() => {
+      const sectionElement = document.getElementById(sectionId);
+      if (sectionElement) {
+        window.scrollTo({
+          top: sectionElement.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  };
+
   return (
     <Box
       as="footer"
@@ -43,7 +60,7 @@ const Footer = () => {
               color="white"
               fontFamily="Poppins-Medium"
               fontSize="16px"
-              textAlign={{ base: "center", lg: "none" }}
+              textAlign={{ base: "center", lg: "start" }}
             >
               Secciones
             </Text>
@@ -51,10 +68,10 @@ const Footer = () => {
               mt="16px"
               flexDirection="column"
               gap="8px"
-              textAlign={{ base: "center", lg: "none" }}
+              textAlign={{ base: "center", lg: "start" }}
             >
               <Link
-                as="a"
+                onClick={() => handleNavClick("banner")}
                 color="gris.100"
                 fontSize="14px"
                 fontFamily="Poppins-Regular"
@@ -64,7 +81,7 @@ const Footer = () => {
                 Inicio
               </Link>
               <Link
-                as="a"
+                onClick={() => handleNavClick("about")}
                 color="gris.100"
                 fontSize="14px"
                 fontFamily="Poppins-Regular"
@@ -74,7 +91,7 @@ const Footer = () => {
                 Sobre nosotros
               </Link>
               <Link
-                as="a"
+                onClick={() => handleNavClick("rates")}
                 color="gris.100"
                 fontSize="14px"
                 fontFamily="Poppins-Regular"
@@ -91,7 +108,7 @@ const Footer = () => {
               color="white"
               fontFamily="Poppins-Medium"
               fontSize="16px"
-              textAlign={{ base: "center", lg: "none" }}
+              textAlign={{ base: "center", lg: "start" }}
             >
               Redes
             </Text>
@@ -136,7 +153,7 @@ const Footer = () => {
               color="white"
               fontFamily="Poppins-Medium"
               fontSize="16px"
-              textAlign={{ base: "center", lg: "none" }}
+              textAlign={{ base: "center", lg: "start" }}
             >
               Contactanos
             </Text>
