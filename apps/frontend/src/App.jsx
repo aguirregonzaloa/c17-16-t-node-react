@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
-import RatesHome from "./components/RatesHome/RatesHome";
-import Review from "./components/Review/Review";
 import Footer from "./components/Footer/Footer";
-
+import Error from "./pages/Error";
 import "./App.css";
 import CareGivers from "./pages/CareGiver";
 import UserProfile from "./pages/UserProfile";
@@ -50,6 +48,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cuidadores" element={<CareGivers />} />
         <Route path="/myprofile" element={<UserProfile />} />
+        <Route path="/*" element={<Error />} />
       </Routes>
       <Outlet />
       <Footer />

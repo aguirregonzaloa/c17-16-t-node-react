@@ -114,8 +114,8 @@ const SearchingBar = () => {
             <Input
               ref={currentDateInputRef}
               borderColor={{ base: "gris.200", lg: "white" }}
-              id="currentDateSend"
-              name="currentDateSend"
+              id="currentDate"
+              name="currentDate"
               type="text"
               onChange={formik.handleChange}
               value={formik.values.currentDateSend}

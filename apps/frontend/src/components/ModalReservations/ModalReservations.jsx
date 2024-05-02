@@ -2,18 +2,16 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   Heading,
   Flex,
   FormControl,
   FormLabel,
-  Input,
   Button,
   Select,
   Text,
+  Divider,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 
@@ -60,99 +58,124 @@ const ModalReservations = (props) => {
           finalFocusRef={finalRef}
           isOpen={isOpen}
           onClose={onClose}
-          size="xl" // sets the size of the modal
-          isCentered // centers the modal on the screen
+          size="xl"
+          isCentered
         >
           <ModalOverlay />
-          <ModalContent
-            w="100%" // sets the width of the modal content
-            maxW="300px" // sets the maximum width of the modal content
-            mx="auto" // centers the modal content horizontally
-            bg="gray.100"
-          >
+          <ModalContent w="100%" maxW="300px" mx="auto" bg="gray.100">
             {/* <ModalHeader>Create your account</ModalHeader> */}
             <ModalCloseButton />
             <ModalBody>
-              <ModalHeader>
-                <Flex
-                  gap={"20px"}
-                  justifyContent={"center"}
-                  alignContent={"center"}
+              <Flex justify="space-between" align="center" pt="25px" pb="15px">
+                <Text
+                  fontSize="16px"
+                  fontFamily="Poppins-Medium"
+                  color="azulacento.500"
+                  bg={"azulacento.100"}
+                  p="4px 8px"
+                  borderRadius="6px"
                 >
-                  <Heading
-                    as="h4"
-                    fontSize={{ base: "16px", md: "20px", lg: "20px" }}
-                    color={"azulacento.300"}
-                    bg={"azulacento.100"}
-                  >
-                    Alojo
-                  </Heading>
-                  <Heading
-                    fontSize={{ base: "16px", md: "20px", lg: "20px" }}
-                    as="h3"
-                    fontWeight={"300"}
-                  >
-                    <strong>$7000</strong> día
-                  </Heading>
-                </Flex>
-              </ModalHeader>
-            </ModalBody>
-            <form onSubmit={formik.handleSubmit} style={{ padding: "20px" }}>
-              <FormControl margin={"4px"}>
-                <FormLabel htmlFor="currentDate">Fecha</FormLabel>
-                <Text>{petstartDateID}</Text>
-                {/* {formik.errors.password ? (
-            <Text color={"red"}>{formik.errors.password}</Text>
-          ) : null} */}
-              </FormControl>
-              <FormControl margin={" 40px 0 "}>
-                <FormLabel mb={"4px"} htmlFor="currentDate">
-                  Tu Mascota
-                </FormLabel>
-                <Select
-                  id="petID"
-                  name="petID"
-                  placeholder="Select option"
-                  onChange={formik.handleChange}
-                  value={formik.values.petID}
+                  Guardería
+                </Text>
+                <Heading
+                  fontSize="22px"
+                  as="h3"
+                  fontWeight="300"
+                  color="gris.800"
                 >
-                  {user?.pets.map((pet) => (
-                    <option key={pet.id} value={pet.id}>
-                      {pet.name}
-                    </option>
-                  ))}
-                </Select>
-                {/* {formik.errors.password ? (
-            <Text color={"red"}>{formik.errors.password}</Text>
-          ) : null} */}
-              </FormControl>
-
-              <Button
-                colorScheme="azulacento"
-                textColor={"white"}
-                isLoading={formik.isSubmitting}
-                isDisabled={formik.errors.pet || formik.errors.currentDate}
-                type="submit"
-                width={"100%"}
+                  <strong>$7000</strong> día
+                </Heading>
+              </Flex>
+              <form
+                onSubmit={formik.handleSubmit}
+                style={{ paddingBottom: "20px" }}
               >
-                Reservar
-              </Button>
-            </form>
-            {/* <ModalFooter> */}
-            <Flex
-              justify={"space-between"}
-              padding={" 20px"}
-              borderTop={"1px solid black"}
-            >
-              <Heading as={"h4"} fontSize={"20px"}>
-                Total
-              </Heading>
-              {/* <Spacer /> */}
-              <Heading as={"h4"} fontSize={"20px"}>
-                $7000
-              </Heading>
-            </Flex>
-            {/* </ModalFooter> */}
+                <FormControl>
+                  <FormLabel
+                    htmlFor="currentDate"
+                    fontFamily="Poppins-Medium"
+                    fontSize="14px"
+                  >
+                    Fecha
+                  </FormLabel>
+                  <Text
+                    p="8px 15px"
+                    border="1px solid"
+                    borderColor="gris.200"
+                    borderRadius="5px"
+                    w="100%"
+                    color="azulacento.500"
+                  >
+                    {petstartDateID}
+                  </Text>
+                  {/* {formik.errors.password ? (
+                    <Text color={"red"}>{formik.errors.password}</Text>
+                  ) : null} */}
+                </FormControl>
+                <FormControl margin="20px 0">
+                  <FormLabel
+                    htmlFor="currentDate"
+                    fontFamily="Poppins-Medium"
+                    fontSize="14px"
+                  >
+                    Mascota
+                  </FormLabel>
+                  <Select
+                    borderColor="gris.200"
+                    id="petID"
+                    name="petID"
+                    placeholder="Seleccionar"
+                    onChange={formik.handleChange}
+                    value={formik.values.petID}
+                  >
+                    {user?.pets.map((pet) => (
+                      <option key={pet.id} value={pet.id}>
+                        {pet.name}
+                      </option>
+                    ))}
+                  </Select>
+                  {/* {formik.errors.password ? (
+                    <Text color={"red"}>{formik.errors.password}</Text>
+                  ) : null} */}
+                </FormControl>
+
+                <Button
+                  colorScheme="azulacento"
+                  textColor="white"
+                  isLoading={formik.isSubmitting}
+                  isDisabled={formik.errors.pet || formik.errors.currentDate}
+                  type="submit"
+                  width="100%"
+                  fontFamily="Poppins-SemiBold"
+                  lineHeight="24px"
+                  fontSize="15px"
+                >
+                  Reservar
+                </Button>
+              </form>
+              <Divider
+                borderWidth="0.5px"
+                borderColor="azulacento.800"
+                opacity="20%"
+                w="100%"
+              />
+              <Flex justify="space-between" padding="12px 0px" color="gris.800">
+                <Text
+                  fontSize="18px"
+                  fontWeight={500}
+                  fontFamily="Poppins-SemiBold"
+                >
+                  Total
+                </Text>
+                <Text
+                  fontSize="18px"
+                  fontWeight={500}
+                  fontFamily="Poppins-SemiBold"
+                >
+                  $7000
+                </Text>
+              </Flex>
+            </ModalBody>
           </ModalContent>
         </Modal>
       </>
