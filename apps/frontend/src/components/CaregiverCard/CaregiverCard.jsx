@@ -19,6 +19,7 @@ import { UserContext } from "../../utils/context/UserContext";
 import * as React from "react";
 import ModalUser from "../ModalUser/ModalUser";
 import ModalReservations from "../ModalReservations/ModalReservations";
+import { useNavigate } from "react-router-dom";
 
 export default function CaregiverCard({
   id,
@@ -39,6 +40,7 @@ export default function CaregiverCard({
     onOpen: onReservationOpen,
     onClose: onReservationClose,
   } = useDisclosure();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -105,6 +107,12 @@ export default function CaregiverCard({
               Palermo, Buenos Aires
             </Text>
           </Flex>
+          <Button
+            colorScheme="azulacento"
+            onClick={() => navigate(`/details/${id}`)}
+          >
+            Detalles
+          </Button>
           {/* <Box gap={3}>
           <Flex gap={4} align="center">
             <IoIosStar size="20px" color="#FFC058" alt="Icono de estrella" />
