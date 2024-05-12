@@ -53,7 +53,7 @@ export default function DetailsCaregiver() {
             color="verdeacento.800"
             fontSize="14px"
           >
-            Guarderia
+            Guardería
           </Text>
           <Heading fontFamily="Poppins-Medium" fontSize="26px" color="gris.800">
             {caregiver.name}
@@ -87,7 +87,12 @@ export default function DetailsCaregiver() {
           </Flex>
         </Flex>
       </Flex>
-      <TabsDetailsCaregiver />
+      <TabsDetailsCaregiver
+        name={caregiver.name}
+        aboutMe={caregiver.aboutMe.aboutMe}
+        catAccepted={caregiver.petAccepted.cats}
+        dogAccepted={caregiver.petAccepted.dogs}
+      />
     </Flex>
   );
 }
