@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCareGivers } from "../../utils/api/CareGivers/CareGivers";
-import { Box, Flex, Heading, Image, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Spinner,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { IoIosStar } from "react-icons/io";
 import IconLocation from "../../assets/icons/IconLocation.svg";
 import TabsDetailsCaregiver from "../TabsDetailsCaregiver/TabsDetailsCaregiver";
+import AccordionDetailsCaregiver from "../AccordionDetailsCaregiver/AccordionDetailsCaregiver";
 
 export default function DetailsCaregiver() {
   const { idCaregiver } = useParams();
   const [caregiver, setCaregiver] = useState(null);
+  const screenSize = useBreakpointValue({ base: "base", md: "md" });
 
   useEffect(() => {
     const fetchCareGiver = async () => {
@@ -100,12 +110,21 @@ export default function DetailsCaregiver() {
           </Flex>
         </Flex>
       </Flex>
-      <TabsDetailsCaregiver
-        name={caregiver.name}
-        aboutMe={caregiver.aboutMe.aboutMe}
-        catAccepted={caregiver.petAccepted.cats}
-        dogAccepted={caregiver.petAccepted.dogs}
-      />
+      {screenSize === "base" ? (
+        <AccordionDetailsCaregiver
+          name={caregiver.name}
+          aboutMe={caregiver.aboutMe.aboutMe}
+          catAccepted={caregiver.petAccepted.cats}
+          dogAccepted={caregiver.petAccepted.dogs}
+        />
+      ) : (
+        <TabsDetailsCaregiver
+          name={caregiver.name}
+          aboutMe={caregiver.aboutMe.aboutMe}
+          catAccepted={caregiver.petAccepted.cats}
+          dogAccepted={caregiver.petAccepted.dogs}
+        />
+      )}
     </Flex>
   );
 }
