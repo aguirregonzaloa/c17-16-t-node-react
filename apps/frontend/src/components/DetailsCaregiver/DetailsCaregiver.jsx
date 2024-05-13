@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCareGivers } from "../../utils/api/CareGivers/CareGivers";
 import { Box, Flex, Heading, Image, Spinner, Text } from "@chakra-ui/react";
+import { IoIosStar } from "react-icons/io";
 import IconLocation from "../../assets/icons/IconLocation.svg";
 import TabsDetailsCaregiver from "../TabsDetailsCaregiver/TabsDetailsCaregiver";
 
@@ -74,9 +75,21 @@ export default function DetailsCaregiver() {
               Vacante
             </Text>
           </Box>
+          <Flex pt="4px" gap="4px">
+            <IoIosStar size="20px" color="#FFC058" alt="Icono de estrella" />
+            <Text
+              fontSize="16px"
+              fontWeight="400"
+              lineHeight="24px"
+              color="gris.600"
+            >
+              5.0
+            </Text>
+          </Flex>
           <Flex gap={2}>
             <Image src={IconLocation} alt="Icono de ubicación" />
             <Text
+              fontFamily="Poppins-Regular"
               fontSize="14px"
               fontWeight="400"
               lineHeight="24px"
