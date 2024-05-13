@@ -109,7 +109,10 @@ export default function CaregiverCard({
           </Flex>
           <Button
             colorScheme="azulacento"
-            onClick={() => navigate(`/details/${id}`)}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "auto" });
+              navigate(`/details/${id}`);
+            }}
           >
             Detalles
           </Button>
