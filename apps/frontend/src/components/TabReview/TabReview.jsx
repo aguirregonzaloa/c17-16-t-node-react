@@ -148,6 +148,19 @@ export default function TabReview() {
             </Box>
           </Box>
         </Flex>
+        <Box mb="40px">
+        <Button
+          p="10px 20px"
+          colorScheme="purple"
+          variant="outline"
+          fontFamily="Poppins-Regular"
+          fontSize="16px"
+          border="2px"
+          borderRadius="10px"
+        >
+          Ver todas
+        </Button>
+      </Box>
       </Flex>
     </>
   );

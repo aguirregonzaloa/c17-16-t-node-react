@@ -20,7 +20,7 @@ export default function TabLocation() {
           Palermo, Buenos Aires
         </Text>
       </Flex>
-      <Image src={Mapa} alt="Imagen de mapa" my="32px" />
+      <Image src={Mapa} alt="Imagen de mapa" mt="32px" mb="40px" />
     </>
   );
 }
