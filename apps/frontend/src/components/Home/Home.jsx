@@ -8,6 +8,10 @@ import TopCaregivers from "../TopCaregivers/TopCaregivers";
 import RatesHome from "../RatesHome/RatesHome";
 import Review from "../Review/Review";
 import DogFooter from "../DogFooter/DogFooter";
+import Manito_violeta_Review from "../../assets/img/manito_violeta.png";
+import VectorBanner1_Review from "../../assets/icons/VectorBanner1.svg";
+import VectorBanner2_Review from "../../assets/icons/VectorBanner2.svg";
+
 
 export default function Home() {
   return (
@@ -30,8 +34,10 @@ export default function Home() {
       <TopCaregivers />
       <RatesHome/>
       <Functioning />
-      <Review/>
+      <Review />
       <DogFooter/>
+      
+      
     </main>
   );
 }

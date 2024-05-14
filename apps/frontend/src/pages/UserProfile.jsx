@@ -7,13 +7,18 @@ import {
   Heading,
   Text,
   useDisclosure,
+  Image,
+  Divider,
 } from "@chakra-ui/react";
 import { UserContext } from "../utils/context/UserContext";
 import PetCard from "../components/PetCard/PetCard";
 import ReservationCard from "../components/ReservationCard/ReservationCard";
 import { Navigate } from "react-router-dom";
-
 import ModalAddPet from "../components/ModalAddPet/ModalAddPet";
+import UserInformation from "../components/UserInformation/UserInformation";
+import Location from "../components/LocationUser/LocationUser";
+
+import FotoPerfil from "../../src/assets/img/Foto_Perfil.png";
 
 const UserProfile = () => {
   const { user, setUser } = React.useContext(UserContext);
@@ -48,7 +53,44 @@ const UserProfile = () => {
 
   return (
     <Box mx={{ base: "20px", md: "100px" }} pt={"80px"} minH={"1600px"}>
-      <Text
+      <Image src={FotoPerfil} alt="imagen" w="225px" h="240px"></Image>
+      <Flex direction={"column"} marginLeft="240px" marginTop="-222px">
+        <Text
+          as="h2"
+          color="#000000"
+          fontSize="30px"
+          fontFamily="Poppins-SemiBold"
+        >
+          Mis datos
+        </Text>
+        <Text fontFamily="Poppins-Regular" fontSize="18px">
+          Nombre: {user.name}
+        </Text>
+        <Text fontFamily="Poppins-Regular" fontSize="18px">
+          Correo: {user.email}
+        </Text>
+
+        <Flex mb="19px" mt="7px">
+          {user.pets.map((pet) => (
+            <PetCard
+              id={pet.id}
+              name={pet.name}
+              type={pet.type}
+              key={pet.id}
+              onClick={() => deletePet(pet.id)}
+            />
+          ))}
+        </Flex>
+        <Flex marginTop="12px">
+          <ModalAddPet isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+        </Flex>
+      </Flex>
+      <Divider border="1px" color="gris.300" mt="30px" />
+      {/*
+      formulario de datos y mascotas posicionado en la parte inferior
+    */}
+      {/*
+    <Text
         as="h2"
         color="#000000"
         fontSize="30px"
@@ -56,6 +98,7 @@ const UserProfile = () => {
       >
         Mis datos
       </Text>
+      
       <Text fontFamily="Poppins-Regular" fontSize="18px">
         Nombre: {user.name}
       </Text>
@@ -67,20 +110,14 @@ const UserProfile = () => {
       Mostrar Nombre user.name
       Mostrar user.correo
     */}
-      <Text
-        as="h2"
-        color="#000000"
-        fontSize="30px"
-        fontFamily="Poppins-SemiBold"
-      >
-        Mis mascotas
-      </Text>
+
       <Flex
         direction="column"
         gap={"10px"}
         flexWrap={"wrap"}
         justifyContent={"center"}
       >
+        {/*
         {user.pets.map((pet) => (
           <PetCard
             id={pet.id}
@@ -90,10 +127,13 @@ const UserProfile = () => {
             onClick={() => deletePet(pet.id)}
           />
         ))}
-
+      */}
+        {/*  
         <Box>
-          <ModalAddPet isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+           <ModalAddPet isOpen={isOpen} onOpen={onOpen} onClose={onClose} />   
         </Box>
+        */}
+        <Location />
       </Flex>
 
       {/* <Heading>Mis Reservas</Heading> */}

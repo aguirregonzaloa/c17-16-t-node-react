@@ -3,8 +3,6 @@ import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import RatesHome from "./components/RatesHome/RatesHome";
 import Review from "./components/Review/Review";
-import Footer from "./components/Footer/Footer";
-
 import "./App.css";
 import CareGivers from "./pages/CareGiver";
 import UserProfile from "./pages/UserProfile";
@@ -13,6 +11,7 @@ import { UserContext } from "./utils/context/UserContext";
 
 import { useGetPets } from "./utils/hooks/petQuery";
 import { useGetReservations } from "./utils/hooks/reservationQuery";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const { user, setUser } = React.useContext(UserContext);
@@ -52,8 +51,9 @@ function App() {
         <Route path="/myprofile" element={<UserProfile />} />
       </Routes>
       <Outlet />
-      <Footer />
+      <Footer/>
     </BrowserRouter>
+    
   );
 }
 
