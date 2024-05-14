@@ -11,6 +11,7 @@ import { UserContext } from "./utils/context/UserContext";
 
 import { useGetPets } from "./utils/hooks/petQuery";
 import { useGetReservations } from "./utils/hooks/reservationQuery";
+import DetailsCaregiver from "./components/DetailsCaregiver/DetailsCaregiver";
 
 function App() {
   const { user, setUser } = React.useContext(UserContext);
@@ -47,6 +48,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cuidadores" element={<CareGivers />} />
+        <Route path="/details/:idCaregiver" element={<DetailsCaregiver />} />        
         <Route path="/myprofile" element={<UserProfile />} />
         <Route path="/*" element={<Error />} />
       </Routes>
