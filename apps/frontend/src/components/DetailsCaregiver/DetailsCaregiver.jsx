@@ -116,6 +116,9 @@ export default function DetailsCaregiver() {
           aboutMe={caregiver.aboutMe.aboutMe}
           catAccepted={caregiver.petAccepted.cats}
           dogAccepted={caregiver.petAccepted.dogs}
+          approximateLatitude={caregiver.approximateLocation._latitude}
+          approximateLongitude={caregiver.approximateLocation._longitude}
+          rates={caregiver.rates.housing}
         />
       ) : (
         <TabsDetailsCaregiver
@@ -123,6 +126,9 @@ export default function DetailsCaregiver() {
           aboutMe={caregiver.aboutMe.aboutMe}
           catAccepted={caregiver.petAccepted.cats}
           dogAccepted={caregiver.petAccepted.dogs}
+          approximateLatitude={caregiver.approximateLocation._latitude}
+          approximateLongitude={caregiver.approximateLocation._longitude}
+          rates={caregiver.rates.housing}
         />
       )}
     </Flex>
