@@ -11,6 +11,9 @@ export default function TabsDetailsCaregiver({
   aboutMe,
   catAccepted,
   dogAccepted,
+  approximateLongitude, 
+  approximateLatitude,
+  rates
 }) {
   return (
     <Tabs colorScheme="purple">
@@ -43,6 +46,7 @@ export default function TabsDetailsCaregiver({
           <TabServicesAndRates
             catAccepted={catAccepted}
             dogAccepted={dogAccepted}
+            rates={rates}
           />
         </TabPanel>
 
@@ -53,7 +57,7 @@ export default function TabsDetailsCaregiver({
 
         {/* Ubicación */}
         <TabPanel>
-          <TabLocation />
+          <TabLocation approximateLatitude={approximateLatitude} approximateLongitude={approximateLongitude} />
         </TabPanel>
 
         {/* Valoración */}
