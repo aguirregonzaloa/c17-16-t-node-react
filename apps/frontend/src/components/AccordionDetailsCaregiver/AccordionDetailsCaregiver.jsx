@@ -18,6 +18,9 @@ export default function AccordionDetailsCaregiver({
   aboutMe,
   catAccepted,
   dogAccepted,
+  approximateLongitude, 
+  approximateLatitude,
+  rates
 }) {
   return (
     <Accordion allowToggle>
@@ -48,6 +51,7 @@ export default function AccordionDetailsCaregiver({
         <TabServicesAndRates
             catAccepted={catAccepted}
             dogAccepted={dogAccepted}
+            rates={rates}
           />
         </AccordionPanel>
       </AccordionItem>
@@ -76,7 +80,7 @@ export default function AccordionDetailsCaregiver({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <TabLocation />
+          <TabLocation approximateLongitude={approximateLongitude} approximateLatitude={approximateLatitude} />
         </AccordionPanel>
       </AccordionItem>
 
