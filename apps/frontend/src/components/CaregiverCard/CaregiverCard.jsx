@@ -155,33 +155,37 @@ export default function CaregiverCard({
           </Flex>
         </Flex> */}
         </Grid>
-        <Grid gap={3}>
-          <Text
-            fontFamily="Poppins-Medium"
-            fontSize="20px"
-            fontWeight="600"
-            lineHeight="24px"
-            color="azulacento.500"
-          >
-            $7000
+        <Flex direction="column" gap={10}>
+          <Grid>
             <Text
-              fontFamily="Poppins-Regular"
-              fontSize="16px"
-              fontWeight="400"
+              fontFamily="Poppins-Medium"
+              fontSize="20px"
+              fontWeight="600"
               lineHeight="24px"
-              color="gris.700"
+              color="azulacento.500"
+            >
+              $7000
+            </Text>
+            <span
+              style={{
+                fontFamily: "Poppins-Regular",
+                fontSize: "14px",
+                fontWeight: "400",
+                lineHeight: "24px",
+                color: "gris.700",
+              }}
             >
               por día
-            </Text>
-          </Text>
-          {/* {user.status ? ( */}
+            </span>
+            {/* {user.status ? ( */}
+          </Grid>
           <Button
             colorScheme={"azulacento"}
             onClick={user.status ? onReservationOpen : onUserOpen}
           >
             Reservar
           </Button>
-        </Grid>
+        </Flex>
       </Flex>
     </>
   );

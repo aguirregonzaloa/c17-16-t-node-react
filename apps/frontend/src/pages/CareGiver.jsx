@@ -21,6 +21,7 @@ const CareGivers = (props) => {
     const addUserReservations = { ...user, reservations };
     setUser(addUserReservations);
   };
+
   return (
     <Container pt={"80px"} minH={"1200px"}>
       <Heading
@@ -41,7 +42,7 @@ const CareGivers = (props) => {
             name={item.name}
             photo={item.photo}
             currentDate={state.cuidadorData.currentDate}
-            key={item.id}
+            key={item.idCuidador}
             onAddReservation={() => addReservation(item)}
           />
         ))}
