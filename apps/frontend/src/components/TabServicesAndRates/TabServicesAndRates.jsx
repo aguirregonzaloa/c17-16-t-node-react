@@ -6,7 +6,7 @@ import IconCatPurple from "../../assets/icons/IconCatPurple.svg";
 import IconPetSizes from "../../assets/icons/PetsSizes.svg";
 import IconItem from "../../assets/icons/ItemDetails.svg";
 
-export default function TabServicesAndRates({ catAccepted, dogAccepted }) {
+export default function TabServicesAndRates({ catAccepted, dogAccepted, rates }) {
   return (
     <>
       <Heading
@@ -39,7 +39,7 @@ export default function TabServicesAndRates({ catAccepted, dogAccepted }) {
             fontSize="18px"
             color="gris.800"
           >
-            $7000
+            ${rates}
           </Heading>
           <Text fontFamily="Poppins-Regular" fontSize="14px" color="gris.600">
             día
@@ -186,7 +186,7 @@ export default function TabServicesAndRates({ catAccepted, dogAccepted }) {
           </Flex>
         </Flex>
       </Box>
-      <Box mb="40px">
+      {/* <Box mb="40px">
         <Heading
           fontFamily="Poppins-SemiBold"
           fontSize="14px"
@@ -203,7 +203,7 @@ export default function TabServicesAndRates({ catAccepted, dogAccepted }) {
             </Text>
           </Flex>
         </Flex>
-      </Box>
+      </Box> */}
       <Box mb="40px">
         <Button
           p="10px 20px"
