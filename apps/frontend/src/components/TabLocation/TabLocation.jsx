@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 export default function TabLocation({
+  city,
   approximateLatitude,
   approximateLongitude,
 }) {
@@ -29,7 +30,7 @@ export default function TabLocation({
       <Flex gap={2} mb="40px">
         <Image src={IconLocation} alt="Icono de ubicación" />
         <Text fontFamily="Poppins-Regular" fontSize="14px" color="gris.600">
-          Palermo, Buenos Aires
+          {city}
         </Text>
       </Flex>
       <Box width="100%" height="500px" borderRadius={20}>
