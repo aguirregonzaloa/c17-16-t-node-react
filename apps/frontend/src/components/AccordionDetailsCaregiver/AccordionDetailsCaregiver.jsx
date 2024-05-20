@@ -18,6 +18,7 @@ export default function AccordionDetailsCaregiver({
   aboutMe,
   catAccepted,
   dogAccepted,
+  city,
   approximateLongitude, 
   approximateLatitude,
   rates
@@ -80,7 +81,7 @@ export default function AccordionDetailsCaregiver({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <TabLocation approximateLongitude={approximateLongitude} approximateLatitude={approximateLatitude} />
+          <TabLocation city={city} approximateLongitude={approximateLongitude} approximateLatitude={approximateLatitude} />
         </AccordionPanel>
       </AccordionItem>
 
