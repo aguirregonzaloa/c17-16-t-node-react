@@ -92,7 +92,7 @@ const SearchingBar = () => {
               color="gris.600"
               icon="none"
             >
-              <option value="Dog" selected>
+              <option value="Dog" defaultValue>
                 Perro
               </option>
               <option value="Cat">Gato</option>
