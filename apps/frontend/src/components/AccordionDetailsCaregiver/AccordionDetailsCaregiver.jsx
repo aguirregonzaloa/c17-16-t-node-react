@@ -35,7 +35,7 @@ export default function AccordionDetailsCaregiver({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <TabAboutMe name={name} aboutMe={aboutMe} />
+          <PanelAboutMe name={name} aboutMe={aboutMe} />
         </AccordionPanel>
       </AccordionItem>
 
