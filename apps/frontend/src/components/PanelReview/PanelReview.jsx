@@ -7,7 +7,7 @@ import Rebeca__Review from "../../assets/img/Rebeca_Review.png";
 import Manito from "../../assets/img/Manitos.png";
 import { IoIosStar } from "react-icons/io";
 
-export default function TabReview() {
+export default function PanelReview() {
   return (
     <>
       <Flex justify="space-between">

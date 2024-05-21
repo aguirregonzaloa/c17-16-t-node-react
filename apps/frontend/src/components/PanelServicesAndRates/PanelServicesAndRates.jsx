@@ -6,7 +6,7 @@ import IconCatPurple from "../../assets/icons/IconCatPurple.svg";
 import IconPetSizes from "../../assets/icons/PetsSizes.svg";
 import IconItem from "../../assets/icons/ItemDetails.svg";
 
-export default function TabServicesAndRates({ catAccepted, dogAccepted, rates }) {
+export default function PanelServicesAndRates({ catAccepted, dogAccepted, rates }) {
   return (
     <>
       <Heading

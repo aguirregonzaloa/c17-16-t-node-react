@@ -4,7 +4,7 @@ import IconLocation from "../../assets/icons/IconLocation.svg";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function TabLocation({
+export default function PanelLocation({
   city,
   approximateLatitude,
   approximateLongitude,

@@ -7,11 +7,11 @@ import {
   AccordionIcon,
   Box,
 } from "@chakra-ui/react";
-import TabAboutMe from "../TabAboutMe/TabAboutMe";
-import TabServicesAndRates from "../TabServicesAndRates/TabServicesAndRates";
-import TabReview from "../TabReview/TabReview";
-import TabLocation from "../TabLocation/TabLocation";
-import TabAvailability from "../TabAvailability/TabAvailability";
+import PanelAboutMe from "../PanelAboutMe/PanelAboutMe";
+import PanelServicesAndRates from "../PanelServicesAndRates/PanelServicesAndRates";
+import PanelReview from "../PanelReview/PanelReview";
+import PanelLocation from "../PanelLocation/PanelLocation";
+import PanelAvailability from "../PanelAvailability/PanelAvailability";
 
 export default function AccordionDetailsCaregiver({
   name,
@@ -49,7 +49,7 @@ export default function AccordionDetailsCaregiver({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-        <TabServicesAndRates
+        <PanelServicesAndRates
             catAccepted={catAccepted}
             dogAccepted={dogAccepted}
             rates={rates}
@@ -67,7 +67,7 @@ export default function AccordionDetailsCaregiver({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <TabAvailability />
+          <PanelAvailability />
         </AccordionPanel>
       </AccordionItem>
 
@@ -81,7 +81,7 @@ export default function AccordionDetailsCaregiver({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <TabLocation city={city} approximateLongitude={approximateLongitude} approximateLatitude={approximateLatitude} />
+          <PanelLocation city={city} approximateLongitude={approximateLongitude} approximateLatitude={approximateLatitude} />
         </AccordionPanel>
       </AccordionItem>
 
@@ -95,7 +95,7 @@ export default function AccordionDetailsCaregiver({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <TabReview />
+          <PanelReview />
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
