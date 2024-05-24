@@ -9,7 +9,7 @@ import SearchingBar from "../SearchingBar/SearchingBar";
 
 export default function Banner() {
   return (
-    <Flex direction={{ base: "column", lg: "row" }}>
+    <Flex direction={{ base: "column", lg: "row" }} id="banner">
       <Box
         id="home"
         bg="white"
