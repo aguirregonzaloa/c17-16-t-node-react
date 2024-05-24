@@ -17,6 +17,11 @@
   </a>
 </div>
 
+<br>
+
+<img src="/apps/frontend/src/assets/img/Readme.png" width="100%" />
+
+
 ## <img src="https://media.giphy.com/media/qjqUcgIyRjsl2/giphy.gif" width="50"/><b>¿Qué nos diferencia de los demás?</b>
 
 - **Cuidadores Capacitados**: Cada cuidador está capacitado en técnicas de manejo, primeros auxilios y comportamiento animal.
@@ -163,8 +168,8 @@
       </a>
     </td>
     <td align="center">
-      <a href="">
-        <img src="" width="100px;" alt="Foto de LinkedIn"/><br>
+      <a href="https://www.linkedin.com/in/esteban-montoyad/">
+        <img src="https://media.licdn.com/dms/image/C4E03AQE9y_flIri3QQ/profile-displayphoto-shrink_200_200/0/1581360071241?e=1721865600&v=beta&t=r-UgRYQN3g6W_LeWQcBqqlr6q6wuwb0ujZTDVOJSCd4" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Esteban</b>
         </sub>
