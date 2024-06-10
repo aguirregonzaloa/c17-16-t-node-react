@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
+import RatesHome from "./components/RatesHome/RatesHome";
+import Review from "./components/Review/Review";
 import Footer from "./components/Footer/Footer";
-import Error from "./pages/Error";
+
 import "./App.css";
 import CareGivers from "./pages/CareGiver";
 import UserProfile from "./pages/UserProfile";
@@ -11,7 +13,6 @@ import { UserContext } from "./utils/context/UserContext";
 
 import { useGetPets } from "./utils/hooks/petQuery";
 import { useGetReservations } from "./utils/hooks/reservationQuery";
-import DetailsCaregiver from "./components/DetailsCaregiver/DetailsCaregiver";
 
 function App() {
   const { user, setUser } = React.useContext(UserContext);
@@ -53,8 +54,9 @@ function App() {
         <Route path="/*" element={<Error />} />
       </Routes>
       <Outlet />
-      <Footer />
+      <Footer/>
     </BrowserRouter>
+    
   );
 }
 

@@ -34,8 +34,11 @@ const Review = () => {
         lineHeight="60px"
         fontFamily="Poppins-SemiBold"
       >
-        Qué opinan nuestros clientes
+       Qué opinan nuestros clientes
+        
       </Text>
+     
+
       <Flex
         direction={"column"}
         justify="space-between"
