@@ -21,7 +21,6 @@
 
 <img src="/apps/frontend/src/assets/img/Readme.png" width="100%" />
 
-
 ## <img src="https://media.giphy.com/media/qjqUcgIyRjsl2/giphy.gif" width="50"/><b>¿Qué nos diferencia de los demás?</b>
 
 - **Cuidadores Capacitados**: Cada cuidador está capacitado en técnicas de manejo, primeros auxilios y comportamiento animal.
@@ -106,7 +105,7 @@
 <table>
   <tr>
     <td align="center">
-      <a href="https://www.linkedin.com/in/florencia-nievaa/">
+      <a href="https://www.linkedin.com/in/florencia-nievaa/" target="_blank">
         <img src="https://avatars.githubusercontent.com/u/130400046?v=4" width="100px;" alt="Foto de GitHub"/><br>
         <sub>
           <b>Florencia Nieva</b>
@@ -114,16 +113,16 @@
       </a>
     </td>
     <td align="center">
-      <a href="https://www.linkedin.com/in/aguirregonzaloa/">
-        <img src="https://media.licdn.com/dms/image/D4D35AQGQn9STZUEb-Q/profile-framedphoto-shrink_200_200/0/1708623674398?e=1717016400&v=beta&t=l0M-pmhFUNMjhMrdhI672Ih0_Q0ZxiQ-SF5aDEfW7Q8" width="100px;" alt="Foto de LinkedIn"/><br>
+      <a href="https://www.linkedin.com/in/aguirregonzaloa/" target="_blank">
+        <img src="https://media.licdn.com/dms/image/D4D03AQEH2Y5cZDbkbg/profile-displayphoto-shrink_800_800/0/1708623672468?e=1723680000&v=beta&t=n60emhcEBkvyEc9R0YY0nybZBGsg-eXjR0ajF_wt7d4" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Gonzalo Aguirre</b>
         </sub>
       </a>
     </td>
     <td align="center">
-      <a href="https://www.linkedin.com/in/nicol%C3%A1s-gait%C3%A1n-a58868173/">
-        <img src="https://media.licdn.com/dms/image/D4E35AQEkSx9Ds4gIBw/profile-framedphoto-shrink_800_800/0/1709223658450?e=1717016400&v=beta&t=Ds0uz-h3Tii2oWEWgMlJOp9Y7REMrwzn9tnrQHw4TXQ" width="100px;" alt="Foto de LinkedIn"/><br>
+      <a href="https://www.linkedin.com/in/nicol%C3%A1s-gait%C3%A1n-a58868173/" target="_blank">
+        <img src="https://media.licdn.com/dms/image/D4E35AQEkSx9Ds4gIBw/profile-framedphoto-shrink_800_800/0/1709223658450?e=1718643600&v=beta&t=XN04pZiXnJvGbT9k0j_87ls1pW5A4okbDx0_mp8_gzo" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Nicolas Gaitan</b>
         </sub>
@@ -137,7 +136,7 @@
 <table>
   <tr>
     <td align="center">
-      <a href="https://www.linkedin.com/in/jesrigpineda/">
+      <a href="https://www.linkedin.com/in/jesrigpineda/" target="_blank">
         <img src="https://media.licdn.com/dms/image/D5603AQHrc8f3Eiyw4w/profile-displayphoto-shrink_200_200/0/1694669185084?e=1721865600&v=beta&t=PKg7kt-tFozdER2zhYTxs2SCAnq-j6Q9sBKiF6JmsEE" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Jesrig Pineda</b>
@@ -145,7 +144,7 @@
       </a>
     </td>
     <td align="center">
-      <a href="https://www.linkedin.com/in/juan-fern%C3%A1ndez-b68463b1/">
+      <a href="https://www.linkedin.com/in/juan-fern%C3%A1ndez-b68463b1/" target="_blank">
         <img src="https://media.licdn.com/dms/image/D4D03AQEMIDyHkuq_SQ/profile-displayphoto-shrink_200_200/0/1698011855568?e=1721865600&v=beta&t=Yf9eEURXlpc9BJMvB_x0MnCVg0kYsPSA5bPvzlWrDvM" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Juan Fernandez</b>
@@ -160,15 +159,15 @@
 <table>
   <tr>
     <td align="center">
-      <a href="https://www.linkedin.com/in/magali-goncalves01/">
-        <img src="https://media.licdn.com/dms/image/D4D35AQFx33SnBloKpA/profile-framedphoto-shrink_200_200/0/1692445362945?e=1717016400&v=beta&t=dFO_34li5L8vLOHzfgVlaH6a9Hyrk9acl-dbZyRjgKk" width="100px;" alt="Foto de LinkedIn"/><br>
+      <a href="https://www.linkedin.com/in/magali-goncalves01/" target="_blank">
+        <img src="https://media.licdn.com/dms/image/D4D03AQFRoVyjZ0xucA/profile-displayphoto-shrink_800_800/0/1717158524817?e=1723680000&v=beta&t=qZypviScFok2iGq79jtWnYtTKv8fz_59QWGR9cIX03I" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Magali Goncalves</b>
         </sub>
       </a>
     </td>
     <td align="center">
-      <a href="https://www.linkedin.com/in/esteban-montoyad/">
+      <a href="https://www.linkedin.com/in/esteban-montoyad/" target="_blank">
         <img src="https://media.licdn.com/dms/image/C4E03AQE9y_flIri3QQ/profile-displayphoto-shrink_200_200/0/1581360071241?e=1721865600&v=beta&t=r-UgRYQN3g6W_LeWQcBqqlr6q6wuwb0ujZTDVOJSCd4" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Esteban</b>
@@ -183,7 +182,7 @@
 <table>
   <tr>
     <td align="center">
-      <a href="https://www.linkedin.com/in/sergiogarciauxui/">
+      <a href="https://www.linkedin.com/in/sergiogarciauxui/" target="_blank">
         <img src="https://media.licdn.com/dms/image/D4D03AQEpcJzUL0ldnQ/profile-displayphoto-shrink_200_200/0/1714943229898?e=1721865600&v=beta&t=z-dhawj8ki58AnvDob0gmElBWO7YnJO0u2cG0cAUbZw" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Sergio García</b>
@@ -191,7 +190,7 @@
       </a>
     </td>
     <td align="center">
-      <a href="https://www.linkedin.com/in/gresziamatosechevarria/">
+      <a href="https://www.linkedin.com/in/gresziamatosechevarria/" target="_blank">
         <img src="https://media.licdn.com/dms/image/D4E35AQF8lc8w7qAN1A/profile-framedphoto-shrink_200_200/0/1708886689723?e=1717016400&v=beta&t=QXPp05HKO3dIJa5PYJYr0MTjvPIVQk6RFZXZZ54JRVU" width="100px;" alt="Foto de LinkedIn"/><br>
         <sub>
           <b>Greszia Matos Echevarría</b>
