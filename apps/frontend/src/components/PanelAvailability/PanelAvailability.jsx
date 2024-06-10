@@ -3,7 +3,7 @@ import { Image, Flex, Box, Heading, Text } from "@chakra-ui/react";
 import Calendar from "../../assets/icons/Calendar.svg";
 import IconTime from "../../assets/icons/TimeLine.svg";
 
-export default function TabAvailability() {
+export default function PanelAvailability() {
   return (
     <>
       <Heading

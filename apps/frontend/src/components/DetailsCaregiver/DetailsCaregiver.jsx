@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { getCareGivers } from "../../utils/api/CareGivers/CareGivers";
 import {
   Box,
@@ -17,35 +17,28 @@ import AccordionDetailsCaregiver from "../AccordionDetailsCaregiver/AccordionDet
 
 export default function DetailsCaregiver() {
   const { idCaregiver } = useParams();
-  const [caregiver, setCaregiver] = useState(null);
   const screenSize = useBreakpointValue({ base: "base", md: "md" });
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["caregivers"],
+    queryFn: getCareGivers,
+  });
 
-  useEffect(() => {
-    const fetchCareGiver = async () => {
-      try {
-        const caregiversData = await getCareGivers();
-        const caregiverFound = caregiversData.data.find(
-          (item) => item.idCuidador === idCaregiver
-        );
-        if (caregiverFound) {
-          setCaregiver(caregiverFound);
-          // console.log(caregiverFound)
-        } else {
-          console.log("Cuidador no encontrado");
-        }
-      } catch (error) {
-        console.error("Error al obtener los cuidadores:", error);
-      }
-    };
-    fetchCareGiver();
-  }, [idCaregiver]);
-
-  if (!caregiver) {
+  if (isLoading) {
     return (
       <Flex justify="center" pt={20} minH="100vh">
         <Spinner size="lg" color="azulacento.600" />
       </Flex>
     );
+  }
+
+  if (error) {
+    return <div>Error al obtener los cuidadores: {error.message}</div>;
+  }
+
+  const caregiver = data.data.find((item) => item.idCuidador === idCaregiver);
+
+  if (!caregiver) {
+    return <div>Cuidador no encontrado</div>;
   }
 
   return (
@@ -105,7 +98,7 @@ export default function DetailsCaregiver() {
               lineHeight="24px"
               color="gris.600"
             >
-              Palermo, Buenos Aires
+              {caregiver.approximateLocation.city}
             </Text>
           </Flex>
         </Flex>
@@ -116,6 +109,10 @@ export default function DetailsCaregiver() {
           aboutMe={caregiver.aboutMe.aboutMe}
           catAccepted={caregiver.petAccepted.cats}
           dogAccepted={caregiver.petAccepted.dogs}
+          city={caregiver.approximateLocation.city}
+          approximateLatitude={caregiver.approximateLocation.geopoint._latitude}
+          approximateLongitude={caregiver.approximateLocation.geopoint._longitude}
+          rates={caregiver.rates.housing}
         />
       ) : (
         <TabsDetailsCaregiver
@@ -123,6 +120,10 @@ export default function DetailsCaregiver() {
           aboutMe={caregiver.aboutMe.aboutMe}
           catAccepted={caregiver.petAccepted.cats}
           dogAccepted={caregiver.petAccepted.dogs}
+          city={caregiver.approximateLocation.city}
+          approximateLatitude={caregiver.approximateLocation.geopoint._latitude}
+          approximateLongitude={caregiver.approximateLocation.geopoint._longitude}
+          rates={caregiver.rates.housing}
         />
       )}
     </Flex>

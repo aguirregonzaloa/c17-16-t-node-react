@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading, Text, Grid, GridItem } from "@chakra-ui/react";
 
-export default function TabAboutMe({ name, aboutMe }) {
+export default function PanelAboutMe({ name, aboutMe }) {
   return (
     <>
       <Heading

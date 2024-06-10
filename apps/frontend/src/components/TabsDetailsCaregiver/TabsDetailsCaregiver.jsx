@@ -1,16 +1,20 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import TabAboutMe from "../TabAboutMe/TabAboutMe";
-import TabServicesAndRates from "../TabServicesAndRates/TabServicesAndRates";
-import TabAvailability from "../TabAvailability/TabAvailability";
-import TabLocation from "../TabLocation/TabLocation";
-import TabReview from "../TabReview/TabReview";
+import PanelAboutMe from "../PanelAboutMe/PanelAboutMe";
+import PanelServicesAndRates from "../PanelServicesAndRates/PanelServicesAndRates";
+import PanelAvailability from "../PanelAvailability/PanelAvailability";
+import PanelLocation from "../PanelLocation/PanelLocation";
+import PanelReview from "../PanelReview/PanelReview";
 
 export default function TabsDetailsCaregiver({
   name,
   aboutMe,
   catAccepted,
   dogAccepted,
+  city,
+  approximateLongitude, 
+  approximateLatitude,
+  rates
 }) {
   return (
     <Tabs colorScheme="purple">
@@ -35,30 +39,31 @@ export default function TabsDetailsCaregiver({
       <TabPanels>
         {/* Sobre mí */}
         <TabPanel>
-          <TabAboutMe name={name} aboutMe={aboutMe} />
+          <PanelAboutMe name={name} aboutMe={aboutMe} />
         </TabPanel>
 
         {/* Servicios y Tarifas */}
         <TabPanel>
-          <TabServicesAndRates
+          <PanelServicesAndRates
             catAccepted={catAccepted}
             dogAccepted={dogAccepted}
+            rates={rates}
           />
         </TabPanel>
 
         {/* Disponibilidad */}
         <TabPanel>
-          <TabAvailability />
+          <PanelAvailability />
         </TabPanel>
 
         {/* Ubicación */}
         <TabPanel>
-          <TabLocation />
+          <PanelLocation city={city} approximateLatitude={approximateLatitude} approximateLongitude={approximateLongitude} />
         </TabPanel>
 
         {/* Valoración */}
         <TabPanel>
-          <TabReview />
+          <PanelReview />
         </TabPanel>
       </TabPanels>
     </Tabs>
